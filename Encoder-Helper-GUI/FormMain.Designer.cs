@@ -42,7 +42,8 @@
             this.ListBoxFiles.Name = "ListBoxFiles";
             this.ListBoxFiles.Size = new System.Drawing.Size(599, 368);
             this.ListBoxFiles.TabIndex = 0;
-            this.ListBoxFiles.DragEnter += new System.Windows.Forms.DragEventHandler(this.OnDragEnter);
+            this.ListBoxFiles.DragDrop += new System.Windows.Forms.DragEventHandler(this.ListBoxFiles_DragDrop);
+            this.ListBoxFiles.DragEnter += new System.Windows.Forms.DragEventHandler(this.ListBoxFiles_DragEnter);
             // 
             // FormMain
             // 

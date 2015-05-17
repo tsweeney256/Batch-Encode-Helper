@@ -17,9 +17,21 @@ namespace Encoder_Helper_GUI
             InitializeComponent();
         }
 
-        private void OnDragEnter(object sender, DragEventArgs e)
+        private void ListBoxFiles_DragDrop(object sender, DragEventArgs e)
         {
+            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+            foreach (string file in files)
+            {
+                ListBoxFiles.Items.Add(file);
+            }
+        }
 
+        private void ListBoxFiles_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
         }
     }
 }
