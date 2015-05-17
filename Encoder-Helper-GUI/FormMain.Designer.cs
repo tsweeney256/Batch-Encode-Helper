@@ -41,6 +41,7 @@
             this.ListBoxFiles.FormattingEnabled = true;
             this.ListBoxFiles.Location = new System.Drawing.Point(12, 41);
             this.ListBoxFiles.Name = "ListBoxFiles";
+            this.ListBoxFiles.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.ListBoxFiles.Size = new System.Drawing.Size(599, 342);
             this.ListBoxFiles.TabIndex = 0;
             this.ListBoxFiles.DragDrop += new System.Windows.Forms.DragEventHandler(this.ListBoxFiles_DragDrop);
