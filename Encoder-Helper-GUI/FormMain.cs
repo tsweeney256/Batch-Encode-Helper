@@ -30,19 +30,19 @@ namespace Encoder_Helper_GUI
             return false;
         }
 
-        private void ListBoxFiles_DragDrop(object sender, DragEventArgs e)
+        private void ListBox_Files_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             foreach (string file in files)
             {
-                if (!ListBoxCheckForDuplicates(ListBoxFiles, file))
+                if (!ListBoxCheckForDuplicates(ListBox_Files, file))
                 {
-                    ListBoxFiles.Items.Add(file);
+                    ListBox_Files.Items.Add(file);
                 }
             }
         }
 
-        private void ListBoxFiles_DragEnter(object sender, DragEventArgs e)
+        private void ListBox_Files_DragEnter(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
@@ -52,18 +52,18 @@ namespace Encoder_Helper_GUI
 
         private void ListBoxFilesRemove()
         {
-            for (int i = ListBoxFiles.SelectedIndices.Count-1; i >= 0; i--)
+            for (int i = ListBox_Files.SelectedIndices.Count-1; i >= 0; i--)
             {
-                ListBoxFiles.Items.RemoveAt(ListBoxFiles.SelectedIndices[i]);
+                ListBox_Files.Items.RemoveAt(ListBox_Files.SelectedIndices[i]);
             }
         }
 
-        private void ButtonListBoxFilesRemove_Click(object sender, EventArgs e)
+        private void Button_ListBox_Files_Remove_Click(object sender, EventArgs e)
         {
             ListBoxFilesRemove();
         }
 
-        private void ListBoxFiles_KeyDown(object sender, KeyEventArgs e)
+        private void ListBox_Files_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)
             {
@@ -71,7 +71,7 @@ namespace Encoder_Helper_GUI
             }
         }
 
-        private void ButtonListBoxFilesAdd_Click(object sender, EventArgs e)
+        private void Button_ListBox_Files_Add_Click(object sender, EventArgs e)
         {
             var dialogResult = ListBoxFilesOpenFileDialog.ShowDialog();
 
@@ -79,9 +79,9 @@ namespace Encoder_Helper_GUI
             {
                 for (int i = 0; i < ListBoxFilesOpenFileDialog.FileNames.Length; i++)
                 {
-                    if (!ListBoxCheckForDuplicates(ListBoxFiles, ListBoxFilesOpenFileDialog.FileNames[i]))
+                    if (!ListBoxCheckForDuplicates(ListBox_Files, ListBoxFilesOpenFileDialog.FileNames[i]))
                     {
-                        ListBoxFiles.Items.Add(ListBoxFilesOpenFileDialog.FileNames[i]);
+                        ListBox_Files.Items.Add(ListBoxFilesOpenFileDialog.FileNames[i]);
                     }
                 }
             }

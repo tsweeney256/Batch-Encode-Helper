@@ -28,61 +28,61 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ListBoxFiles = new System.Windows.Forms.ListBox();
-            this.ButtonTextBoxFilesRemove = new System.Windows.Forms.Button();
+            this.ListBox_Files = new System.Windows.Forms.ListBox();
+            this.Button_TextBox_Files_Remove = new System.Windows.Forms.Button();
             this.ListBoxFilesOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.ButtonTextBoxFilesAdd = new System.Windows.Forms.Button();
+            this.Button_TextBox_Files_Add = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // ListBoxFiles
+            // ListBox_Files
             // 
-            this.ListBoxFiles.AllowDrop = true;
-            this.ListBoxFiles.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.ListBox_Files.AllowDrop = true;
+            this.ListBox_Files.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.ListBoxFiles.FormattingEnabled = true;
-            this.ListBoxFiles.Location = new System.Drawing.Point(12, 41);
-            this.ListBoxFiles.Name = "ListBoxFiles";
-            this.ListBoxFiles.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.ListBoxFiles.Size = new System.Drawing.Size(599, 342);
-            this.ListBoxFiles.TabIndex = 0;
-            this.ListBoxFiles.DragDrop += new System.Windows.Forms.DragEventHandler(this.ListBoxFiles_DragDrop);
-            this.ListBoxFiles.DragEnter += new System.Windows.Forms.DragEventHandler(this.ListBoxFiles_DragEnter);
-            this.ListBoxFiles.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListBoxFiles_KeyDown);
+            this.ListBox_Files.FormattingEnabled = true;
+            this.ListBox_Files.Location = new System.Drawing.Point(12, 41);
+            this.ListBox_Files.Name = "ListBox_Files";
+            this.ListBox_Files.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.ListBox_Files.Size = new System.Drawing.Size(599, 342);
+            this.ListBox_Files.TabIndex = 0;
+            this.ListBox_Files.DragDrop += new System.Windows.Forms.DragEventHandler(this.ListBox_Files_DragDrop);
+            this.ListBox_Files.DragEnter += new System.Windows.Forms.DragEventHandler(this.ListBox_Files_DragEnter);
+            this.ListBox_Files.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListBox_Files_KeyDown);
             // 
-            // ButtonTextBoxFilesRemove
+            // Button_TextBox_Files_Remove
             // 
-            this.ButtonTextBoxFilesRemove.Location = new System.Drawing.Point(93, 12);
-            this.ButtonTextBoxFilesRemove.Name = "ButtonTextBoxFilesRemove";
-            this.ButtonTextBoxFilesRemove.Size = new System.Drawing.Size(75, 23);
-            this.ButtonTextBoxFilesRemove.TabIndex = 1;
-            this.ButtonTextBoxFilesRemove.Text = "Remove";
-            this.ButtonTextBoxFilesRemove.UseVisualStyleBackColor = true;
-            this.ButtonTextBoxFilesRemove.Click += new System.EventHandler(this.ButtonListBoxFilesRemove_Click);
+            this.Button_TextBox_Files_Remove.Location = new System.Drawing.Point(93, 12);
+            this.Button_TextBox_Files_Remove.Name = "Button_TextBox_Files_Remove";
+            this.Button_TextBox_Files_Remove.Size = new System.Drawing.Size(75, 23);
+            this.Button_TextBox_Files_Remove.TabIndex = 1;
+            this.Button_TextBox_Files_Remove.Text = "Remove";
+            this.Button_TextBox_Files_Remove.UseVisualStyleBackColor = true;
+            this.Button_TextBox_Files_Remove.Click += new System.EventHandler(this.Button_ListBox_Files_Remove_Click);
             // 
             // ListBoxFilesOpenFileDialog
             // 
             this.ListBoxFilesOpenFileDialog.FileName = "openFileDialog1";
             this.ListBoxFilesOpenFileDialog.Multiselect = true;
             // 
-            // ButtonTextBoxFilesAdd
+            // Button_TextBox_Files_Add
             // 
-            this.ButtonTextBoxFilesAdd.Location = new System.Drawing.Point(12, 12);
-            this.ButtonTextBoxFilesAdd.Name = "ButtonTextBoxFilesAdd";
-            this.ButtonTextBoxFilesAdd.Size = new System.Drawing.Size(75, 23);
-            this.ButtonTextBoxFilesAdd.TabIndex = 2;
-            this.ButtonTextBoxFilesAdd.Text = "Add";
-            this.ButtonTextBoxFilesAdd.UseVisualStyleBackColor = true;
-            this.ButtonTextBoxFilesAdd.Click += new System.EventHandler(this.ButtonListBoxFilesAdd_Click);
+            this.Button_TextBox_Files_Add.Location = new System.Drawing.Point(12, 12);
+            this.Button_TextBox_Files_Add.Name = "Button_TextBox_Files_Add";
+            this.Button_TextBox_Files_Add.Size = new System.Drawing.Size(75, 23);
+            this.Button_TextBox_Files_Add.TabIndex = 2;
+            this.Button_TextBox_Files_Add.Text = "Add";
+            this.Button_TextBox_Files_Add.UseVisualStyleBackColor = true;
+            this.Button_TextBox_Files_Add.Click += new System.EventHandler(this.Button_ListBox_Files_Add_Click);
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(623, 390);
-            this.Controls.Add(this.ButtonTextBoxFilesAdd);
-            this.Controls.Add(this.ButtonTextBoxFilesRemove);
-            this.Controls.Add(this.ListBoxFiles);
+            this.Controls.Add(this.Button_TextBox_Files_Add);
+            this.Controls.Add(this.Button_TextBox_Files_Remove);
+            this.Controls.Add(this.ListBox_Files);
             this.Name = "FormMain";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -91,10 +91,10 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox ListBoxFiles;
-        private System.Windows.Forms.Button ButtonTextBoxFilesRemove;
+        private System.Windows.Forms.ListBox ListBox_Files;
+        private System.Windows.Forms.Button Button_TextBox_Files_Remove;
         private System.Windows.Forms.OpenFileDialog ListBoxFilesOpenFileDialog;
-        private System.Windows.Forms.Button ButtonTextBoxFilesAdd;
+        private System.Windows.Forms.Button Button_TextBox_Files_Add;
     }
 }
 
