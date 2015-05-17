@@ -34,7 +34,7 @@ namespace Encoder_Helper_GUI
             }
         }
 
-        private void TextBoxFilesRemove()
+        private void ListBoxFilesRemove()
         {
             for (int i = ListBoxFiles.SelectedIndices.Count-1; i >= 0; i--)
             {
@@ -42,20 +42,20 @@ namespace Encoder_Helper_GUI
             }
         }
 
-        private void ButtonTextBoxFilesRemove_Click(object sender, EventArgs e)
+        private void ButtonListBoxFilesRemove_Click(object sender, EventArgs e)
         {
-            TextBoxFilesRemove();
+            ListBoxFilesRemove();
         }
 
         private void ListBoxFiles_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Delete)
             {
-                TextBoxFilesRemove();
+                ListBoxFilesRemove();
             }
         }
 
-        private void ButtonTextBoxFilesAdd_Click(object sender, EventArgs e)
+        private void ButtonListBoxFilesAdd_Click(object sender, EventArgs e)
         {
             var dialogResult = ListBoxFilesOpenFileDialog.ShowDialog();
 

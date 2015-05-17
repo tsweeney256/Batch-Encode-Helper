@@ -58,7 +58,7 @@
             this.ButtonTextBoxFilesRemove.TabIndex = 1;
             this.ButtonTextBoxFilesRemove.Text = "Remove";
             this.ButtonTextBoxFilesRemove.UseVisualStyleBackColor = true;
-            this.ButtonTextBoxFilesRemove.Click += new System.EventHandler(this.ButtonTextBoxFilesRemove_Click);
+            this.ButtonTextBoxFilesRemove.Click += new System.EventHandler(this.ButtonListBoxFilesRemove_Click);
             // 
             // ListBoxFilesOpenFileDialog
             // 
@@ -73,7 +73,7 @@
             this.ButtonTextBoxFilesAdd.TabIndex = 2;
             this.ButtonTextBoxFilesAdd.Text = "Add";
             this.ButtonTextBoxFilesAdd.UseVisualStyleBackColor = true;
-            this.ButtonTextBoxFilesAdd.Click += new System.EventHandler(this.ButtonTextBoxFilesAdd_Click);
+            this.ButtonTextBoxFilesAdd.Click += new System.EventHandler(this.ButtonListBoxFilesAdd_Click);
             // 
             // FormMain
             // 
