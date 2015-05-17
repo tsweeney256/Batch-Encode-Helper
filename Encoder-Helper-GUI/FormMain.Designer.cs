@@ -46,7 +46,7 @@
             this.ListBox_Files.Location = new System.Drawing.Point(12, 41);
             this.ListBox_Files.Name = "ListBox_Files";
             this.ListBox_Files.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.ListBox_Files.Size = new System.Drawing.Size(599, 342);
+            this.ListBox_Files.Size = new System.Drawing.Size(599, 160);
             this.ListBox_Files.TabIndex = 0;
             this.ListBox_Files.DragDrop += new System.Windows.Forms.DragEventHandler(this.ListBox_Files_DragDrop);
             this.ListBox_Files.DragEnter += new System.Windows.Forms.DragEventHandler(this.ListBox_Files_DragEnter);
@@ -108,7 +108,7 @@
             this.Controls.Add(this.Button_TextBox_Files_Remove);
             this.Controls.Add(this.ListBox_Files);
             this.Name = "FormMain";
-            this.Text = "Form1";
+            this.Text = "BD Encoder Helper";
             this.ResumeLayout(false);
 
         }
