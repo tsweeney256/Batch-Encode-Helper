@@ -34,6 +34,12 @@
             this.Button_TextBox_Files_Add = new System.Windows.Forms.Button();
             this.Button_MoveUp_ListBox_Files = new System.Windows.Forms.Button();
             this.Button_MoveDown_ListBox_Files = new System.Windows.Forms.Button();
+            this.MenuStrip_Main = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OptionsToolStrip = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OptionsToolStrip_SettingsItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MenuStrip_Main.SuspendLayout();
             this.SuspendLayout();
             // 
             // ListBox_Files
@@ -43,7 +49,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ListBox_Files.FormattingEnabled = true;
-            this.ListBox_Files.Location = new System.Drawing.Point(12, 41);
+            this.ListBox_Files.Location = new System.Drawing.Point(12, 56);
             this.ListBox_Files.Name = "ListBox_Files";
             this.ListBox_Files.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.ListBox_Files.Size = new System.Drawing.Size(599, 160);
@@ -54,7 +60,7 @@
             // 
             // Button_TextBox_Files_Remove
             // 
-            this.Button_TextBox_Files_Remove.Location = new System.Drawing.Point(93, 12);
+            this.Button_TextBox_Files_Remove.Location = new System.Drawing.Point(93, 27);
             this.Button_TextBox_Files_Remove.Name = "Button_TextBox_Files_Remove";
             this.Button_TextBox_Files_Remove.Size = new System.Drawing.Size(75, 23);
             this.Button_TextBox_Files_Remove.TabIndex = 1;
@@ -69,7 +75,7 @@
             // 
             // Button_TextBox_Files_Add
             // 
-            this.Button_TextBox_Files_Add.Location = new System.Drawing.Point(12, 12);
+            this.Button_TextBox_Files_Add.Location = new System.Drawing.Point(12, 27);
             this.Button_TextBox_Files_Add.Name = "Button_TextBox_Files_Add";
             this.Button_TextBox_Files_Add.Size = new System.Drawing.Size(75, 23);
             this.Button_TextBox_Files_Add.TabIndex = 2;
@@ -79,7 +85,7 @@
             // 
             // Button_MoveUp_ListBox_Files
             // 
-            this.Button_MoveUp_ListBox_Files.Location = new System.Drawing.Point(175, 11);
+            this.Button_MoveUp_ListBox_Files.Location = new System.Drawing.Point(175, 26);
             this.Button_MoveUp_ListBox_Files.Name = "Button_MoveUp_ListBox_Files";
             this.Button_MoveUp_ListBox_Files.Size = new System.Drawing.Size(75, 23);
             this.Button_MoveUp_ListBox_Files.TabIndex = 3;
@@ -89,13 +95,52 @@
             // 
             // Button_MoveDown_ListBox_Files
             // 
-            this.Button_MoveDown_ListBox_Files.Location = new System.Drawing.Point(257, 11);
+            this.Button_MoveDown_ListBox_Files.Location = new System.Drawing.Point(257, 26);
             this.Button_MoveDown_ListBox_Files.Name = "Button_MoveDown_ListBox_Files";
             this.Button_MoveDown_ListBox_Files.Size = new System.Drawing.Size(75, 23);
             this.Button_MoveDown_ListBox_Files.TabIndex = 4;
             this.Button_MoveDown_ListBox_Files.Text = "Move Down";
             this.Button_MoveDown_ListBox_Files.UseVisualStyleBackColor = true;
             this.Button_MoveDown_ListBox_Files.Click += new System.EventHandler(this.Button_MoveDown_ListBox_Files_Click);
+            // 
+            // MenuStrip_Main
+            // 
+            this.MenuStrip_Main.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.OptionsToolStrip,
+            this.helpToolStripMenuItem});
+            this.MenuStrip_Main.Location = new System.Drawing.Point(0, 0);
+            this.MenuStrip_Main.Name = "MenuStrip_Main";
+            this.MenuStrip_Main.Size = new System.Drawing.Size(623, 24);
+            this.MenuStrip_Main.TabIndex = 5;
+            this.MenuStrip_Main.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // OptionsToolStrip
+            // 
+            this.OptionsToolStrip.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OptionsToolStrip_SettingsItem});
+            this.OptionsToolStrip.Name = "OptionsToolStrip";
+            this.OptionsToolStrip.Size = new System.Drawing.Size(61, 20);
+            this.OptionsToolStrip.Text = "Options";
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // OptionsToolStrip_SettingsItem
+            // 
+            this.OptionsToolStrip_SettingsItem.Name = "OptionsToolStrip_SettingsItem";
+            this.OptionsToolStrip_SettingsItem.Size = new System.Drawing.Size(152, 22);
+            this.OptionsToolStrip_SettingsItem.Text = "Settings";
+            this.OptionsToolStrip_SettingsItem.Click += new System.EventHandler(this.OptionsToolStrip_SettingsItem_Click);
             // 
             // FormMain
             // 
@@ -107,9 +152,14 @@
             this.Controls.Add(this.Button_TextBox_Files_Add);
             this.Controls.Add(this.Button_TextBox_Files_Remove);
             this.Controls.Add(this.ListBox_Files);
+            this.Controls.Add(this.MenuStrip_Main);
+            this.MainMenuStrip = this.MenuStrip_Main;
             this.Name = "FormMain";
             this.Text = "BD Encoder Helper";
+            this.MenuStrip_Main.ResumeLayout(false);
+            this.MenuStrip_Main.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -121,6 +171,11 @@
         private System.Windows.Forms.Button Button_TextBox_Files_Add;
         private System.Windows.Forms.Button Button_MoveUp_ListBox_Files;
         private System.Windows.Forms.Button Button_MoveDown_ListBox_Files;
+        private System.Windows.Forms.MenuStrip MenuStrip_Main;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem OptionsToolStrip;
+        private System.Windows.Forms.ToolStripMenuItem OptionsToolStrip_SettingsItem;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
     }
 }
 

@@ -135,5 +135,11 @@ namespace Encoder_Helper_GUI
         {
             MoveListBoxItems(ListBox_Files, 1);
         }
+
+        private void OptionsToolStrip_SettingsItem_Click(object sender, EventArgs e)
+        {
+            var settingsForm = new Form_Settings();
+            settingsForm.ShowDialog();
+        }
     }
 }
