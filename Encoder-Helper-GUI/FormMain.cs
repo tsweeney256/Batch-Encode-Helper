@@ -54,5 +54,18 @@ namespace Encoder_Helper_GUI
                 TextBoxFilesRemove();
             }
         }
+
+        private void ButtonTextBoxFilesAdd_Click(object sender, EventArgs e)
+        {
+            var dialogResult = ListBoxFilesOpenFileDialog.ShowDialog();
+
+            if (dialogResult == DialogResult.OK)
+            {
+                for (int i = 0; i < ListBoxFilesOpenFileDialog.FileNames.Length; i++)
+                {
+                    ListBoxFiles.Items.Add(ListBoxFilesOpenFileDialog.FileNames[i]);
+                }
+            }
+        }
     }
 }

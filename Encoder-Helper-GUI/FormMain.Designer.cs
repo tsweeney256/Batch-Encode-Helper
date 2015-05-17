@@ -30,6 +30,8 @@
         {
             this.ListBoxFiles = new System.Windows.Forms.ListBox();
             this.ButtonTextBoxFilesRemove = new System.Windows.Forms.Button();
+            this.ListBoxFilesOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.ButtonTextBoxFilesAdd = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ListBoxFiles
@@ -50,7 +52,7 @@
             // 
             // ButtonTextBoxFilesRemove
             // 
-            this.ButtonTextBoxFilesRemove.Location = new System.Drawing.Point(12, 12);
+            this.ButtonTextBoxFilesRemove.Location = new System.Drawing.Point(93, 12);
             this.ButtonTextBoxFilesRemove.Name = "ButtonTextBoxFilesRemove";
             this.ButtonTextBoxFilesRemove.Size = new System.Drawing.Size(75, 23);
             this.ButtonTextBoxFilesRemove.TabIndex = 1;
@@ -58,11 +60,27 @@
             this.ButtonTextBoxFilesRemove.UseVisualStyleBackColor = true;
             this.ButtonTextBoxFilesRemove.Click += new System.EventHandler(this.ButtonTextBoxFilesRemove_Click);
             // 
+            // ListBoxFilesOpenFileDialog
+            // 
+            this.ListBoxFilesOpenFileDialog.FileName = "openFileDialog1";
+            this.ListBoxFilesOpenFileDialog.Multiselect = true;
+            // 
+            // ButtonTextBoxFilesAdd
+            // 
+            this.ButtonTextBoxFilesAdd.Location = new System.Drawing.Point(12, 12);
+            this.ButtonTextBoxFilesAdd.Name = "ButtonTextBoxFilesAdd";
+            this.ButtonTextBoxFilesAdd.Size = new System.Drawing.Size(75, 23);
+            this.ButtonTextBoxFilesAdd.TabIndex = 2;
+            this.ButtonTextBoxFilesAdd.Text = "Add";
+            this.ButtonTextBoxFilesAdd.UseVisualStyleBackColor = true;
+            this.ButtonTextBoxFilesAdd.Click += new System.EventHandler(this.ButtonTextBoxFilesAdd_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(623, 390);
+            this.Controls.Add(this.ButtonTextBoxFilesAdd);
             this.Controls.Add(this.ButtonTextBoxFilesRemove);
             this.Controls.Add(this.ListBoxFiles);
             this.Name = "FormMain";
@@ -75,6 +93,8 @@
 
         private System.Windows.Forms.ListBox ListBoxFiles;
         private System.Windows.Forms.Button ButtonTextBoxFilesRemove;
+        private System.Windows.Forms.OpenFileDialog ListBoxFilesOpenFileDialog;
+        private System.Windows.Forms.Button ButtonTextBoxFilesAdd;
     }
 }
 
