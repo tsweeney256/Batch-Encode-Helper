@@ -17,12 +17,28 @@ namespace Encoder_Helper_GUI
             InitializeComponent();
         }
 
+        private bool ListBoxCheckForDuplicates(ListBox lb, string str)
+        {
+            foreach (var item in lb.Items)
+            {
+                string itemStr = item.ToString();
+                if (String.Equals(str, itemStr))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         private void ListBoxFiles_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
             foreach (string file in files)
             {
-                ListBoxFiles.Items.Add(file);
+                if (!ListBoxCheckForDuplicates(ListBoxFiles, file))
+                {
+                    ListBoxFiles.Items.Add(file);
+                }
             }
         }
 
@@ -63,7 +79,10 @@ namespace Encoder_Helper_GUI
             {
                 for (int i = 0; i < ListBoxFilesOpenFileDialog.FileNames.Length; i++)
                 {
-                    ListBoxFiles.Items.Add(ListBoxFilesOpenFileDialog.FileNames[i]);
+                    if (!ListBoxCheckForDuplicates(ListBoxFiles, ListBoxFilesOpenFileDialog.FileNames[i]))
+                    {
+                        ListBoxFiles.Items.Add(ListBoxFilesOpenFileDialog.FileNames[i]);
+                    }
                 }
             }
         }
