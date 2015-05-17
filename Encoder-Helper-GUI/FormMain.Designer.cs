@@ -32,6 +32,8 @@
             this.Button_TextBox_Files_Remove = new System.Windows.Forms.Button();
             this.ListBoxFilesOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.Button_TextBox_Files_Add = new System.Windows.Forms.Button();
+            this.Button_MoveUp_ListBox_Files = new System.Windows.Forms.Button();
+            this.Button_MoveDown_ListBox_Files = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ListBox_Files
@@ -75,11 +77,33 @@
             this.Button_TextBox_Files_Add.UseVisualStyleBackColor = true;
             this.Button_TextBox_Files_Add.Click += new System.EventHandler(this.Button_ListBox_Files_Add_Click);
             // 
+            // Button_MoveUp_ListBox_Files
+            // 
+            this.Button_MoveUp_ListBox_Files.Location = new System.Drawing.Point(175, 11);
+            this.Button_MoveUp_ListBox_Files.Name = "Button_MoveUp_ListBox_Files";
+            this.Button_MoveUp_ListBox_Files.Size = new System.Drawing.Size(75, 23);
+            this.Button_MoveUp_ListBox_Files.TabIndex = 3;
+            this.Button_MoveUp_ListBox_Files.Text = "Move Up";
+            this.Button_MoveUp_ListBox_Files.UseVisualStyleBackColor = true;
+            this.Button_MoveUp_ListBox_Files.Click += new System.EventHandler(this.Button_MoveUp_ListBox_Files_Click);
+            // 
+            // Button_MoveDown_ListBox_Files
+            // 
+            this.Button_MoveDown_ListBox_Files.Location = new System.Drawing.Point(257, 11);
+            this.Button_MoveDown_ListBox_Files.Name = "Button_MoveDown_ListBox_Files";
+            this.Button_MoveDown_ListBox_Files.Size = new System.Drawing.Size(75, 23);
+            this.Button_MoveDown_ListBox_Files.TabIndex = 4;
+            this.Button_MoveDown_ListBox_Files.Text = "Move Down";
+            this.Button_MoveDown_ListBox_Files.UseVisualStyleBackColor = true;
+            this.Button_MoveDown_ListBox_Files.Click += new System.EventHandler(this.Button_MoveDown_ListBox_Files_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(623, 390);
+            this.Controls.Add(this.Button_MoveDown_ListBox_Files);
+            this.Controls.Add(this.Button_MoveUp_ListBox_Files);
             this.Controls.Add(this.Button_TextBox_Files_Add);
             this.Controls.Add(this.Button_TextBox_Files_Remove);
             this.Controls.Add(this.ListBox_Files);
@@ -95,6 +119,8 @@
         private System.Windows.Forms.Button Button_TextBox_Files_Remove;
         private System.Windows.Forms.OpenFileDialog ListBoxFilesOpenFileDialog;
         private System.Windows.Forms.Button Button_TextBox_Files_Add;
+        private System.Windows.Forms.Button Button_MoveUp_ListBox_Files;
+        private System.Windows.Forms.Button Button_MoveDown_ListBox_Files;
     }
 }
 

@@ -86,5 +86,54 @@ namespace Encoder_Helper_GUI
                 }
             }
         }
+
+        private  void MoveListBoxItemsCommon(ListBox lb, int direction, int i)
+        {
+            int newIndex = lb.SelectedIndices[i] + direction;
+            var selected = lb.SelectedItems[i];
+            lb.Items.RemoveAt(lb.SelectedIndices[i]);
+            lb.Items.Insert(newIndex, selected);
+            lb.SetSelected(newIndex, true);
+        }
+
+        private void MoveListBoxItems(ListBox lb, int direction)
+        {
+            if (lb.SelectedItem == null)
+            {
+                return;
+            }
+
+            int frontNewIndex = lb.SelectedIndices[0] + direction;
+            int backNewIndex = lb.SelectedIndices[lb.SelectedIndices.Count - 1] + direction;
+            if (frontNewIndex < 0 || backNewIndex >= lb.Items.Count)
+            {
+                return;
+            }
+
+            if (direction < 0)
+            {
+                for (int i = 0; i < lb.SelectedIndices.Count; i++)
+                {
+                    MoveListBoxItemsCommon(lb, direction, i);
+                }
+            }
+            else
+            {
+                for (int i = lb.SelectedIndices.Count - 1; i >= 0; i--)
+                {
+                    MoveListBoxItemsCommon(lb, direction, i);
+                }
+            }
+        }
+
+        private void Button_MoveUp_ListBox_Files_Click(object sender, EventArgs e)
+        {
+            MoveListBoxItems(ListBox_Files, -1);
+        }
+
+        private void Button_MoveDown_ListBox_Files_Click(object sender, EventArgs e)
+        {
+            MoveListBoxItems(ListBox_Files, 1);
+        }
     }
 }
