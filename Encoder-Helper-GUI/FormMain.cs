@@ -33,5 +33,26 @@ namespace Encoder_Helper_GUI
                 e.Effect = DragDropEffects.Copy;
             }
         }
+
+        private void TextBoxFilesRemove()
+        {
+            for (int i = ListBoxFiles.SelectedIndices.Count-1; i >= 0; i--)
+            {
+                ListBoxFiles.Items.RemoveAt(ListBoxFiles.SelectedIndices[i]);
+            }
+        }
+
+        private void ButtonTextBoxFilesRemove_Click(object sender, EventArgs e)
+        {
+            TextBoxFilesRemove();
+        }
+
+        private void ListBoxFiles_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete)
+            {
+                TextBoxFilesRemove();
+            }
+        }
     }
 }
