@@ -156,8 +156,7 @@
             // 
             // TabControl_VideoArgSettings
             // 
-            this.TabControl_VideoArgSettings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.TabControl_VideoArgSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TabControl_VideoArgSettings.Controls.Add(this.TabPage_VideoSettingsTemplate);
             this.TabControl_VideoArgSettings.Controls.Add(this.tabPage2);
@@ -248,6 +247,8 @@
             // 
             // TabControl_AudioArgSettings
             // 
+            this.TabControl_AudioArgSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.TabControl_AudioArgSettings.Controls.Add(this.tabPage4);
             this.TabControl_AudioArgSettings.Controls.Add(this.tabPage5);
             this.TabControl_AudioArgSettings.Location = new System.Drawing.Point(7, 7);
@@ -637,6 +638,7 @@
             this.Controls.Add(this.TabControl_Settings);
             this.Name = "Form_Settings";
             this.Text = "Settings";
+            this.Shown += new System.EventHandler(this.Form_Settings_Shown);
             this.TabControl_Settings.ResumeLayout(false);
             this.TabControl_Settings_Video.ResumeLayout(false);
             this.TabControl_Settings_Video.PerformLayout();

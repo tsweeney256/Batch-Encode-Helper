@@ -223,5 +223,14 @@ namespace Encoder_Helper_GUI
             settings.save();
             this.Close();
         }
+
+        private void Form_Settings_Shown(object sender, EventArgs e)
+        {
+            //extremely dumb hack to workaround ShowDialog() screwing up the textbox's initial size
+            for (int i = 0; i < vidTab.Count; i++)
+            {
+                vidTab[i].TextBox_x264_Args.Size = new System.Drawing.Size(397, 77);
+            } 
+        }
     }
 }

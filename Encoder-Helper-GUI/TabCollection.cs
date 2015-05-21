@@ -29,7 +29,7 @@ namespace Encoder_Helper_GUI
             // 
             this.TextBox_x264_Args = new TextBox();
             this.TextBox_x264_Args.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
+                | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_x264_Args.Location = new System.Drawing.Point(9, 20);
             this.TextBox_x264_Args.Multiline = true;
             this.TextBox_x264_Args.Name = "TextBox_x264_Args";
