@@ -38,7 +38,7 @@ namespace Encoder_Helper_GUI
             TextBox_MKVMerge.Text = settings.MKVMergeLocation;
             TextBox_NeroAAC.Text = settings.NeroAACLocation;
             TextBox_BePipe.Text = settings.BePipeLocation;
-            for (int i = 0; i < settings.x264Args.Length; i++)
+            for (int i = 0; i < settings.x264Args.Length; i++) 
             {
                 vidTab.Add(new VideoTabCollection());
                 TabControl_VideoArgSettings.TabPages.Add((i+1).ToString());
@@ -49,6 +49,7 @@ namespace Encoder_Helper_GUI
             }
             TextBox_VideoTrackName.Text = settings.videoTrackName;
             TextBox_VideoLanguageCode.Text = settings.videoLanguageCode;
+            checkBox_AvisynthTemplate.Checked = settings.avisynthTemplate;
             TabControl_VideoArgSettings.TabPages.Add("    +"); //dumb hack because Insert() refuses to work
             for (int i = 0; i < settings.audioTrackName.Length; i++)
             {
@@ -208,6 +209,7 @@ namespace Encoder_Helper_GUI
             }
             settings.videoTrackName = TextBox_VideoTrackName.Text;
             settings.videoLanguageCode = TextBox_VideoLanguageCode.Text;
+            settings.avisynthTemplate = checkBox_AvisynthTemplate.Checked;
             settings.quality = new decimal[audioTab.Count];
             settings.audioTrackName = new string[audioTab.Count];
             settings.audioLanguageCode = new string[audioTab.Count];

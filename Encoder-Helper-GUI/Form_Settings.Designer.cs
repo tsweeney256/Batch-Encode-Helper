@@ -79,6 +79,7 @@
             this.Button_OK_Settings = new System.Windows.Forms.Button();
             this.ContextMenuStrip_Tabs = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.StripMenuItem_DeleteTab = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkBox_AvisynthTemplate = new System.Windows.Forms.CheckBox();
             this.TabControl_Settings.SuspendLayout();
             this.TabControl_Settings_Video.SuspendLayout();
             this.TabControl_VideoArgSettings.SuspendLayout();
@@ -107,6 +108,7 @@
             // 
             // TabControl_Settings_Video
             // 
+            this.TabControl_Settings_Video.Controls.Add(this.checkBox_AvisynthTemplate);
             this.TabControl_Settings_Video.Controls.Add(this.TextBox_VideoLanguageCode);
             this.TabControl_Settings_Video.Controls.Add(this.label1);
             this.TabControl_Settings_Video.Controls.Add(this.TextBox_VideoTrackName);
@@ -615,6 +617,16 @@
             this.StripMenuItem_DeleteTab.Text = "Delete Tab";
             this.StripMenuItem_DeleteTab.Click += new System.EventHandler(this.StripMenuItem_DeleteTab_Click);
             // 
+            // checkBox_AvisynthTemplate
+            // 
+            this.checkBox_AvisynthTemplate.AutoSize = true;
+            this.checkBox_AvisynthTemplate.Location = new System.Drawing.Point(8, 237);
+            this.checkBox_AvisynthTemplate.Name = "checkBox_AvisynthTemplate";
+            this.checkBox_AvisynthTemplate.Size = new System.Drawing.Size(143, 17);
+            this.checkBox_AvisynthTemplate.TabIndex = 7;
+            this.checkBox_AvisynthTemplate.Text = "Using Avisynth Template";
+            this.checkBox_AvisynthTemplate.UseVisualStyleBackColor = true;
+            // 
             // Form_Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -695,5 +707,6 @@
         private System.Windows.Forms.Label Label_LanguageCode;
         private System.Windows.Forms.TextBox TextBox_AudioTrackName;
         private System.Windows.Forms.Label Label_AudioTrackName;
+        private System.Windows.Forms.CheckBox checkBox_AvisynthTemplate;
     }
 }

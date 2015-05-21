@@ -15,6 +15,7 @@ namespace Encoder_Helper_GUI
         public int[] encoder { get; set; }
         public string videoTrackName { get; set; }
         public string videoLanguageCode { get; set; }
+        public bool avisynthTemplate { get; set; }
         public decimal[] quality { get; set; }
         public string[] audioTrackName { get; set; }
         public string[] audioLanguageCode { get; set; }
@@ -59,6 +60,7 @@ namespace Encoder_Helper_GUI
             encoder = settings.encoder;
             videoTrackName = settings.videoTrackName;
             videoLanguageCode = settings.videoLanguageCode;
+            avisynthTemplate = settings.avisynthTemplate;
             quality = settings.quality;
             audioTrackName = settings.audioTrackName;
             audioLanguageCode = settings.audioLanguageCode;
