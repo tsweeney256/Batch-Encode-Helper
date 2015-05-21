@@ -31,9 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.TabControl_Settings = new System.Windows.Forms.TabControl();
             this.TabControl_Settings_Video = new System.Windows.Forms.TabPage();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.TextBox_VideoLanguageCode = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.TextBox_VideoTrackName = new System.Windows.Forms.TextBox();
             this.Label_VideoTrackName = new System.Windows.Forms.Label();
             this.TabControl_VideoArgSettings = new System.Windows.Forms.TabControl();
             this.TabPage_VideoSettingsTemplate = new System.Windows.Forms.TabPage();
@@ -107,9 +107,9 @@
             // 
             // TabControl_Settings_Video
             // 
-            this.TabControl_Settings_Video.Controls.Add(this.textBox3);
+            this.TabControl_Settings_Video.Controls.Add(this.TextBox_VideoLanguageCode);
             this.TabControl_Settings_Video.Controls.Add(this.label1);
-            this.TabControl_Settings_Video.Controls.Add(this.textBox2);
+            this.TabControl_Settings_Video.Controls.Add(this.TextBox_VideoTrackName);
             this.TabControl_Settings_Video.Controls.Add(this.Label_VideoTrackName);
             this.TabControl_Settings_Video.Controls.Add(this.TabControl_VideoArgSettings);
             this.TabControl_Settings_Video.Location = new System.Drawing.Point(4, 22);
@@ -120,12 +120,12 @@
             this.TabControl_Settings_Video.Text = "Video Defaults";
             this.TabControl_Settings_Video.UseVisualStyleBackColor = true;
             // 
-            // textBox3
+            // TextBox_VideoLanguageCode
             // 
-            this.textBox3.Location = new System.Drawing.Point(207, 211);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(180, 20);
-            this.textBox3.TabIndex = 6;
+            this.TextBox_VideoLanguageCode.Location = new System.Drawing.Point(207, 211);
+            this.TextBox_VideoLanguageCode.Name = "TextBox_VideoLanguageCode";
+            this.TextBox_VideoLanguageCode.Size = new System.Drawing.Size(180, 20);
+            this.TextBox_VideoLanguageCode.TabIndex = 6;
             // 
             // label1
             // 
@@ -136,12 +136,12 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Video Track Language Code";
             // 
-            // textBox2
+            // TextBox_VideoTrackName
             // 
-            this.textBox2.Location = new System.Drawing.Point(8, 211);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(169, 20);
-            this.textBox2.TabIndex = 4;
+            this.TextBox_VideoTrackName.Location = new System.Drawing.Point(8, 211);
+            this.TextBox_VideoTrackName.Name = "TextBox_VideoTrackName";
+            this.TextBox_VideoTrackName.Size = new System.Drawing.Size(169, 20);
+            this.TextBox_VideoTrackName.TabIndex = 4;
             // 
             // Label_VideoTrackName
             // 
@@ -599,6 +599,7 @@
             this.Button_OK_Settings.TabIndex = 2;
             this.Button_OK_Settings.Text = "OK";
             this.Button_OK_Settings.UseVisualStyleBackColor = true;
+            this.Button_OK_Settings.Click += new System.EventHandler(this.Button_OK_Settings_Click);
             // 
             // ContextMenuStrip_Tabs
             // 
@@ -678,9 +679,9 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ContextMenuStrip ContextMenuStrip_Tabs;
         private System.Windows.Forms.ToolStripMenuItem StripMenuItem_DeleteTab;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox TextBox_VideoLanguageCode;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox TextBox_VideoTrackName;
         private System.Windows.Forms.Label Label_VideoTrackName;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabControl TabControl_AudioArgSettings;
