@@ -45,11 +45,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettings.cs" />
+    <Compile Include="AudioTabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AudioTabControl.Designer.cs">
+      <DependentUpon>AudioTabControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FormMain.Designer.cs">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LocationTabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="LocationTabControl.Designer.cs">
+      <DependentUpon>LocationTabControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,9 +71,26 @@
     <Compile Include="Form_Settings.Designer.cs">
       <DependentUpon>Form_Settings.cs</DependentUpon>
     </Compile>
-    <Compile Include="TabCollection.cs" />
+    <Compile Include="SettingsTabCollection.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="SettingsTabCollection.Designer.cs">
+      <DependentUpon>SettingsTabCollection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VideoTabControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VideoTabControl.Designer.cs">
+      <DependentUpon>VideoTabControl.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="AudioTabControl.resx">
+      <DependentUpon>AudioTabControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LocationTabControl.resx">
+      <DependentUpon>LocationTabControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -74,6 +103,12 @@
     </Compile>
     <EmbeddedResource Include="Form_Settings.resx">
       <DependentUpon>Form_Settings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SettingsTabCollection.resx">
+      <DependentUpon>SettingsTabCollection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VideoTabControl.resx">
+      <DependentUpon>VideoTabControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

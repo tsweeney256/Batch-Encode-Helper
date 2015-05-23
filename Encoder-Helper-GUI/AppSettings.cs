@@ -9,13 +9,13 @@ using System.IO;
 namespace Encoder_Helper_GUI
 {
     [Serializable]
-    class AppSettings
+    public class AppSettings
     {
         public string[] x264Args { get; set; }
         public int[] encoder { get; set; }
         public string videoTrackName { get; set; }
         public string videoLanguageCode { get; set; }
-        public bool avisynthTemplate { get; set; }
+        public string avisynthTemplate { get; set; }
         public decimal[] quality { get; set; }
         public string[] audioTrackName { get; set; }
         public string[] audioLanguageCode { get; set; }

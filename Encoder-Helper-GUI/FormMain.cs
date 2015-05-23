@@ -12,9 +12,13 @@ namespace Encoder_Helper_GUI
 {
     public partial class FormMain : Form
     {
+        private AppSettings settings;
+
         public FormMain()
         {
             InitializeComponent();
+
+            settings = new AppSettings();
         }
 
         private bool ListBoxCheckForDuplicates(ListBox lb, string str)

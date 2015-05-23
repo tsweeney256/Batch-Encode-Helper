@@ -37,8 +37,9 @@
             this.MenuStrip_Main = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OptionsToolStrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OptionsToolStrip_SettingsItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsTabCollection = new Encoder_Helper_GUI.SettingsTabCollection();
             this.MenuStrip_Main.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +53,7 @@
             this.ListBox_Files.Location = new System.Drawing.Point(12, 56);
             this.ListBox_Files.Name = "ListBox_Files";
             this.ListBox_Files.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.ListBox_Files.Size = new System.Drawing.Size(599, 160);
+            this.ListBox_Files.Size = new System.Drawing.Size(599, 186);
             this.ListBox_Files.TabIndex = 0;
             this.ListBox_Files.DragDrop += new System.Windows.Forms.DragEventHandler(this.ListBox_Files_DragDrop);
             this.ListBox_Files.DragEnter += new System.Windows.Forms.DragEventHandler(this.ListBox_Files_DragEnter);
@@ -129,24 +130,38 @@
             this.OptionsToolStrip.Size = new System.Drawing.Size(61, 20);
             this.OptionsToolStrip.Text = "Options";
             // 
+            // OptionsToolStrip_SettingsItem
+            // 
+            this.OptionsToolStrip_SettingsItem.Name = "OptionsToolStrip_SettingsItem";
+            this.OptionsToolStrip_SettingsItem.Size = new System.Drawing.Size(116, 22);
+            this.OptionsToolStrip_SettingsItem.Text = "Settings";
+            this.OptionsToolStrip_SettingsItem.Click += new System.EventHandler(this.OptionsToolStrip_SettingsItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // OptionsToolStrip_SettingsItem
+            // settingsTabCollection
             // 
-            this.OptionsToolStrip_SettingsItem.Name = "OptionsToolStrip_SettingsItem";
-            this.OptionsToolStrip_SettingsItem.Size = new System.Drawing.Size(152, 22);
-            this.OptionsToolStrip_SettingsItem.Text = "Settings";
-            this.OptionsToolStrip_SettingsItem.Click += new System.EventHandler(this.OptionsToolStrip_SettingsItem_Click);
+            this.settingsTabCollection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.settingsTabCollection.Enabled = false;
+            this.settingsTabCollection.Location = new System.Drawing.Point(12, 249);
+            this.settingsTabCollection.Name = "settingsTabCollection";
+            this.settingsTabCollection.Size = new System.Drawing.Size(599, 313);
+            this.settingsTabCollection.TabIndex = 6;
+            this.settingsTabCollection.TextBox_AvisynthTemplate_Text = "";
+            this.settingsTabCollection.TextBox_VideoLanguageCode_Text = "";
+            this.settingsTabCollection.TextBox_VideoTrackName_Text = "";
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(623, 390);
+            this.ClientSize = new System.Drawing.Size(623, 571);
+            this.Controls.Add(this.settingsTabCollection);
             this.Controls.Add(this.Button_MoveDown_ListBox_Files);
             this.Controls.Add(this.Button_MoveUp_ListBox_Files);
             this.Controls.Add(this.Button_TextBox_Files_Add);
@@ -176,6 +191,7 @@
         private System.Windows.Forms.ToolStripMenuItem OptionsToolStrip;
         private System.Windows.Forms.ToolStripMenuItem OptionsToolStrip_SettingsItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private SettingsTabCollection settingsTabCollection;
     }
 }
 
