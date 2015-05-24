@@ -86,7 +86,7 @@
             // 
             // Button_MoveUp_ListBox_Files
             // 
-            this.Button_MoveUp_ListBox_Files.Location = new System.Drawing.Point(175, 26);
+            this.Button_MoveUp_ListBox_Files.Location = new System.Drawing.Point(175, 27);
             this.Button_MoveUp_ListBox_Files.Name = "Button_MoveUp_ListBox_Files";
             this.Button_MoveUp_ListBox_Files.Size = new System.Drawing.Size(75, 23);
             this.Button_MoveUp_ListBox_Files.TabIndex = 3;
@@ -96,7 +96,7 @@
             // 
             // Button_MoveDown_ListBox_Files
             // 
-            this.Button_MoveDown_ListBox_Files.Location = new System.Drawing.Point(257, 26);
+            this.Button_MoveDown_ListBox_Files.Location = new System.Drawing.Point(257, 27);
             this.Button_MoveDown_ListBox_Files.Name = "Button_MoveDown_ListBox_Files";
             this.Button_MoveDown_ListBox_Files.Size = new System.Drawing.Size(75, 23);
             this.Button_MoveDown_ListBox_Files.TabIndex = 4;
