@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Encoder_Helper_GUI
 {
@@ -15,6 +16,8 @@ namespace Encoder_Helper_GUI
         private AppSettings appSettings;
         private List<OutputSettings> outputSettings;
         private int[] selectedIndicesToSave;
+        private string saveFileName;
+        bool unsavedEdits;
 
         public FormMain()
         {
@@ -22,6 +25,8 @@ namespace Encoder_Helper_GUI
 
             appSettings = new AppSettings();
             outputSettings = new List<OutputSettings>();
+            saveFileName = null;
+            unsavedEdits = false;
         }
 
         private bool ListBoxCheckForDuplicates(ListBox lb, string str)
@@ -46,6 +51,7 @@ namespace Encoder_Helper_GUI
                 {
                     ListBox_Files.Items.Add(file);
                     CreateNewSettings(file);
+                    unsavedEdits = true;
                 }
             }
         }
@@ -64,6 +70,7 @@ namespace Encoder_Helper_GUI
             {
                 outputSettings.RemoveAt(ListBox_Files.SelectedIndices[i]);
                 ListBox_Files.Items.RemoveAt(ListBox_Files.SelectedIndices[i]);
+                unsavedEdits = true;
             }
             if (ListBox_Files.SelectedIndices.Count <= 0)
             {
@@ -87,16 +94,17 @@ namespace Encoder_Helper_GUI
 
         private void Button_ListBox_Files_Add_Click(object sender, EventArgs e)
         {
-            var dialogResult = ListBoxFilesOpenFileDialog.ShowDialog();
+            var dialogResult = listBox_openFileDialog.ShowDialog();
 
             if (dialogResult == DialogResult.OK)
             {
-                for (int i = 0; i < ListBoxFilesOpenFileDialog.FileNames.Length; i++)
+                for (int i = 0; i < listBox_openFileDialog.FileNames.Length; i++)
                 {
-                    if (!ListBoxCheckForDuplicates(ListBox_Files, ListBoxFilesOpenFileDialog.FileNames[i]))
+                    if (!ListBoxCheckForDuplicates(ListBox_Files, listBox_openFileDialog.FileNames[i]))
                     {
-                        ListBox_Files.Items.Add(ListBoxFilesOpenFileDialog.FileNames[i]);
-                        CreateNewSettings(ListBoxFilesOpenFileDialog.FileNames[i]);
+                        ListBox_Files.Items.Add(listBox_openFileDialog.FileNames[i]);
+                        CreateNewSettings(listBox_openFileDialog.FileNames[i]);
+                        unsavedEdits = true;
                     }
                 }
             }
@@ -130,6 +138,7 @@ namespace Encoder_Helper_GUI
                 return;
             }
 
+            unsavedEdits = true;
             if (direction < 0)
             {
                 for (int i = 0; i < lb.SelectedIndices.Count; i++)
@@ -214,6 +223,138 @@ namespace Encoder_Helper_GUI
         private void button_Apply_Click(object sender, EventArgs e)
         {
             SaveSelectedIndices();
+            unsavedEdits = true;
+        }
+
+        private void save()
+        {
+            if (saveFileName == null)
+            {
+                var result = saveFileDialog.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    saveFileName = saveFileDialog.FileName;
+                    this.Text = Path.GetFileName(saveFileName) + " - " + this.Text;
+                }
+            }
+
+            if (saveFileName != null)
+            {
+                using (Stream stream = File.Open(saveFileName, FileMode.Create))
+                {
+                    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                    bformatter.Serialize(stream, outputSettings);
+                }
+                unsavedEdits = false;
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            save();
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var result = saveFileDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                saveFileName = saveFileDialog.FileName;
+                this.Text = Path.GetFileName(saveFileName) + " - " + this.Text;
+                save();
+            }
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (unsavedEdits)
+            {
+                var saveResult = MessageBox.Show("Save changes to " + (saveFileName == null ? "Untitled" : Path.GetFileName(saveFileName)) + "?", "", MessageBoxButtons.YesNoCancel);
+                if (saveResult != DialogResult.Cancel)
+                {
+                    if (saveResult == DialogResult.Yes)
+                    {
+                        save();
+                    }
+                }
+                else
+                {
+                    return;
+                }
+            }
+            var openResult = openEhFileDialog.ShowDialog();
+
+            if (openResult == DialogResult.OK)
+            {
+                unsavedEdits = false;
+                for (int i = ListBox_Files.Items.Count - 1; i >= 0; i--)
+                {
+                    ListBox_Files.Items.RemoveAt(i);
+                }
+
+                using (Stream stream = File.Open(openEhFileDialog.FileName, FileMode.Open))
+                {
+                    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                    try
+                    {
+                        outputSettings = (List<OutputSettings>)bformatter.Deserialize(stream);
+                        saveFileName = openEhFileDialog.FileName;
+                        this.Text = Path.GetFileName(saveFileName) + " - " + this.Text;
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Not a valid BEH file.", "Error", MessageBoxButtons.OK);
+                    }
+                }
+
+                for (int i = 0; i < outputSettings.Count; i++)
+                {
+                    ListBox_Files.Items.Add(outputSettings[i].FileName);
+                }
+            }
+        }
+
+        private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (unsavedEdits)
+            {
+                var result = MessageBox.Show("Save changes to " + (saveFileName == null ? "Untitled" : Path.GetFileName(saveFileName)) + "?", "", MessageBoxButtons.YesNoCancel);
+                if (result == DialogResult.Yes)
+                {
+                    save();
+                }
+                else if (result == DialogResult.Cancel)
+                {
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (unsavedEdits)
+            {
+                var saveResult = MessageBox.Show("Save changes to " + (saveFileName == null ? "Untitled" : Path.GetFileName(saveFileName)) + "?", "", MessageBoxButtons.YesNoCancel);
+                if (saveResult != DialogResult.Cancel)
+                {
+                    if (saveResult == DialogResult.Yes)
+                    {
+                        save();
+                    }
+                }
+                else
+                {
+                    return;
+                }
+            }
+
+            unsavedEdits = false;
+            for (int i = ListBox_Files.Items.Count - 1; i >= 0; i--)
+            {
+                ListBox_Files.Items.RemoveAt(i);
+            }
+            outputSettings = new List<OutputSettings>();
         }
     }
 }
