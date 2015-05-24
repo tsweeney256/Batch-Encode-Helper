@@ -51,12 +51,20 @@ namespace Encoder_Helper_GUI
             InitializeComponent();
         }
 
-        public void LoadSettings(AppSettings settings)
+        public void LoadSettings(Settings settings)
         {
             vidTab = new List<VideoTabControl>();
             audioTab = new List<AudioTabControl>();
-            TabControl_VideoArgSettings.TabPages.RemoveAt(0);
-            TabControl_AudioArgSettings.TabPages.RemoveAt(0);
+            //remove anything that's there before loading the new settings
+            for (int i = TabControl_VideoArgSettings.TabCount - 1; i >= 0; i--)
+            {
+                TabControl_VideoArgSettings.TabPages.RemoveAt(i);
+            }
+            for (int i = TabControl_AudioArgSettings.TabCount - 1; i >= 0; i--)
+            {
+                TabControl_AudioArgSettings.TabPages.RemoveAt(i);
+            }
+            //now we actually load everything
             for (int i = 0; i < settings.x264Args.Length; i++)
             {
                 vidTab.Add(new VideoTabControl());
@@ -92,7 +100,7 @@ namespace Encoder_Helper_GUI
         {
             var tc = (TabControl)sender;
 
-            if (tc.TabCount == tc.SelectedIndex + 1)
+            if (tc.TabCount == tc.SelectedIndex + 1 && tc.SelectedIndex > -1)
             {
                 vidTab.Add(new VideoTabControl());
                 vidTab[vidTab.Count - 1].AttachToNewTab(tc);
@@ -105,7 +113,7 @@ namespace Encoder_Helper_GUI
         {
             var tc = (TabControl)sender;
 
-            if (tc.TabCount == tc.SelectedIndex + 1)
+            if (tc.TabCount == tc.SelectedIndex + 1 && tc.SelectedIndex > -1)
             {
                 audioTab.Add(new AudioTabControl());
                 audioTab[audioTab.Count - 1].AttachToNewTab(tc);

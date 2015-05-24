@@ -40,6 +40,7 @@
             this.OptionsToolStrip_SettingsItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsTabCollection = new Encoder_Helper_GUI.SettingsTabCollection();
+            this.button_Apply = new System.Windows.Forms.Button();
             this.MenuStrip_Main.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,6 +56,7 @@
             this.ListBox_Files.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.ListBox_Files.Size = new System.Drawing.Size(599, 186);
             this.ListBox_Files.TabIndex = 0;
+            this.ListBox_Files.SelectedIndexChanged += new System.EventHandler(this.ListBox_Files_SelectedIndexChanged);
             this.ListBox_Files.DragDrop += new System.Windows.Forms.DragEventHandler(this.ListBox_Files_DragDrop);
             this.ListBox_Files.DragEnter += new System.Windows.Forms.DragEventHandler(this.ListBox_Files_DragEnter);
             this.ListBox_Files.KeyDown += new System.Windows.Forms.KeyEventHandler(this.ListBox_Files_KeyDown);
@@ -156,11 +158,23 @@
             this.settingsTabCollection.TextBox_VideoLanguageCode_Text = "";
             this.settingsTabCollection.TextBox_VideoTrackName_Text = "";
             // 
+            // button_Apply
+            // 
+            this.button_Apply.Enabled = false;
+            this.button_Apply.Location = new System.Drawing.Point(338, 27);
+            this.button_Apply.Name = "button_Apply";
+            this.button_Apply.Size = new System.Drawing.Size(75, 23);
+            this.button_Apply.TabIndex = 7;
+            this.button_Apply.Text = "Apply";
+            this.button_Apply.UseVisualStyleBackColor = true;
+            this.button_Apply.Click += new System.EventHandler(this.button_Apply_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(623, 571);
+            this.Controls.Add(this.button_Apply);
             this.Controls.Add(this.settingsTabCollection);
             this.Controls.Add(this.Button_MoveDown_ListBox_Files);
             this.Controls.Add(this.Button_MoveUp_ListBox_Files);
@@ -192,6 +206,7 @@
         private System.Windows.Forms.ToolStripMenuItem OptionsToolStrip_SettingsItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private SettingsTabCollection settingsTabCollection;
+        private System.Windows.Forms.Button button_Apply;
     }
 }
 

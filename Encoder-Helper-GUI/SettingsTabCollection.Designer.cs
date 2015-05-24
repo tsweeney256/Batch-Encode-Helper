@@ -59,7 +59,7 @@
             this.tabPage_Audio.Controls.Add(this.TabControl_AudioArgSettings);
             this.tabPage_Audio.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Audio.Name = "tabPage_Audio";
-            this.tabPage_Audio.Size = new System.Drawing.Size(440, 284);
+            this.tabPage_Audio.Size = new System.Drawing.Size(440, 289);
             this.tabPage_Audio.TabIndex = 2;
             this.tabPage_Audio.Text = "Audio Defaults";
             this.tabPage_Audio.UseVisualStyleBackColor = true;
