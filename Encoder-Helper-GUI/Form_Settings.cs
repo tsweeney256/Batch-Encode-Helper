@@ -76,7 +76,7 @@ namespace Encoder_Helper_GUI
                 settings.audioLanguageCode[i] = audioTab[i].TextBox_LanguageCode_Text;
             }
 
-            settings.save();
+            settings.Save();
             this.Close();
         }
 

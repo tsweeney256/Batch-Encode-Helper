@@ -71,6 +71,7 @@
     <Compile Include="Form_Settings.Designer.cs">
       <DependentUpon>Form_Settings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="SettingsTabCollection.cs">
       <SubType>UserControl</SubType>
     </Compile>

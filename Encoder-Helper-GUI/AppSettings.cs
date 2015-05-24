@@ -9,16 +9,8 @@ using System.IO;
 namespace Encoder_Helper_GUI
 {
     [Serializable]
-    public class AppSettings
+    public class AppSettings : Settings
     {
-        public string[] x264Args { get; set; }
-        public int[] encoder { get; set; }
-        public string videoTrackName { get; set; }
-        public string videoLanguageCode { get; set; }
-        public string avisynthTemplate { get; set; }
-        public decimal[] quality { get; set; }
-        public string[] audioTrackName { get; set; }
-        public string[] audioLanguageCode { get; set; }
         public string x264_x86_8bit_location { get; set; }
         public string x264_x86_10bit_location { get; set; }
         public string x264_x64_8bit_location { get; set; }
@@ -34,7 +26,7 @@ namespace Encoder_Helper_GUI
             AppSettings settings;
             if (!File.Exists(settingsFile))
             {
-                initialize();
+                Initialize();
             }
             try
             {
@@ -49,7 +41,7 @@ namespace Encoder_Helper_GUI
                 var result = MessageBox.Show("Settings file contains errors. A new settings file will be created and the old one will be backed up.",
                     "Error", MessageBoxButtons.OK);
                 File.Move(settingsFile, settingsFile + ".bak");
-                initialize();
+                Initialize();
                 using (Stream stream = File.Open(settingsFile, FileMode.Open))
                 {
                     var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
@@ -73,7 +65,7 @@ namespace Encoder_Helper_GUI
             BePipeLocation = settings.BePipeLocation;
         }
 
-        public void save()
+        public void Save()
         {
             using(Stream stream = File.Open(settingsFile, FileMode.Create))
             {
@@ -82,15 +74,10 @@ namespace Encoder_Helper_GUI
             }
         }
 
-        private void initialize()
+        public override void Initialize()
         {
-
-            x264Args = new string[1];
-            encoder = new int[1];
-            quality = new decimal[1];
-            audioTrackName = new string[1];
-            audioLanguageCode = new string[1];
-            save();
+            base.Initialize();
+            Save();
         }
     }
 }
