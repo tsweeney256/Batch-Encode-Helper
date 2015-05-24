@@ -100,7 +100,7 @@
             this.tabPage_Video.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Video.Name = "tabPage_Video";
             this.tabPage_Video.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_Video.Size = new System.Drawing.Size(440, 284);
+            this.tabPage_Video.Size = new System.Drawing.Size(440, 289);
             this.tabPage_Video.TabIndex = 0;
             this.tabPage_Video.Text = "Video Defaults";
             this.tabPage_Video.UseVisualStyleBackColor = true;
@@ -197,7 +197,7 @@
             this.TabControl_Settings.Location = new System.Drawing.Point(0, 3);
             this.TabControl_Settings.Name = "TabControl_Settings";
             this.TabControl_Settings.SelectedIndex = 0;
-            this.TabControl_Settings.Size = new System.Drawing.Size(448, 310);
+            this.TabControl_Settings.Size = new System.Drawing.Size(448, 315);
             this.TabControl_Settings.TabIndex = 1;
             // 
             // openFileDialog
