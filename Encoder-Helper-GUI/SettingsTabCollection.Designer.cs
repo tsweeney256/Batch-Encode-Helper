@@ -61,7 +61,7 @@
             this.tabPage_Audio.Name = "tabPage_Audio";
             this.tabPage_Audio.Size = new System.Drawing.Size(440, 289);
             this.tabPage_Audio.TabIndex = 2;
-            this.tabPage_Audio.Text = "Audio Defaults";
+            this.tabPage_Audio.Text = "Audio";
             this.tabPage_Audio.UseVisualStyleBackColor = true;
             // 
             // TabControl_AudioArgSettings
@@ -102,7 +102,7 @@
             this.tabPage_Video.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage_Video.Size = new System.Drawing.Size(440, 289);
             this.tabPage_Video.TabIndex = 0;
-            this.tabPage_Video.Text = "Video Defaults";
+            this.tabPage_Video.Text = "Video";
             this.tabPage_Video.UseVisualStyleBackColor = true;
             // 
             // button_BrowseAvisynthTemplate

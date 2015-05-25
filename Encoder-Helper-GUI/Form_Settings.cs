@@ -24,6 +24,8 @@ namespace Encoder_Helper_GUI
 
             settings = new AppSettings();
             settingsTabCollection.LoadSettings(settings);
+            settingsTabCollection.TabCollectionControl.TabPages[0].Text = "Video Defaults";
+            settingsTabCollection.TabCollectionControl.TabPages[1].Text = "Audio Defaults";
             locationTabControl = new LocationTabControl();
             vidTab = settingsTabCollection.VideoTabList;
             audioTab = settingsTabCollection.AudioTabList;
