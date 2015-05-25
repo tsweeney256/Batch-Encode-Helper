@@ -16,8 +16,6 @@ namespace Encoder_Helper_GUI
         private TabControl lastTc = null;
         private List<VideoTabControl> vidTab;
         private List<AudioTabControl> audioTab;
-        private AppSettings settings;
-        private bool unsavedEdits;
 
         public TabControl TabCollectionControl
         {
@@ -94,7 +92,6 @@ namespace Encoder_Helper_GUI
             if (dialogResult == DialogResult.OK)
             {
                 textBox_AvisynthTemplate.Text = openFileDialog.FileName;
-                unsavedEdits = true;
             }
         }
 
@@ -108,7 +105,6 @@ namespace Encoder_Helper_GUI
                 vidTab[vidTab.Count - 1].AttachToNewTab(tc);
                 //or else the size will be wrong if the user has changed the size of the window
                 vidTab[vidTab.Count - 1].TextBox_x264_Args_Size = vidTab[0].TextBox_x264_Args_Size;
-                unsavedEdits = true;
             }
         }
 
@@ -120,7 +116,6 @@ namespace Encoder_Helper_GUI
             {
                 audioTab.Add(new AudioTabControl());
                 audioTab[audioTab.Count - 1].AttachToNewTab(tc);
-                unsavedEdits = true;
             }
         }
 
@@ -158,7 +153,6 @@ namespace Encoder_Helper_GUI
             {
                 audioTab.RemoveAt(RightClickedArgSettingsTab);
             }
-            unsavedEdits = true;
         }
     }
 }
