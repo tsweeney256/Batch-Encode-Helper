@@ -28,19 +28,49 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.panelVideoTab = new System.Windows.Forms.Panel();
             this.Label_Encoder = new System.Windows.Forms.Label();
             this.ComboBox_Encoder = new System.Windows.Forms.ComboBox();
             this.Label_x264_Args = new System.Windows.Forms.Label();
             this.TextBox_x264_Args = new System.Windows.Forms.TextBox();
+            this.textBoxBody = new System.Windows.Forms.TextBox();
+            this.labelBody = new System.Windows.Forms.Label();
+            this.splitContainerPrefixSuffix = new System.Windows.Forms.SplitContainer();
+            this.textBoxPrefix = new System.Windows.Forms.TextBox();
+            this.labelPrefix = new System.Windows.Forms.Label();
+            this.textBoxSuffix = new System.Windows.Forms.TextBox();
+            this.labelSuffix = new System.Windows.Forms.Label();
+            this.panelVideoTab.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerPrefixSuffix)).BeginInit();
+            this.splitContainerPrefixSuffix.Panel1.SuspendLayout();
+            this.splitContainerPrefixSuffix.Panel2.SuspendLayout();
+            this.splitContainerPrefixSuffix.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // panelVideoTab
+            // 
+            this.panelVideoTab.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelVideoTab.Controls.Add(this.splitContainerPrefixSuffix);
+            this.panelVideoTab.Controls.Add(this.Label_Encoder);
+            this.panelVideoTab.Controls.Add(this.ComboBox_Encoder);
+            this.panelVideoTab.Controls.Add(this.Label_x264_Args);
+            this.panelVideoTab.Controls.Add(this.TextBox_x264_Args);
+            this.panelVideoTab.Controls.Add(this.textBoxBody);
+            this.panelVideoTab.Controls.Add(this.labelBody);
+            this.panelVideoTab.Location = new System.Drawing.Point(0, 0);
+            this.panelVideoTab.Name = "panelVideoTab";
+            this.panelVideoTab.Size = new System.Drawing.Size(408, 190);
+            this.panelVideoTab.TabIndex = 0;
             // 
             // Label_Encoder
             // 
             this.Label_Encoder.AutoSize = true;
-            this.Label_Encoder.Location = new System.Drawing.Point(3, 99);
+            this.Label_Encoder.Location = new System.Drawing.Point(4, 102);
             this.Label_Encoder.Name = "Label_Encoder";
             this.Label_Encoder.Size = new System.Drawing.Size(47, 13);
-            this.Label_Encoder.TabIndex = 7;
+            this.Label_Encoder.TabIndex = 17;
             this.Label_Encoder.Text = "Encoder";
             // 
             // ComboBox_Encoder
@@ -51,52 +81,139 @@
             "x264 x86 10bit",
             "x264 x64 8bit",
             "x264 x64 10bit"});
-            this.ComboBox_Encoder.Location = new System.Drawing.Point(6, 115);
+            this.ComboBox_Encoder.Location = new System.Drawing.Point(7, 118);
             this.ComboBox_Encoder.Name = "ComboBox_Encoder";
             this.ComboBox_Encoder.Size = new System.Drawing.Size(157, 21);
-            this.ComboBox_Encoder.TabIndex = 6;
+            this.ComboBox_Encoder.TabIndex = 16;
             this.ComboBox_Encoder.Text = "Select Encoder";
             // 
             // Label_x264_Args
             // 
             this.Label_x264_Args.AutoSize = true;
-            this.Label_x264_Args.Location = new System.Drawing.Point(3, 3);
+            this.Label_x264_Args.Location = new System.Drawing.Point(4, 6);
             this.Label_x264_Args.Name = "Label_x264_Args";
             this.Label_x264_Args.Size = new System.Drawing.Size(83, 13);
-            this.Label_x264_Args.TabIndex = 4;
+            this.Label_x264_Args.TabIndex = 12;
             this.Label_x264_Args.Text = "x264 Arguments";
             // 
             // TextBox_x264_Args
             // 
             this.TextBox_x264_Args.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBox_x264_Args.Location = new System.Drawing.Point(6, 19);
+            this.TextBox_x264_Args.Location = new System.Drawing.Point(7, 22);
             this.TextBox_x264_Args.Multiline = true;
             this.TextBox_x264_Args.Name = "TextBox_x264_Args";
             this.TextBox_x264_Args.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.TextBox_x264_Args.Size = new System.Drawing.Size(397, 77);
-            this.TextBox_x264_Args.TabIndex = 5;
+            this.TextBox_x264_Args.TabIndex = 14;
+            // 
+            // textBoxBody
+            // 
+            this.textBoxBody.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxBody.Location = new System.Drawing.Point(173, 118);
+            this.textBoxBody.Name = "textBoxBody";
+            this.textBoxBody.Size = new System.Drawing.Size(231, 20);
+            this.textBoxBody.TabIndex = 11;
+            // 
+            // labelBody
+            // 
+            this.labelBody.AutoSize = true;
+            this.labelBody.Location = new System.Drawing.Point(174, 102);
+            this.labelBody.Name = "labelBody";
+            this.labelBody.Size = new System.Drawing.Size(76, 13);
+            this.labelBody.TabIndex = 10;
+            this.labelBody.Text = "Filename Body";
+            // 
+            // splitContainerPrefixSuffix
+            // 
+            this.splitContainerPrefixSuffix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainerPrefixSuffix.Location = new System.Drawing.Point(4, 144);
+            this.splitContainerPrefixSuffix.Name = "splitContainerPrefixSuffix";
+            // 
+            // splitContainerPrefixSuffix.Panel1
+            // 
+            this.splitContainerPrefixSuffix.Panel1.Controls.Add(this.textBoxPrefix);
+            this.splitContainerPrefixSuffix.Panel1.Controls.Add(this.labelPrefix);
+            // 
+            // splitContainerPrefixSuffix.Panel2
+            // 
+            this.splitContainerPrefixSuffix.Panel2.Controls.Add(this.textBoxSuffix);
+            this.splitContainerPrefixSuffix.Panel2.Controls.Add(this.labelSuffix);
+            this.splitContainerPrefixSuffix.Size = new System.Drawing.Size(404, 42);
+            this.splitContainerPrefixSuffix.SplitterDistance = 200;
+            this.splitContainerPrefixSuffix.TabIndex = 21;
+            // 
+            // textBoxPrefix
+            // 
+            this.textBoxPrefix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxPrefix.Location = new System.Drawing.Point(3, 19);
+            this.textBoxPrefix.Name = "textBoxPrefix";
+            this.textBoxPrefix.Size = new System.Drawing.Size(194, 20);
+            this.textBoxPrefix.TabIndex = 19;
+            // 
+            // labelPrefix
+            // 
+            this.labelPrefix.AutoSize = true;
+            this.labelPrefix.Location = new System.Drawing.Point(3, 3);
+            this.labelPrefix.Name = "labelPrefix";
+            this.labelPrefix.Size = new System.Drawing.Size(78, 13);
+            this.labelPrefix.TabIndex = 18;
+            this.labelPrefix.Text = "Filename Prefix";
+            // 
+            // textBoxSuffix
+            // 
+            this.textBoxSuffix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxSuffix.Location = new System.Drawing.Point(3, 19);
+            this.textBoxSuffix.Name = "textBoxSuffix";
+            this.textBoxSuffix.Size = new System.Drawing.Size(193, 20);
+            this.textBoxSuffix.TabIndex = 15;
+            // 
+            // labelSuffix
+            // 
+            this.labelSuffix.AutoSize = true;
+            this.labelSuffix.Location = new System.Drawing.Point(3, 3);
+            this.labelSuffix.Name = "labelSuffix";
+            this.labelSuffix.Size = new System.Drawing.Size(78, 13);
+            this.labelSuffix.TabIndex = 13;
+            this.labelSuffix.Text = "Filename Suffix";
             // 
             // VideoTabControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.Label_Encoder);
-            this.Controls.Add(this.ComboBox_Encoder);
-            this.Controls.Add(this.Label_x264_Args);
-            this.Controls.Add(this.TextBox_x264_Args);
+            this.Controls.Add(this.panelVideoTab);
             this.Name = "VideoTabControl";
-            this.Size = new System.Drawing.Size(408, 146);
+            this.Size = new System.Drawing.Size(408, 190);
+            this.panelVideoTab.ResumeLayout(false);
+            this.panelVideoTab.PerformLayout();
+            this.splitContainerPrefixSuffix.Panel1.ResumeLayout(false);
+            this.splitContainerPrefixSuffix.Panel1.PerformLayout();
+            this.splitContainerPrefixSuffix.Panel2.ResumeLayout(false);
+            this.splitContainerPrefixSuffix.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainerPrefixSuffix)).EndInit();
+            this.splitContainerPrefixSuffix.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
+        private System.Windows.Forms.Panel panelVideoTab;
         private System.Windows.Forms.Label Label_Encoder;
         private System.Windows.Forms.ComboBox ComboBox_Encoder;
         private System.Windows.Forms.Label Label_x264_Args;
         private System.Windows.Forms.TextBox TextBox_x264_Args;
+        private System.Windows.Forms.TextBox textBoxBody;
+        private System.Windows.Forms.Label labelBody;
+        private System.Windows.Forms.SplitContainer splitContainerPrefixSuffix;
+        private System.Windows.Forms.TextBox textBoxPrefix;
+        private System.Windows.Forms.Label labelPrefix;
+        private System.Windows.Forms.TextBox textBoxSuffix;
+        private System.Windows.Forms.Label labelSuffix;
+
     }
 }

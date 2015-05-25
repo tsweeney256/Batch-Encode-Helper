@@ -51,9 +51,14 @@ namespace Encoder_Helper_GUI
             }
             x264Args = settings.x264Args;
             encoder = settings.encoder;
+            fileNamePrefix = settings.fileNamePrefix;
+            fileNameBody = settings.fileNameBody;
+            fileNameSuffix = settings.fileNameSuffix;
             videoTrackName = settings.videoTrackName;
             videoLanguageCode = settings.videoLanguageCode;
             avisynthTemplate = settings.avisynthTemplate;
+            counterIndex = settings.counterIndex;
+            counterValue = settings.counterValue;
             quality = settings.quality;
             audioTrackName = settings.audioTrackName;
             audioLanguageCode = settings.audioLanguageCode;

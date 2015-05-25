@@ -257,7 +257,7 @@
             // 
             // openFileDialog
             // 
-            this.openFileDialog.FileName = "openFileDialog1";
+            this.openFileDialog.Filter = "exe files|*.exe";
             // 
             // LocationTabControl
             // 

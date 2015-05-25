@@ -40,6 +40,7 @@
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createBatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OptionsToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.OptionsToolStrip_SettingsItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,7 +48,6 @@
             this.saveEhFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openEhFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.settingsTabCollection = new Encoder_Helper_GUI.SettingsTabCollection();
-            this.createBatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveBatFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.MenuStrip_Main.SuspendLayout();
             this.SuspendLayout();
@@ -59,10 +59,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ListBox_Files.FormattingEnabled = true;
-            this.ListBox_Files.Location = new System.Drawing.Point(12, 56);
+            this.ListBox_Files.Location = new System.Drawing.Point(12, 62);
             this.ListBox_Files.Name = "ListBox_Files";
             this.ListBox_Files.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.ListBox_Files.Size = new System.Drawing.Size(599, 186);
+            this.ListBox_Files.Size = new System.Drawing.Size(599, 121);
             this.ListBox_Files.TabIndex = 0;
             this.ListBox_Files.SelectedIndexChanged += new System.EventHandler(this.ListBox_Files_SelectedIndexChanged);
             this.ListBox_Files.DragDrop += new System.Windows.Forms.DragEventHandler(this.ListBox_Files_DragDrop);
@@ -141,7 +141,7 @@
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -149,7 +149,7 @@
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -157,16 +157,23 @@
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.saveAsToolStripMenuItem.Text = "Save As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
+            // 
+            // createBatchToolStripMenuItem
+            // 
+            this.createBatchToolStripMenuItem.Name = "createBatchToolStripMenuItem";
+            this.createBatchToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.createBatchToolStripMenuItem.Text = "Create Batch";
+            this.createBatchToolStripMenuItem.Click += new System.EventHandler(this.createBatchToolStripMenuItem_Click);
             // 
             // OptionsToolStrip
             // 
@@ -213,20 +220,13 @@
             this.settingsTabCollection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.settingsTabCollection.Enabled = false;
-            this.settingsTabCollection.Location = new System.Drawing.Point(12, 249);
+            this.settingsTabCollection.Location = new System.Drawing.Point(12, 189);
             this.settingsTabCollection.Name = "settingsTabCollection";
-            this.settingsTabCollection.Size = new System.Drawing.Size(599, 313);
+            this.settingsTabCollection.Size = new System.Drawing.Size(599, 387);
             this.settingsTabCollection.TabIndex = 6;
             this.settingsTabCollection.TextBox_AvisynthTemplate_Text = "";
             this.settingsTabCollection.TextBox_VideoLanguageCode_Text = "";
             this.settingsTabCollection.TextBox_VideoTrackName_Text = "";
-            // 
-            // createBatchToolStripMenuItem
-            // 
-            this.createBatchToolStripMenuItem.Name = "createBatchToolStripMenuItem";
-            this.createBatchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.createBatchToolStripMenuItem.Text = "Create Batch";
-            this.createBatchToolStripMenuItem.Click += new System.EventHandler(this.createBatchToolStripMenuItem_Click);
             // 
             // saveBatFileDialog
             // 
@@ -236,7 +236,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(623, 571);
+            this.ClientSize = new System.Drawing.Size(623, 582);
             this.Controls.Add(this.button_Apply);
             this.Controls.Add(this.settingsTabCollection);
             this.Controls.Add(this.Button_MoveDown_ListBox_Files);

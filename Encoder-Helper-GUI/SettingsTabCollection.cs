@@ -44,10 +44,21 @@ namespace Encoder_Helper_GUI
             get { return textBox_AvisynthTemplate.Text; }
             set { textBox_AvisynthTemplate.Text = value; }
         }
+        public int ComboBoxCounterSelectedIndex
+        {
+            get { return comboBoxCounter.SelectedIndex; }
+            set { comboBoxCounter.SelectedIndex = value; }
+        }
+        public decimal NumericUpDownCounterValue
+        {
+            get { return numericUpDownCounter.Value; }
+            set { numericUpDownCounter.Value = value; }
+        }
 
         public SettingsTabCollection()
         {
             InitializeComponent();
+            toolTipCounter.SetToolTip(comboBoxCounter, "Use %d, %0d, %00d, etc. in your filename for it to have a counter");
         }
 
         public void LoadSettings(Settings settings)
@@ -70,10 +81,15 @@ namespace Encoder_Helper_GUI
                 vidTab[i].AttachToLastTab(TabControl_VideoArgSettings);
                 vidTab[i].TextBox_x264_Args_Text = settings.x264Args[i];
                 vidTab[i].ComboBox_Encoder_SelectedIndex = settings.encoder[i];
+                vidTab[i].FileNamePrefixText = settings.fileNamePrefix[i];
+                vidTab[i].FileNameBodyText = settings.fileNameBody[i];
+                vidTab[i].FileNameSuffixText = settings.fileNameSuffix[i];
             }
             TextBox_VideoTrackName.Text = settings.videoTrackName;
             TextBox_VideoLanguageCode.Text = settings.videoLanguageCode;
             textBox_AvisynthTemplate.Text = settings.avisynthTemplate;
+            comboBoxCounter.SelectedIndex = settings.counterIndex;
+            numericUpDownCounter.Value = settings.counterValue;
             for (int i = 0; i < settings.audioTrackName.Length; i++)
             {
                 audioTab.Add(new AudioTabControl());

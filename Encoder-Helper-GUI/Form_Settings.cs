@@ -16,7 +16,11 @@ namespace Encoder_Helper_GUI
         private LocationTabControl locationTabControl;
         private List<VideoTabControl> vidTab;
         private List<AudioTabControl> audioTab;
-        private System.Drawing.Size Size_TextBox_x264Args;
+        private Size Size_TextBox_x264Args;
+        private Size sizeTextBoxPrefix;
+        private Size sizeTextBoxBody;
+        private Size sizeTextBoxSuffix;
+        private int splitterDistance;
 
         public Form_Settings()
         {
@@ -30,6 +34,10 @@ namespace Encoder_Helper_GUI
             vidTab = settingsTabCollection.VideoTabList;
             audioTab = settingsTabCollection.AudioTabList;
             Size_TextBox_x264Args = settingsTabCollection.VideoTabList[0].TextBox_x264_Args_Size;
+            sizeTextBoxPrefix = settingsTabCollection.VideoTabList[0].TextBoxPrefixSize;
+            sizeTextBoxBody = settingsTabCollection.VideoTabList[0].TextBoxBodySize;
+            sizeTextBoxSuffix = settingsTabCollection.VideoTabList[0].TextBoxSuffixSize;
+            splitterDistance = settingsTabCollection.VideoTabList[0].SplitterDistance;
 
             this.Controls.Add(settingsTabCollection);
             settingsTabCollection.TabCollectionControl.TabPages.Add("Locations");
@@ -60,10 +68,18 @@ namespace Encoder_Helper_GUI
             settings.BePipeLocation = locationTabControl.TextBox_BePipe_Text;
             settings.x264Args = new string[vidTab.Count];
             settings.encoder = new int[vidTab.Count];
+            settings.fileNamePrefix = new string[vidTab.Count];
+            settings.fileNameBody = new string[vidTab.Count];
+            settings.fileNameSuffix = new string[vidTab.Count];
+            settings.counterIndex = settingsTabCollection.ComboBoxCounterSelectedIndex;
+            settings.counterValue = settingsTabCollection.NumericUpDownCounterValue;
             for (int i = 0; i < vidTab.Count; i++)
             {
                 settings.x264Args[i] = vidTab[i].TextBox_x264_Args_Text;
                 settings.encoder[i] = vidTab[i].ComboBox_Encoder_SelectedIndex;
+                settings.fileNamePrefix[i] = vidTab[i].FileNamePrefixText;
+                settings.fileNameBody[i] = vidTab[i].FileNameBodyText;
+                settings.fileNameSuffix[i] = vidTab[i].FileNameSuffixText;
             }
             settings.videoTrackName = settingsTabCollection.TextBox_VideoTrackName_Text;
             settings.videoLanguageCode = settingsTabCollection.TextBox_VideoLanguageCode_Text;
@@ -84,10 +100,14 @@ namespace Encoder_Helper_GUI
 
         private void Form_Settings_Shown(object sender, EventArgs e)
         {
-            //dumb hack because ShowDialog() keeps screwing up the size of the textbox
+            //dumb hack because ShowDialog() keeps screwing up the size of the textboxes
             for (int i = 0; i < settingsTabCollection.VideoTabList.Count; i++)
             {
                 settingsTabCollection.VideoTabList[i].TextBox_x264_Args_Size = Size_TextBox_x264Args;
+                //settingsTabCollection.VideoTabList[i].TextBoxPrefixSize = sizeTextBoxPrefix;
+                settingsTabCollection.VideoTabList[i].TextBoxBodySize = sizeTextBoxBody;
+                settingsTabCollection.VideoTabList[i].TextBoxSuffixSize = new Size(sizeTextBoxSuffix.Width - 107, sizeTextBoxSuffix.Height);
+                settingsTabCollection.VideoTabList[i].SplitterDistance = splitterDistance;
             }
         }
     }

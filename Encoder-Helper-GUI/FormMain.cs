@@ -183,9 +183,9 @@ namespace Encoder_Helper_GUI
                 for (int i = 0; i < settingsTabCollection.VideoTabList.Count; i++)
                 {
                     var size = new Size();
-                    size.Width = settingsTabCollection.Size.Width - 44;
-                    size.Height = settingsTabCollection.VideoTabList[i].TextBox_x264_Args_Size.Height;
-                    settingsTabCollection.VideoTabList[i].TextBox_x264_Args_Size = size;
+                    size.Width = settingsTabCollection.Size.Width - 32;
+                    size.Height = settingsTabCollection.VideoTabList[i].PanelVideoTabSize.Height;
+                    settingsTabCollection.VideoTabList[i].PanelVideoTabSize = size;
                 }
             }
         }
@@ -205,14 +205,22 @@ namespace Encoder_Helper_GUI
                 int vidTabCount = settingsTabCollection.VideoTabList.Count;
                 outputSettings[index].x264Args = new string[vidTabCount];
                 outputSettings[index].encoder = new int[vidTabCount];
+                outputSettings[index].fileNamePrefix = new string[vidTabCount];
+                outputSettings[index].fileNameBody = new string[vidTabCount];
+                outputSettings[index].fileNameSuffix = new string[vidTabCount];
                 for (int i = 0; i < vidTabCount; i++ )
                 {
                     outputSettings[index].x264Args[i] = settingsTabCollection.VideoTabList[i].TextBox_x264_Args_Text;
                     outputSettings[index].encoder[i] = settingsTabCollection.VideoTabList[i].ComboBox_Encoder_SelectedIndex;
+                    outputSettings[index].fileNamePrefix[i] = settingsTabCollection.VideoTabList[i].FileNamePrefixText;
+                    outputSettings[index].fileNameBody[i] = settingsTabCollection.VideoTabList[i].FileNameBodyText;
+                    outputSettings[index].fileNameSuffix[i] = settingsTabCollection.VideoTabList[i].FileNameSuffixText;
                 }
                 outputSettings[index].videoTrackName = settingsTabCollection.TextBox_VideoTrackName_Text;
                 outputSettings[index].videoLanguageCode = settingsTabCollection.TextBox_VideoLanguageCode_Text;
                 outputSettings[index].avisynthTemplate = settingsTabCollection.TextBox_AvisynthTemplate_Text;
+                outputSettings[index].counterIndex = settingsTabCollection.ComboBoxCounterSelectedIndex;
+                outputSettings[index].counterValue = settingsTabCollection.NumericUpDownCounterValue;
 
                 int audioTabCount = settingsTabCollection.AudioTabList.Count;
                 outputSettings[index].quality = new decimal[audioTabCount];
