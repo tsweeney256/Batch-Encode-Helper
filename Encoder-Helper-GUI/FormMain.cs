@@ -237,10 +237,10 @@ namespace Encoder_Helper_GUI
         {
             if (saveFileName == null)
             {
-                var result = saveFileDialog.ShowDialog();
+                var result = saveEhFileDialog.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    saveFileName = saveFileDialog.FileName;
+                    saveFileName = saveEhFileDialog.FileName;
                     this.Text = Path.GetFileName(saveFileName) + " - " + this.Text;
                 }
             }
@@ -263,11 +263,11 @@ namespace Encoder_Helper_GUI
 
         private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var result = saveFileDialog.ShowDialog();
+            var result = saveEhFileDialog.ShowDialog();
 
             if (result == DialogResult.OK)
             {
-                saveFileName = saveFileDialog.FileName;
+                saveFileName = saveEhFileDialog.FileName;
                 this.Text = Path.GetFileName(saveFileName) + " - " + this.Text;
                 save();
             }
@@ -362,6 +362,16 @@ namespace Encoder_Helper_GUI
                 ListBox_Files.Items.RemoveAt(i);
             }
             outputSettings = new List<OutputSettings>();
+        }
+
+        private void createBatchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var result = saveBatFileDialog.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+
+            }
         }
     }
 }

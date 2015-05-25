@@ -44,9 +44,11 @@
             this.OptionsToolStrip_SettingsItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.button_Apply = new System.Windows.Forms.Button();
-            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.saveEhFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openEhFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.settingsTabCollection = new Encoder_Helper_GUI.SettingsTabCollection();
+            this.createBatchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveBatFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.MenuStrip_Main.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -129,7 +131,8 @@
             this.newToolStripMenuItem,
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem,
-            this.saveAsToolStripMenuItem});
+            this.saveAsToolStripMenuItem,
+            this.createBatchToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -138,7 +141,7 @@
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -146,7 +149,7 @@
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -154,14 +157,14 @@
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveAsToolStripMenuItem.Text = "Save As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
@@ -197,9 +200,9 @@
             this.button_Apply.UseVisualStyleBackColor = true;
             this.button_Apply.Click += new System.EventHandler(this.button_Apply_Click);
             // 
-            // saveFileDialog
+            // saveEhFileDialog
             // 
-            this.saveFileDialog.DefaultExt = "eh";
+            this.saveEhFileDialog.DefaultExt = "eh";
             // 
             // openEhFileDialog
             // 
@@ -217,6 +220,17 @@
             this.settingsTabCollection.TextBox_AvisynthTemplate_Text = "";
             this.settingsTabCollection.TextBox_VideoLanguageCode_Text = "";
             this.settingsTabCollection.TextBox_VideoTrackName_Text = "";
+            // 
+            // createBatchToolStripMenuItem
+            // 
+            this.createBatchToolStripMenuItem.Name = "createBatchToolStripMenuItem";
+            this.createBatchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.createBatchToolStripMenuItem.Text = "Create Batch";
+            this.createBatchToolStripMenuItem.Click += new System.EventHandler(this.createBatchToolStripMenuItem_Click);
+            // 
+            // saveBatFileDialog
+            // 
+            this.saveBatFileDialog.DefaultExt = "bat";
             // 
             // FormMain
             // 
@@ -259,10 +273,12 @@
         private System.Windows.Forms.Button button_Apply;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.SaveFileDialog saveEhFileDialog;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openEhFileDialog;
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createBatchToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveBatFileDialog;
     }
 }
 
