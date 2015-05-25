@@ -180,6 +180,13 @@ namespace Encoder_Helper_GUI
                 settingsTabCollection.LoadSettings(outputSettings[ListBox_Files.SelectedIndex]);
                 selectedIndicesToSave = new int[ListBox_Files.SelectedIndices.Count];
                 ListBox_Files.SelectedIndices.CopyTo(selectedIndicesToSave, 0);
+                for (int i = 0; i < settingsTabCollection.VideoTabList.Count; i++)
+                {
+                    var size = new Size();
+                    size.Width = settingsTabCollection.Size.Width - 44;
+                    size.Height = settingsTabCollection.VideoTabList[i].TextBox_x264_Args_Size.Height;
+                    settingsTabCollection.VideoTabList[i].TextBox_x264_Args_Size = size;
+                }
             }
         }
 
