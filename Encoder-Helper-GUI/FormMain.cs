@@ -171,6 +171,7 @@ namespace Encoder_Helper_GUI
         {
             var settingsForm = new Form_Settings();
             settingsForm.ShowDialog();
+            appSettings = new AppSettings();
         }
 
         private void ListBox_Files_SelectedIndexChanged(object sender, EventArgs e)
@@ -389,7 +390,117 @@ namespace Encoder_Helper_GUI
 
             if (result == DialogResult.OK)
             {
+                StringBuilder sb = new StringBuilder();
+                int[] fileCount = new int[ListBox_Files.Items.Count];
+                int[] counter = new int[26]; //using an int literal here isn't a big deal since I don't see a-z changing anytime soon
 
+                for (int i = 0; i < outputSettings.Count; i++)
+                {
+                    counter[outputSettings[i].counterIndex] = outputSettings[i].counterValue;
+                }
+                for (int i = 0; i < outputSettings.Count; i++)
+                {
+                    fileCount[i] = counter[outputSettings[i].counterIndex]++;
+                }
+                
+                sb.Append("mkdir Audio" + Environment.NewLine + "mkdir Videos" + Environment.NewLine + "mkdir Muxed" + Environment.NewLine + Environment.NewLine);
+                for (int i = 0; i < outputSettings.Count; i++)
+                {
+                    string filename = String.Format(outputSettings[i].fileNamePrefix[0] + outputSettings[i].fileNameBody[0] + outputSettings[i].fileNameSuffix[0], fileCount[i]);
+                    for (int j = 0; j < outputSettings[i].audioLanguageCode.Length; j++) //audiolanguagecode.length is equal to the number of tabs/audio tracks
+                    {
+                        sb.Append("REM Audio " + filename + " Track " + (j+1) + Environment.NewLine);
+                        sb.Append("\"" + appSettings.BePipeLocation + "\" --script \"LWLibavAudioSource(^" + outputSettings[i].FileName + "^, stream_index=" + (j+1) + ")\" | \"" +
+                            appSettings.NeroAACLocation + "\" -q " + outputSettings[i].quality[j] + " -if - -of \"" + "Audio\\" + filename + " Track " + (j+1) + ".m4a\"" 
+                            + Environment.NewLine + Environment.NewLine);
+                    }
+                        
+                }
+                bool checkedAllTabs = false;
+                int k = 0;
+                bool[] finishedFiles = new bool[outputSettings.Count];
+                while (!checkedAllTabs)
+                {
+
+                    for (int i = 0; i < outputSettings.Count; i++)
+                    {
+                        if (k < outputSettings[i].x264Args.Length) //x264args.length is equal to the number of video tabs
+                        {
+                            string filename = String.Format(outputSettings[i].fileNamePrefix[k] + outputSettings[i].fileNameBody[k] + outputSettings[i].fileNameSuffix[k], fileCount[i]);
+                            string x264;
+                            switch (outputSettings[i].encoder[k])
+                            {
+                                case 0:
+                                    x264 = appSettings.x264_x86_8bit_location;
+                                    break;
+                                case 1:
+                                    x264 = appSettings.x264_x86_10bit_location;
+                                    break;
+                                case 2:
+                                    x264 = appSettings.x264_x64_8bit_location;
+                                    break;
+                                case 3:
+                                    x264 = appSettings.x264_x64_10bit_location;
+                                    break;
+                                default:
+                                    x264 = null;
+                                    break;
+                            }
+                            string vidLang;
+                            if(outputSettings[i].videoLanguageCode == ""){
+                                vidLang = "und";
+                            }
+                            else
+                            {
+                                vidLang = outputSettings[i].videoLanguageCode;
+                            }
+                            string audioFilename = String.Format(outputSettings[i].fileNamePrefix[0] + outputSettings[i].fileNameBody[0] + outputSettings[i].fileNameSuffix[0], fileCount[i]);
+                            sb.Append("REM Video " + filename + Environment.NewLine);
+                            sb.Append("\"" + x264 + "\" --output \"Videos\\" + filename + ".264\" " + outputSettings[i].x264Args[k] + " \"" 
+                                + outputSettings[i].FileName + "\"" + Environment.NewLine + Environment.NewLine);
+                            sb.Append("REM Mux " + filename + Environment.NewLine);
+                            sb.Append("\"" + appSettings.MKVMergeLocation + "\" -o \"Muxed\\" + filename + ".mkv\" --language 0:" + vidLang + 
+                                " --track-name 0:\"" + outputSettings[i].videoTrackName +  "\" \"Videos\\" + filename + ".264\"");
+                            for (int x = 0; x < outputSettings[i].audioLanguageCode.Length; x++)
+                            {
+                                string audioLang;
+                                if(outputSettings[i].audioLanguageCode[x] == ""){
+                                    audioLang = "und";
+                                }
+                                else
+                                {
+                                    audioLang = outputSettings[i].audioLanguageCode[x];
+                                }
+                                sb.Append(" --language 0:" + audioLang + " --no-chapters --track-name 0:\"" + outputSettings[i].audioTrackName[x] + 
+                                    "\" \"Audio\\" + audioFilename + " Track " + (x+1) + ".m4a\"");
+                            }
+                            sb.Append(Environment.NewLine + Environment.NewLine);
+                        }
+                        else
+                        {
+                            finishedFiles[i] = true;
+                        }
+                    }
+                    k++;
+                    bool allFinished = true;
+                    for (int x = 0; x < finishedFiles.Length; x++)
+                    {
+                        if (finishedFiles[x] == false)
+                        {
+                            allFinished = false;
+                        }
+                    }
+                    if (allFinished)
+                    {
+                        checkedAllTabs = true;
+                    }
+                }
+
+                sb.Append("pause" + Environment.NewLine);
+                using (StreamWriter file = new StreamWriter(saveBatFileDialog.FileName))
+                {
+                    file.Write(sb.ToString());
+                }
             }
         }
     }

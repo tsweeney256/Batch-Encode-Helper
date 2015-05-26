@@ -218,12 +218,14 @@
             // saveBatFileDialog
             // 
             this.saveBatFileDialog.DefaultExt = "bat";
+            this.saveBatFileDialog.Filter = "bat files|*.bat";
             // 
             // settingsTabCollection
             // 
             this.settingsTabCollection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.settingsTabCollection.ComboBoxCounterSelectedIndex = -1;
+            this.settingsTabCollection.ListBox = null;
             this.settingsTabCollection.Location = new System.Drawing.Point(12, 189);
             this.settingsTabCollection.Name = "settingsTabCollection";
             this.settingsTabCollection.NumericUpDownCounterValue = 0;

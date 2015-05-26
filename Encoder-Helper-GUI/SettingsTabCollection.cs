@@ -58,7 +58,7 @@ namespace Encoder_Helper_GUI
         public SettingsTabCollection()
         {
             InitializeComponent();
-            toolTipCounter.SetToolTip(comboBoxCounter, "Use %d, %0d, %00d, etc. in your filename for it to have a counter");
+            toolTipCounter.SetToolTip(comboBoxCounter, "Use {0}, {0:D1}, {0:D2}, etc. in your filename for it to have a counter.");
         }
 
         public void LoadSettings(Settings settings)
