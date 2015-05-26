@@ -47,8 +47,8 @@
             this.button_Apply = new System.Windows.Forms.Button();
             this.saveEhFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openEhFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.settingsTabCollection = new Encoder_Helper_GUI.SettingsTabCollection();
             this.saveBatFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.settingsTabCollection = new Encoder_Helper_GUI.SettingsTabCollectionMain();
             this.MenuStrip_Main.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -215,30 +215,32 @@
             // 
             this.openEhFileDialog.Filter = "EH File|*.eh";
             // 
+            // saveBatFileDialog
+            // 
+            this.saveBatFileDialog.DefaultExt = "bat";
+            // 
             // settingsTabCollection
             // 
             this.settingsTabCollection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.settingsTabCollection.Enabled = false;
+            this.settingsTabCollection.ComboBoxCounterSelectedIndex = -1;
             this.settingsTabCollection.Location = new System.Drawing.Point(12, 189);
             this.settingsTabCollection.Name = "settingsTabCollection";
-            this.settingsTabCollection.Size = new System.Drawing.Size(599, 387);
-            this.settingsTabCollection.TabIndex = 6;
+            this.settingsTabCollection.NumericUpDownCounterValue = 0;
+            this.settingsTabCollection.OutputSettings = null;
+            this.settingsTabCollection.Size = new System.Drawing.Size(599, 392);
+            this.settingsTabCollection.TabIndex = 0;
             this.settingsTabCollection.TextBox_AvisynthTemplate_Text = "";
             this.settingsTabCollection.TextBox_VideoLanguageCode_Text = "";
             this.settingsTabCollection.TextBox_VideoTrackName_Text = "";
-            // 
-            // saveBatFileDialog
-            // 
-            this.saveBatFileDialog.DefaultExt = "bat";
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(623, 582);
-            this.Controls.Add(this.button_Apply);
+            this.ClientSize = new System.Drawing.Size(623, 589);
             this.Controls.Add(this.settingsTabCollection);
+            this.Controls.Add(this.button_Apply);
             this.Controls.Add(this.Button_MoveDown_ListBox_Files);
             this.Controls.Add(this.Button_MoveUp_ListBox_Files);
             this.Controls.Add(this.Button_TextBox_Files_Add);
@@ -269,7 +271,6 @@
         private System.Windows.Forms.ToolStripMenuItem OptionsToolStrip;
         private System.Windows.Forms.ToolStripMenuItem OptionsToolStrip_SettingsItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private SettingsTabCollection settingsTabCollection;
         private System.Windows.Forms.Button button_Apply;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
@@ -279,6 +280,7 @@
         private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createBatchToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveBatFileDialog;
+        private SettingsTabCollectionMain settingsTabCollection;
     }
 }
 

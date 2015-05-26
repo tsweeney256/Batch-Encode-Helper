@@ -27,6 +27,8 @@ namespace Encoder_Helper_GUI
             outputSettings = new List<OutputSettings>();
             saveFileName = null;
             unsavedEdits = false;
+            settingsTabCollection.OutputSettings = outputSettings;
+            settingsTabCollection.ListBox = ListBox_Files;
         }
 
         private bool ListBoxCheckForDuplicates(ListBox lb, string str)
@@ -233,6 +235,14 @@ namespace Encoder_Helper_GUI
                     outputSettings[index].audioLanguageCode[i] = settingsTabCollection.AudioTabList[i].TextBox_LanguageCode_Text;
                 }
             }
+            int idx = outputSettings[selectedIndicesToSave[0]].counterIndex;
+            for (int i = 0; i < outputSettings.Count; i++)
+            {
+                if (outputSettings[i].counterIndex == idx)
+                {
+                    outputSettings[i].counterValue = settingsTabCollection.NumericUpDownCounterValue; ;
+                }
+            }
         }
 
         private void button_Apply_Click(object sender, EventArgs e)
@@ -314,6 +324,7 @@ namespace Encoder_Helper_GUI
                     try
                     {
                         outputSettings = (List<OutputSettings>)bformatter.Deserialize(stream);
+                        settingsTabCollection.OutputSettings = outputSettings;
                         saveFileName = openEhFileDialog.FileName;
                         this.Text = Path.GetFileName(saveFileName) + " - " + this.Text;
                     }

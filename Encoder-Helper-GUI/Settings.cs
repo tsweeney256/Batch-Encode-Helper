@@ -21,7 +21,7 @@ namespace Encoder_Helper_GUI
         public string[] audioTrackName { get; set; }
         public string[] audioLanguageCode { get; set; }
         public int counterIndex { get; set; }
-        public decimal counterValue { get; set; }
+        public int counterValue { get; set; }
 
         public Settings() { }
 
@@ -52,6 +52,7 @@ namespace Encoder_Helper_GUI
             quality = new decimal[1];
             audioTrackName = new string[1];
             audioLanguageCode = new string[1];
+            counterValue = 1;
         }
     }
 }

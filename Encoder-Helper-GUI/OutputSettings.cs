@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Encoder_Helper_GUI
 {
     [Serializable]
-    class OutputSettings : Settings
+    public class OutputSettings : Settings
     {
         public string FileName { get; set; }
 

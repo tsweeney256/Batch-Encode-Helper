@@ -49,9 +49,9 @@ namespace Encoder_Helper_GUI
             get { return comboBoxCounter.SelectedIndex; }
             set { comboBoxCounter.SelectedIndex = value; }
         }
-        public decimal NumericUpDownCounterValue
+        public int NumericUpDownCounterValue
         {
-            get { return numericUpDownCounter.Value; }
+            get { return (int)numericUpDownCounter.Value; }
             set { numericUpDownCounter.Value = value; }
         }
 
@@ -169,6 +169,36 @@ namespace Encoder_Helper_GUI
             {
                 audioTab.RemoveAt(RightClickedArgSettingsTab);
             }
+        }
+
+        protected virtual void comboBoxCounter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+    }
+
+    public class SettingsTabCollectionMain : SettingsTabCollection
+    {
+        public List<OutputSettings> OutputSettings { get; set; }
+        public ListBox ListBox { get; set; }
+
+        public SettingsTabCollectionMain() : base()
+        {
+
+        }
+
+        protected override void comboBoxCounter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //NumericUpDownCounterValue = OutputSettings.Counter[ComboBoxCounterSelectedIndex];
+            for (int i = 0; i < this.OutputSettings.Count; i++)
+            {
+                if (ComboBoxCounterSelectedIndex == this.OutputSettings[i].counterIndex && i != this.ListBox.SelectedIndex)
+                {
+                    NumericUpDownCounterValue = this.OutputSettings[i].counterValue;
+                    return;
+                }
+            }
+            NumericUpDownCounterValue = 1;
         }
     }
 }
