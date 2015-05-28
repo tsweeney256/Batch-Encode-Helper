@@ -423,7 +423,7 @@ namespace Encoder_Helper_GUI
                     inputFile[i] = generatedAvsFileShort;
                     try
                     {
-                        File.WriteAllText(generatedAvsFileFull, avisynthFileString);
+                        File.WriteAllText(generatedAvsFileFull, avisynthFileString, new UTF8Encoding(false));
                     }
                     catch(Exception e)
                     {
