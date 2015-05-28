@@ -104,18 +104,5 @@ namespace Encoder_Helper_GUI
             settings.Save();
             this.Close();
         }
-
-        private void Form_Settings_Shown(object sender, EventArgs e)
-        {
-            //dumb hack because ShowDialog() keeps screwing up the size of the textboxes
-            /*for (int i = 0; i < settingsTabCollection.VideoTabList.Count; i++)
-            {
-                settingsTabCollection.VideoTabList[i].TextBox_x264_Args_Size = Size_TextBox_x264Args;
-                //settingsTabCollection.VideoTabList[i].TextBoxPrefixSize = sizeTextBoxPrefix;
-                settingsTabCollection.VideoTabList[i].TextBoxBodySize = sizeTextBoxBody;
-                settingsTabCollection.VideoTabList[i].TextBoxSuffixSize = new Size(sizeTextBoxSuffix.Width - 107, sizeTextBoxSuffix.Height);
-                settingsTabCollection.VideoTabList[i].SplitterDistance = splitterDistance;
-            }*/
-        }
     }
 }

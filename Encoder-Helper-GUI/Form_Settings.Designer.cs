@@ -77,8 +77,10 @@ namespace Encoder_Helper_GUI
             this.settingsTabCollection.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.settingsTabCollection.ComboBoxCounterSelectedIndex = -1;
             this.settingsTabCollection.Location = new System.Drawing.Point(13, 13);
             this.settingsTabCollection.Name = "settingsTabCollection";
+            this.settingsTabCollection.NumericUpDownCounterValue = 0;
             this.settingsTabCollection.Size = new System.Drawing.Size(448, 389);
             this.settingsTabCollection.TabIndex = 3;
             this.settingsTabCollection.TextBox_AvisynthTemplate_Text = "";
@@ -95,7 +97,6 @@ namespace Encoder_Helper_GUI
             this.Controls.Add(this.Button_Cancel_Settings);
             this.Name = "Form_Settings";
             this.Text = "Settings";
-            this.Shown += new System.EventHandler(this.Form_Settings_Shown);
             this.ResumeLayout(false);
 
         }
