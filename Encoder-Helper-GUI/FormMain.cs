@@ -384,6 +384,47 @@ namespace Encoder_Helper_GUI
             outputSettings = new List<OutputSettings>();
         }
 
+        private bool handleAvisynthTemplates(string[] inputFile) //just for organizational convenience
+        {
+            int avisynthCounter = 1;
+            bool alreadyCreatedDirectory = false;
+
+            for (int i = 0; i < outputSettings.Count; i++)
+            {
+                string avisynthFileString;
+                if (outputSettings[i].avisynthTemplate != "")
+                {
+                    try
+                    {
+                        avisynthFileString = String.Format(File.ReadAllText(outputSettings[i].avisynthTemplate), "\"" + outputSettings[i].FileName + "\"");
+                    }
+                    catch(FileNotFoundException)
+                    {
+                        MessageBox.Show("Specified Avisynth File for the following entry does not exist." + Environment.NewLine +
+                            "Entry: " + outputSettings[i].FileName + Environment.NewLine + "Specified Avisynth file: " + outputSettings[i].avisynthTemplate);
+                        return false;
+                    }
+                    string generatedAvsFileShort = "Generated Avisynth Files\\" + avisynthCounter + ".avs";
+                    string generatedAvsFileFull = Path.GetDirectoryName(saveBatFileDialog.FileName) + "\\Generated Avisynth Files\\" + avisynthCounter++ + ".avs";
+                    if (!alreadyCreatedDirectory)
+                    {
+                        Directory.CreateDirectory(Path.GetDirectoryName(saveBatFileDialog.FileName) + "\\Generated Avisynth Files\\");
+                    }
+                    inputFile[i] = generatedAvsFileShort;
+                    try
+                    {
+                        File.WriteAllText(generatedAvsFileFull, avisynthFileString);
+                    }
+                    catch(Exception e)
+                    {
+                        MessageBox.Show("There was an error making one of the generated avisynth files: " + e.Message);
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
         private void createBatchToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var result = saveBatFileDialog.ShowDialog();
@@ -393,6 +434,16 @@ namespace Encoder_Helper_GUI
                 StringBuilder sb = new StringBuilder();
                 int[] fileCount = new int[ListBox_Files.Items.Count];
                 int[] counter = new int[26]; //using an int literal here isn't a big deal since I don't see a-z changing anytime soon
+                string[] inputFile = new string[outputSettings.Count];
+
+                for(int i=0; i<outputSettings.Count; i++)
+                {
+                    inputFile[i] = outputSettings[i].FileName;
+                }
+                if (!handleAvisynthTemplates(inputFile))
+                {
+                    return;
+                }
 
                 for (int i = 0; i < outputSettings.Count; i++)
                 {
@@ -457,7 +508,7 @@ namespace Encoder_Helper_GUI
                             string audioFilename = String.Format(outputSettings[i].fileNamePrefix[0] + outputSettings[i].fileNameBody[0] + outputSettings[i].fileNameSuffix[0], fileCount[i]);
                             sb.Append("REM Video " + filename + Environment.NewLine);
                             sb.Append("\"" + x264 + "\" --output \"Videos\\" + filename + ".264\" " + outputSettings[i].x264Args[k] + " \"" 
-                                + outputSettings[i].FileName + "\"" + Environment.NewLine + Environment.NewLine);
+                                + inputFile[i] + "\"" + Environment.NewLine + Environment.NewLine);
                             sb.Append("REM Mux " + filename + Environment.NewLine);
                             sb.Append("\"" + appSettings.MKVMergeLocation + "\" -o \"Muxed\\" + filename + ".mkv\" --language 0:" + vidLang + 
                                 " --track-name 0:\"" + outputSettings[i].videoTrackName +  "\" \"Videos\\" + filename + ".264\"");
@@ -497,10 +548,7 @@ namespace Encoder_Helper_GUI
                 }
 
                 sb.Append("pause" + Environment.NewLine);
-                using (StreamWriter file = new StreamWriter(saveBatFileDialog.FileName))
-                {
-                    file.Write(sb.ToString());
-                }
+                File.WriteAllText(saveBatFileDialog.FileName, sb.ToString(), Encoding.ASCII);
             }
         }
     }
