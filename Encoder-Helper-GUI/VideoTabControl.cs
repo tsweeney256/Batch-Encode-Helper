@@ -36,37 +36,6 @@ namespace Encoder_Helper_GUI
             get { return textBoxSuffix.Text; }
             set { textBoxSuffix.Text = value; }
         }
-        //To allow for a hack to workaround ShowDialog() screwing up the size of my textboxes
-        public Size TextBox_x264_Args_Size
-        {
-            get { return TextBox_x264_Args.Size; }
-            set { TextBox_x264_Args.Size = value; }
-        }
-        public Size TextBoxPrefixSize
-        {
-            get { return textBoxPrefix.Size; }
-            set { textBoxPrefix.Size = value; }
-        }
-        public Size TextBoxBodySize
-        {
-            get { return textBoxBody.Size; }
-            set { textBoxBody.Size = value; }
-        }
-        public Size TextBoxSuffixSize
-        {
-            get { return textBoxSuffix.Size; }
-            set { textBoxSuffix.Size = value; }
-        }
-        public int SplitterDistance
-        {
-            get { return splitContainerPrefixSuffix.SplitterDistance; }
-            set { splitContainerPrefixSuffix.SplitterDistance = value; }
-        }
-        public Size PanelVideoTabSize
-        {
-            get { return panelVideoTab.Size; }
-            set { panelVideoTab.Size = value; }
-        }
 
         public VideoTabControl()
         {
@@ -93,16 +62,7 @@ namespace Encoder_Helper_GUI
 
         private void attachCommon(TabPage lastPage)
         {
-            //lastPage.Controls.Add(Label_x264_Args);
-            //lastPage.Controls.Add(Label_Encoder);
-            //lastPage.Controls.Add(TextBox_x264_Args);
-            //lastPage.Controls.Add(ComboBox_Encoder);
-            //lastPage.Controls.Add(labelPrefix);
-            //lastPage.Controls.Add(labelBody);
-            //lastPage.Controls.Add(labelSuffix);
-            //lastPage.Controls.Add(textBoxPrefix);
-            //lastPage.Controls.Add(textBoxBody);
-            //lastPage.Controls.Add(textBoxSuffix);
+            panelVideoTab.Size = lastPage.Size;
             lastPage.Controls.Add(panelVideoTab);
         }
     }

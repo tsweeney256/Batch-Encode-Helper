@@ -16,11 +16,6 @@ namespace Encoder_Helper_GUI
         private LocationTabControl locationTabControl;
         private List<VideoTabControl> vidTab;
         private List<AudioTabControl> audioTab;
-        private Size Size_TextBox_x264Args;
-        private Size sizeTextBoxPrefix;
-        private Size sizeTextBoxBody;
-        private Size sizeTextBoxSuffix;
-        private int splitterDistance;
 
         public Form_Settings()
         {
@@ -33,11 +28,6 @@ namespace Encoder_Helper_GUI
             locationTabControl = new LocationTabControl();
             vidTab = settingsTabCollection.VideoTabList;
             audioTab = settingsTabCollection.AudioTabList;
-            Size_TextBox_x264Args = settingsTabCollection.VideoTabList[0].TextBox_x264_Args_Size;
-            sizeTextBoxPrefix = settingsTabCollection.VideoTabList[0].TextBoxPrefixSize;
-            sizeTextBoxBody = settingsTabCollection.VideoTabList[0].TextBoxBodySize;
-            sizeTextBoxSuffix = settingsTabCollection.VideoTabList[0].TextBoxSuffixSize;
-            splitterDistance = settingsTabCollection.VideoTabList[0].SplitterDistance;
 
             this.Controls.Add(settingsTabCollection);
             settingsTabCollection.TabCollectionControl.TabPages.Add("Locations");
@@ -101,14 +91,14 @@ namespace Encoder_Helper_GUI
         private void Form_Settings_Shown(object sender, EventArgs e)
         {
             //dumb hack because ShowDialog() keeps screwing up the size of the textboxes
-            for (int i = 0; i < settingsTabCollection.VideoTabList.Count; i++)
+            /*for (int i = 0; i < settingsTabCollection.VideoTabList.Count; i++)
             {
                 settingsTabCollection.VideoTabList[i].TextBox_x264_Args_Size = Size_TextBox_x264Args;
                 //settingsTabCollection.VideoTabList[i].TextBoxPrefixSize = sizeTextBoxPrefix;
                 settingsTabCollection.VideoTabList[i].TextBoxBodySize = sizeTextBoxBody;
                 settingsTabCollection.VideoTabList[i].TextBoxSuffixSize = new Size(sizeTextBoxSuffix.Width - 107, sizeTextBoxSuffix.Height);
                 settingsTabCollection.VideoTabList[i].SplitterDistance = splitterDistance;
-            }
+            }*/
         }
     }
 }

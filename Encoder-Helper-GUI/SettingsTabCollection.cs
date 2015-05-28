@@ -119,8 +119,6 @@ namespace Encoder_Helper_GUI
             {
                 vidTab.Add(new VideoTabControl());
                 vidTab[vidTab.Count - 1].AttachToNewTab(tc);
-                //or else the size will be wrong if the user has changed the size of the window
-                vidTab[vidTab.Count - 1].TextBox_x264_Args_Size = vidTab[0].TextBox_x264_Args_Size;
             }
         }
 
@@ -189,7 +187,6 @@ namespace Encoder_Helper_GUI
 
         protected override void comboBoxCounter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //NumericUpDownCounterValue = OutputSettings.Counter[ComboBoxCounterSelectedIndex];
             for (int i = 0; i < this.OutputSettings.Count; i++)
             {
                 if (ComboBoxCounterSelectedIndex == this.OutputSettings[i].counterIndex && i != this.ListBox.SelectedIndex)
