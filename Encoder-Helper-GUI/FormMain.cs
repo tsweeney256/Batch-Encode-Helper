@@ -558,7 +558,7 @@ namespace Encoder_Helper_GUI
                 }
 
                 sb.Append("pause" + Environment.NewLine);
-                File.WriteAllText(saveBatFileDialog.FileName, sb.ToString(), Encoding.ASCII);
+                File.WriteAllText(saveBatFileDialog.FileName, sb.ToString(), new UTF8Encoding(false));
             }
         }
     }
