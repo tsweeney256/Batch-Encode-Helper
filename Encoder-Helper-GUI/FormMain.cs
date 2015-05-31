@@ -46,6 +46,8 @@ namespace Encoder_Helper_GUI
             unsavedEdits = false;
             settingsTabCollection.OutputSettings = outputSettings;
             settingsTabCollection.ListBox = ListBox_Files;
+            settingsTabCollection.LoadSettings(appSettings);
+            settingsTabCollection.Enabled = false;
         }
 
         private bool ListBoxCheckForDuplicates(ListBox lb, string str)
@@ -64,15 +66,7 @@ namespace Encoder_Helper_GUI
         private void ListBox_Files_DragDrop(object sender, DragEventArgs e)
         {
             string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            foreach (string file in files)
-            {
-                if (!ListBoxCheckForDuplicates(ListBox_Files, file))
-                {
-                    ListBox_Files.Items.Add(file);
-                    CreateNewSettings(file);
-                    unsavedEdits = true;
-                }
-            }
+            AddToListBoxCommon(files);
         }
 
         private void ListBox_Files_DragEnter(object sender, DragEventArgs e)
@@ -85,16 +79,26 @@ namespace Encoder_Helper_GUI
 
         private void ListBoxFilesRemove()
         {
+            int selectedIdx = ListBox_Files.SelectedIndex; //We only care about the top one when deciding our next index to select after the deletion
             for (int i = ListBox_Files.SelectedIndices.Count-1; i >= 0; i--)
             {
                 outputSettings.RemoveAt(ListBox_Files.SelectedIndices[i]);
                 ListBox_Files.Items.RemoveAt(ListBox_Files.SelectedIndices[i]);
                 unsavedEdits = true;
             }
-            if (ListBox_Files.SelectedIndices.Count <= 0)
+            if (ListBox_Files.Items.Count == 0)
             {
                 settingsTabCollection.Enabled = false;
+                settingsTabCollection.LoadSettings(appSettings);
                 button_Apply.Enabled = false;
+            }
+            else if (selectedIdx < ListBox_Files.Items.Count)
+            {
+                ListBox_Files.SelectedIndex = selectedIdx;
+            }
+            else
+            {
+                ListBox_Files.SelectedIndex = selectedIdx - 1;
             }
         }
 
@@ -111,21 +115,31 @@ namespace Encoder_Helper_GUI
             }
         }
 
+        private void AddToListBoxCommon(string[] filename)
+        {
+            int indexToSelect = ListBox_Files.Items.Count;
+            foreach (string str in filename)
+            {
+                if (!ListBoxCheckForDuplicates(ListBox_Files, str))
+                {
+                    ListBox_Files.Items.Add(str);
+                    CreateNewSettings(str);
+                    unsavedEdits = true;
+                }
+            }
+            if (ListBox_Files.SelectedIndex < 0)
+            {
+                ListBox_Files.SelectedIndex = indexToSelect;
+            }
+        }
+
         private void Button_ListBox_Files_Add_Click(object sender, EventArgs e)
         {
             var dialogResult = listBox_openFileDialog.ShowDialog();
 
             if (dialogResult == DialogResult.OK)
             {
-                for (int i = 0; i < listBox_openFileDialog.FileNames.Length; i++)
-                {
-                    if (!ListBoxCheckForDuplicates(ListBox_Files, listBox_openFileDialog.FileNames[i]))
-                    {
-                        ListBox_Files.Items.Add(listBox_openFileDialog.FileNames[i]);
-                        CreateNewSettings(listBox_openFileDialog.FileNames[i]);
-                        unsavedEdits = true;
-                    }
-                }
+                AddToListBoxCommon(listBox_openFileDialog.FileNames);
             }
         }
 
@@ -348,6 +362,10 @@ namespace Encoder_Helper_GUI
                 for (int i = 0; i < outputSettings.Count; i++)
                 {
                     ListBox_Files.Items.Add(outputSettings[i].FileName);
+                }
+                if (ListBox_Files.Items.Count > 0)
+                {
+                    ListBox_Files.SelectedIndex = 0;
                 }
             }
         }
