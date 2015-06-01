@@ -211,7 +211,7 @@ namespace Bench
 
         private void ListBox_Files_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ListBox_Files.SelectedIndices.Count > 0)
+            if (ListBox_Files.SelectedIndices.Count == 1)
             {
                 if (settingsTabCollection.UnsavedChanges)
                 {
