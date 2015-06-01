@@ -34,7 +34,7 @@ namespace Encoder_Helper_GUI
         private List<OutputSettings> outputSettings;
         private int[] selectedIndicesToSave;
         private string saveFileName;
-        bool unsavedEdits;
+        bool unsavedChanges;
 
         public FormMain()
         {
@@ -43,11 +43,11 @@ namespace Encoder_Helper_GUI
             appSettings = new AppSettings();
             outputSettings = new List<OutputSettings>();
             saveFileName = null;
-            unsavedEdits = false;
             settingsTabCollection.OutputSettings = outputSettings;
             settingsTabCollection.ListBox = ListBox_Files;
             settingsTabCollection.LoadSettings(appSettings);
             settingsTabCollection.Enabled = false;
+            settingsTabCollection.UnsavedChanges = false;
         }
 
         private bool ListBoxCheckForDuplicates(ListBox lb, string str)
@@ -80,17 +80,18 @@ namespace Encoder_Helper_GUI
         private void ListBoxFilesRemove()
         {
             int selectedIdx = ListBox_Files.SelectedIndex; //We only care about the top one when deciding our next index to select after the deletion
+
+            settingsTabCollection.UnsavedChanges = true;
+            unsavedChanges = true;
             for (int i = ListBox_Files.SelectedIndices.Count-1; i >= 0; i--)
             {
                 outputSettings.RemoveAt(ListBox_Files.SelectedIndices[i]);
                 ListBox_Files.Items.RemoveAt(ListBox_Files.SelectedIndices[i]);
-                unsavedEdits = true;
             }
             if (ListBox_Files.Items.Count == 0)
             {
                 settingsTabCollection.Enabled = false;
                 settingsTabCollection.LoadSettings(appSettings);
-                button_Apply.Enabled = false;
             }
             else if (selectedIdx < ListBox_Files.Items.Count)
             {
@@ -118,13 +119,15 @@ namespace Encoder_Helper_GUI
         private void AddToListBoxCommon(string[] filename)
         {
             int indexToSelect = ListBox_Files.Items.Count;
+
+            settingsTabCollection.UnsavedChanges = true;
+            unsavedChanges = true;
             foreach (string str in filename)
             {
                 if (!ListBoxCheckForDuplicates(ListBox_Files, str))
                 {
                     ListBox_Files.Items.Add(str);
                     CreateNewSettings(str);
-                    unsavedEdits = true;
                 }
             }
             if (ListBox_Files.SelectedIndex < 0)
@@ -171,7 +174,8 @@ namespace Encoder_Helper_GUI
                 return;
             }
 
-            unsavedEdits = true;
+            unsavedChanges = true;
+            settingsTabCollection.UnsavedChanges = true;
             if (direction < 0)
             {
                 for (int i = 0; i < lb.SelectedIndices.Count; i++)
@@ -209,7 +213,12 @@ namespace Encoder_Helper_GUI
         {
             if (ListBox_Files.SelectedIndices.Count > 0)
             {
-                button_Apply.Enabled = true;
+                if (settingsTabCollection.UnsavedChanges)
+                {
+                    SaveSelectedIndices();
+                    settingsTabCollection.UnsavedChanges = false;
+                    unsavedChanges = true;
+                }
                 settingsTabCollection.Enabled = true;
                 settingsTabCollection.LoadSettings(outputSettings[ListBox_Files.SelectedIndex]);
                 selectedIndicesToSave = new int[ListBox_Files.SelectedIndices.Count];
@@ -225,55 +234,52 @@ namespace Encoder_Helper_GUI
 
         private void SaveSelectedIndices()
         {
-            foreach (int index in selectedIndicesToSave)
+            if (selectedIndicesToSave != null)
             {
-                outputSettings[index].FileName = ListBox_Files.Items[index].ToString();
-
-                int vidTabCount = settingsTabCollection.VideoTabList.Count;
-                outputSettings[index].x264Args = new string[vidTabCount];
-                outputSettings[index].encoder = new int[vidTabCount];
-                outputSettings[index].fileNamePrefix = new string[vidTabCount];
-                outputSettings[index].fileNameBody = new string[vidTabCount];
-                outputSettings[index].fileNameSuffix = new string[vidTabCount];
-                for (int i = 0; i < vidTabCount; i++ )
+                foreach (int index in selectedIndicesToSave)
                 {
-                    outputSettings[index].x264Args[i] = settingsTabCollection.VideoTabList[i].TextBox_x264_Args_Text;
-                    outputSettings[index].encoder[i] = settingsTabCollection.VideoTabList[i].ComboBox_Encoder_SelectedIndex;
-                    outputSettings[index].fileNamePrefix[i] = settingsTabCollection.VideoTabList[i].FileNamePrefixText;
-                    outputSettings[index].fileNameBody[i] = settingsTabCollection.VideoTabList[i].FileNameBodyText;
-                    outputSettings[index].fileNameSuffix[i] = settingsTabCollection.VideoTabList[i].FileNameSuffixText;
+                    outputSettings[index].FileName = ListBox_Files.Items[index].ToString();
+
+                    int vidTabCount = settingsTabCollection.VideoTabList.Count;
+                    outputSettings[index].x264Args = new string[vidTabCount];
+                    outputSettings[index].encoder = new int[vidTabCount];
+                    outputSettings[index].fileNamePrefix = new string[vidTabCount];
+                    outputSettings[index].fileNameBody = new string[vidTabCount];
+                    outputSettings[index].fileNameSuffix = new string[vidTabCount];
+                    for (int i = 0; i < vidTabCount; i++)
+                    {
+                        outputSettings[index].x264Args[i] = settingsTabCollection.VideoTabList[i].TextBox_x264_Args_Text;
+                        outputSettings[index].encoder[i] = settingsTabCollection.VideoTabList[i].ComboBox_Encoder_SelectedIndex;
+                        outputSettings[index].fileNamePrefix[i] = settingsTabCollection.VideoTabList[i].FileNamePrefixText;
+                        outputSettings[index].fileNameBody[i] = settingsTabCollection.VideoTabList[i].FileNameBodyText;
+                        outputSettings[index].fileNameSuffix[i] = settingsTabCollection.VideoTabList[i].FileNameSuffixText;
+                    }
+                    outputSettings[index].videoTrackName = settingsTabCollection.TextBox_VideoTrackName_Text;
+                    outputSettings[index].videoLanguageCode = settingsTabCollection.TextBox_VideoLanguageCode_Text;
+                    outputSettings[index].avisynthTemplate = settingsTabCollection.TextBox_AvisynthTemplate_Text;
+                    outputSettings[index].counterIndex = settingsTabCollection.ComboBoxCounterSelectedIndex;
+                    outputSettings[index].counterValue = settingsTabCollection.NumericUpDownCounterValue;
+
+                    int audioTabCount = settingsTabCollection.AudioTabList.Count;
+                    outputSettings[index].quality = new decimal[audioTabCount];
+                    outputSettings[index].audioTrackName = new string[audioTabCount];
+                    outputSettings[index].audioLanguageCode = new string[audioTabCount];
+                    for (int i = 0; i < audioTabCount; i++)
+                    {
+                        outputSettings[index].quality[i] = settingsTabCollection.AudioTabList[i].NumericUpDown_Quality_Value;
+                        outputSettings[index].audioTrackName[i] = settingsTabCollection.AudioTabList[i].TextBox_AudioTrackName_Text;
+                        outputSettings[index].audioLanguageCode[i] = settingsTabCollection.AudioTabList[i].TextBox_LanguageCode_Text;
+                    }
                 }
-                outputSettings[index].videoTrackName = settingsTabCollection.TextBox_VideoTrackName_Text;
-                outputSettings[index].videoLanguageCode = settingsTabCollection.TextBox_VideoLanguageCode_Text;
-                outputSettings[index].avisynthTemplate = settingsTabCollection.TextBox_AvisynthTemplate_Text;
-                outputSettings[index].counterIndex = settingsTabCollection.ComboBoxCounterSelectedIndex;
-                outputSettings[index].counterValue = settingsTabCollection.NumericUpDownCounterValue;
-
-                int audioTabCount = settingsTabCollection.AudioTabList.Count;
-                outputSettings[index].quality = new decimal[audioTabCount];
-                outputSettings[index].audioTrackName = new string[audioTabCount];
-                outputSettings[index].audioLanguageCode = new string[audioTabCount];
-                for (int i = 0; i < audioTabCount; i++)
+                int idx = outputSettings[selectedIndicesToSave[0]].counterIndex;
+                for (int i = 0; i < outputSettings.Count; i++)
                 {
-                    outputSettings[index].quality[i] = settingsTabCollection.AudioTabList[i].NumericUpDown_Quality_Value;
-                    outputSettings[index].audioTrackName[i] = settingsTabCollection.AudioTabList[i].TextBox_AudioTrackName_Text;
-                    outputSettings[index].audioLanguageCode[i] = settingsTabCollection.AudioTabList[i].TextBox_LanguageCode_Text;
+                    if (outputSettings[i].counterIndex == idx)
+                    {
+                        outputSettings[i].counterValue = settingsTabCollection.NumericUpDownCounterValue; ;
+                    }
                 }
             }
-            int idx = outputSettings[selectedIndicesToSave[0]].counterIndex;
-            for (int i = 0; i < outputSettings.Count; i++)
-            {
-                if (outputSettings[i].counterIndex == idx)
-                {
-                    outputSettings[i].counterValue = settingsTabCollection.NumericUpDownCounterValue; ;
-                }
-            }
-        }
-
-        private void button_Apply_Click(object sender, EventArgs e)
-        {
-            SaveSelectedIndices();
-            unsavedEdits = true;
         }
 
         private void save()
@@ -290,12 +296,13 @@ namespace Encoder_Helper_GUI
 
             if (saveFileName != null)
             {
+                settingsTabCollection.UnsavedChanges = false;
+                unsavedChanges = false;
                 using (Stream stream = File.Open(saveFileName, FileMode.Create))
                 {
                     var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
                     bformatter.Serialize(stream, outputSettings);
                 }
-                unsavedEdits = false;
             }
         }
 
@@ -318,7 +325,7 @@ namespace Encoder_Helper_GUI
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (unsavedEdits)
+            if (unsavedChanges || settingsTabCollection.UnsavedChanges)
             {
                 var saveResult = MessageBox.Show("Save changes to " + (saveFileName == null ? "Untitled" : Path.GetFileName(saveFileName)) + "?", "", MessageBoxButtons.YesNoCancel);
                 if (saveResult != DialogResult.Cancel)
@@ -337,12 +344,6 @@ namespace Encoder_Helper_GUI
 
             if (openResult == DialogResult.OK)
             {
-                unsavedEdits = false;
-                for (int i = ListBox_Files.Items.Count - 1; i >= 0; i--)
-                {
-                    ListBox_Files.Items.RemoveAt(i);
-                }
-
                 using (Stream stream = File.Open(openEhFileDialog.FileName, FileMode.Open))
                 {
                     var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
@@ -352,27 +353,32 @@ namespace Encoder_Helper_GUI
                         settingsTabCollection.OutputSettings = outputSettings;
                         saveFileName = openEhFileDialog.FileName;
                         this.Text = Path.GetFileName(saveFileName) + " - " + this.Text;
+                        for (int i = ListBox_Files.Items.Count - 1; i >= 0; i--)
+                        {
+                            ListBox_Files.Items.RemoveAt(i);
+                        }
+                        for (int i = 0; i < outputSettings.Count; i++)
+                        {
+                            ListBox_Files.Items.Add(outputSettings[i].FileName);
+                        }
+                        if (ListBox_Files.Items.Count > 0)
+                        {
+                            ListBox_Files.SelectedIndex = 0;
+                        }
+                        unsavedChanges = false;
+                        settingsTabCollection.UnsavedChanges = false;
                     }
                     catch
                     {
                         MessageBox.Show("Not a valid BEH file.", "Error", MessageBoxButtons.OK);
                     }
                 }
-
-                for (int i = 0; i < outputSettings.Count; i++)
-                {
-                    ListBox_Files.Items.Add(outputSettings[i].FileName);
-                }
-                if (ListBox_Files.Items.Count > 0)
-                {
-                    ListBox_Files.SelectedIndex = 0;
-                }
             }
         }
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (unsavedEdits)
+            if (unsavedChanges || settingsTabCollection.UnsavedChanges)
             {
                 var result = MessageBox.Show("Save changes to " + (saveFileName == null ? "Untitled" : Path.GetFileName(saveFileName)) + "?", "", MessageBoxButtons.YesNoCancel);
                 if (result == DialogResult.Yes)
@@ -388,7 +394,7 @@ namespace Encoder_Helper_GUI
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (unsavedEdits)
+            if (unsavedChanges || settingsTabCollection.UnsavedChanges)
             {
                 var saveResult = MessageBox.Show("Save changes to " + (saveFileName == null ? "Untitled" : Path.GetFileName(saveFileName)) + "?", "", MessageBoxButtons.YesNoCancel);
                 if (saveResult != DialogResult.Cancel)
@@ -404,7 +410,8 @@ namespace Encoder_Helper_GUI
                 }
             }
 
-            unsavedEdits = false;
+            unsavedChanges = false;
+            settingsTabCollection.UnsavedChanges = false;
             for (int i = ListBox_Files.Items.Count - 1; i >= 0; i--)
             {
                 ListBox_Files.Items.RemoveAt(i);
@@ -464,6 +471,7 @@ namespace Encoder_Helper_GUI
                 int[] counter = new int[26]; //using an int literal here isn't a big deal since I don't see a-z changing anytime soon
                 string[] inputFile = new string[outputSettings.Count];
 
+                SaveSelectedIndices();
                 for(int i=0; i<outputSettings.Count; i++)
                 {
                     inputFile[i] = outputSettings[i].FileName;

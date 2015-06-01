@@ -60,6 +60,7 @@ namespace Encoder_Helper_GUI
             this.TextBox_LanguageCode.Name = "TextBox_LanguageCode";
             this.TextBox_LanguageCode.Size = new System.Drawing.Size(180, 20);
             this.TextBox_LanguageCode.TabIndex = 16;
+            this.TextBox_LanguageCode.TextChanged += new System.EventHandler(this.TextBox_LanguageCode_TextChanged);
             // 
             // Label_LanguageCode
             // 
@@ -76,6 +77,7 @@ namespace Encoder_Helper_GUI
             this.TextBox_AudioTrackName.Name = "TextBox_AudioTrackName";
             this.TextBox_AudioTrackName.Size = new System.Drawing.Size(169, 20);
             this.TextBox_AudioTrackName.TabIndex = 14;
+            this.TextBox_AudioTrackName.TextChanged += new System.EventHandler(this.TextBox_AudioTrackName_TextChanged);
             // 
             // Label_AudioTrackName
             // 
@@ -103,6 +105,7 @@ namespace Encoder_Helper_GUI
             this.NumericUpDown_Quality.Name = "NumericUpDown_Quality";
             this.NumericUpDown_Quality.Size = new System.Drawing.Size(120, 20);
             this.NumericUpDown_Quality.TabIndex = 12;
+            this.NumericUpDown_Quality.ValueChanged += new System.EventHandler(this.NumericUpDown_Quality_ValueChanged);
             // 
             // Label_AudioQuality
             // 

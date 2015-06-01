@@ -29,6 +29,7 @@ namespace Encoder_Helper_GUI
 {
     public partial class SettingsTabCollection : UserControl
     {
+        private bool unsavedChanges;
         private int RightClickedArgSettingsTab = -1;
         private TabControl lastTc = null;
         private List<VideoTabControl> vidTab;
@@ -71,6 +72,39 @@ namespace Encoder_Helper_GUI
             get { return (int)numericUpDownCounter.Value; }
             set { numericUpDownCounter.Value = value; }
         }
+        public bool UnsavedChanges
+        {
+            get
+            {
+                foreach (var page in audioTab)
+                {
+                    if (page.UnsavedChanges)
+                    {
+                        return true;
+                    }
+                }
+                foreach (var page in vidTab)
+                {
+                    if (page.UnsavedChanges)
+                    {
+                        return true;
+                    }
+                }
+                return this.unsavedChanges;
+            }
+            set
+            {
+                foreach (var page in audioTab)
+                {
+                    page.UnsavedChanges = value;
+                }
+                foreach (var page in vidTab)
+                {
+                    page.UnsavedChanges = value;
+                }
+                this.unsavedChanges = value;
+            }
+        }
 
         public SettingsTabCollection()
         {
@@ -82,15 +116,10 @@ namespace Encoder_Helper_GUI
         {
             vidTab = new List<VideoTabControl>();
             audioTab = new List<AudioTabControl>();
-            //remove anything that's there before loading the new settings
-            for (int i = TabControl_VideoArgSettings.TabCount - 1; i >= 0; i--)
-            {
-                TabControl_VideoArgSettings.TabPages.RemoveAt(i);
-            }
-            for (int i = TabControl_AudioArgSettings.TabCount - 1; i >= 0; i--)
-            {
-                TabControl_AudioArgSettings.TabPages.RemoveAt(i);
-            }
+            bool unsavedChangesState = UnsavedChanges;
+
+            TabControl_VideoArgSettings.TabPages.Clear();
+            TabControl_AudioArgSettings.TabPages.Clear();
             //now we actually load everything
             for (int i = 0; i < settings.x264Args.Length; i++)
             {
@@ -117,6 +146,7 @@ namespace Encoder_Helper_GUI
             }
             TabControl_VideoArgSettings.TabPages.Add("    +");
             TabControl_AudioArgSettings.TabPages.Add("    +");
+            UnsavedChanges = unsavedChangesState;
         }
 
         private void button_BrowseAvisynthTemplate_Click(object sender, EventArgs e)
@@ -136,6 +166,7 @@ namespace Encoder_Helper_GUI
             {
                 vidTab.Add(new VideoTabControl());
                 vidTab[vidTab.Count - 1].AttachToNewTab(tc);
+                unsavedChanges = true;
             }
         }
 
@@ -147,6 +178,7 @@ namespace Encoder_Helper_GUI
             {
                 audioTab.Add(new AudioTabControl());
                 audioTab[audioTab.Count - 1].AttachToNewTab(tc);
+                unsavedChanges = true;
             }
         }
 
@@ -171,6 +203,7 @@ namespace Encoder_Helper_GUI
 
         private void StripMenuItem_DeleteTab_Click(object sender, EventArgs e)
         {
+            unsavedChanges = true;
             for (int i = RightClickedArgSettingsTab + 1; i < lastTc.TabCount - 1; i++)
             {
                 lastTc.TabPages[i].Text = i.ToString();
@@ -188,7 +221,32 @@ namespace Encoder_Helper_GUI
 
         protected virtual void comboBoxCounter_SelectedIndexChanged(object sender, EventArgs e)
         {
+            unsavedChanges = true;
+        }
 
+        private void TextBox_VideoTrackName_TextChanged(object sender, EventArgs e)
+        {
+            unsavedChanges = true;
+        }
+
+        private void TextBox_VideoLanguageCode_TextChanged(object sender, EventArgs e)
+        {
+            unsavedChanges = true;
+        }
+
+        private void textBox_AvisynthTemplate_TextChanged(object sender, EventArgs e)
+        {
+            unsavedChanges = true;
+        }
+
+        private void openFileDialog_FileOk(object sender, CancelEventArgs e)
+        {
+            unsavedChanges = true;
+        }
+
+        private void numericUpDownCounter_ValueChanged(object sender, EventArgs e)
+        {
+            unsavedChanges = true;
         }
     }
 

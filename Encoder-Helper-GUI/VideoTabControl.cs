@@ -53,6 +53,7 @@ namespace Encoder_Helper_GUI
             get { return textBoxSuffix.Text; }
             set { textBoxSuffix.Text = value; }
         }
+        public bool UnsavedChanges { get; set; }
 
         public VideoTabControl()
         {
@@ -81,6 +82,31 @@ namespace Encoder_Helper_GUI
         {
             panelVideoTab.Size = lastPage.Size;
             lastPage.Controls.Add(panelVideoTab);
+        }
+
+        private void TextBox_x264_Args_TextChanged(object sender, EventArgs e)
+        {
+            UnsavedChanges = true;
+        }
+
+        private void ComboBox_Encoder_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UnsavedChanges = true;
+        }
+
+        private void textBoxBody_TextChanged(object sender, EventArgs e)
+        {
+            UnsavedChanges = true;
+        }
+
+        private void textBoxPrefix_TextChanged(object sender, EventArgs e)
+        {
+            UnsavedChanges = true;
+        }
+
+        private void textBoxSuffix_TextChanged(object sender, EventArgs e)
+        {
+            UnsavedChanges = true;
         }
     }
 }

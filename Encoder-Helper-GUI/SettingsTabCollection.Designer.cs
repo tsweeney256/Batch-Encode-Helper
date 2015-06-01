@@ -80,6 +80,7 @@ namespace Encoder_Helper_GUI
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog1";
+            this.openFileDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog_FileOk);
             // 
             // ContextMenuStrip_Tabs
             // 
@@ -166,6 +167,7 @@ namespace Encoder_Helper_GUI
             this.numericUpDownCounter.Name = "numericUpDownCounter";
             this.numericUpDownCounter.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownCounter.TabIndex = 14;
+            this.numericUpDownCounter.ValueChanged += new System.EventHandler(this.numericUpDownCounter_ValueChanged);
             // 
             // label2
             // 
@@ -240,6 +242,7 @@ namespace Encoder_Helper_GUI
             this.textBox_AvisynthTemplate.Name = "textBox_AvisynthTemplate";
             this.textBox_AvisynthTemplate.Size = new System.Drawing.Size(338, 20);
             this.textBox_AvisynthTemplate.TabIndex = 8;
+            this.textBox_AvisynthTemplate.TextChanged += new System.EventHandler(this.textBox_AvisynthTemplate_TextChanged);
             // 
             // TextBox_VideoLanguageCode
             // 
@@ -247,6 +250,7 @@ namespace Encoder_Helper_GUI
             this.TextBox_VideoLanguageCode.Name = "TextBox_VideoLanguageCode";
             this.TextBox_VideoLanguageCode.Size = new System.Drawing.Size(180, 20);
             this.TextBox_VideoLanguageCode.TabIndex = 6;
+            this.TextBox_VideoLanguageCode.TextChanged += new System.EventHandler(this.TextBox_VideoLanguageCode_TextChanged);
             // 
             // TextBox_VideoTrackName
             // 
@@ -254,6 +258,7 @@ namespace Encoder_Helper_GUI
             this.TextBox_VideoTrackName.Name = "TextBox_VideoTrackName";
             this.TextBox_VideoTrackName.Size = new System.Drawing.Size(169, 20);
             this.TextBox_VideoTrackName.TabIndex = 4;
+            this.TextBox_VideoTrackName.TextChanged += new System.EventHandler(this.TextBox_VideoTrackName_TextChanged);
             // 
             // label_AvisynthTemplate
             // 

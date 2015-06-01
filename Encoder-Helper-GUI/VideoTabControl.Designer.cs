@@ -46,17 +46,17 @@ namespace Encoder_Helper_GUI
         private void InitializeComponent()
         {
             this.panelVideoTab = new System.Windows.Forms.Panel();
+            this.splitContainerPrefixSuffix = new System.Windows.Forms.SplitContainer();
+            this.textBoxPrefix = new System.Windows.Forms.TextBox();
+            this.labelPrefix = new System.Windows.Forms.Label();
+            this.textBoxSuffix = new System.Windows.Forms.TextBox();
+            this.labelSuffix = new System.Windows.Forms.Label();
             this.Label_Encoder = new System.Windows.Forms.Label();
             this.ComboBox_Encoder = new System.Windows.Forms.ComboBox();
             this.Label_x264_Args = new System.Windows.Forms.Label();
             this.TextBox_x264_Args = new System.Windows.Forms.TextBox();
             this.textBoxBody = new System.Windows.Forms.TextBox();
             this.labelBody = new System.Windows.Forms.Label();
-            this.splitContainerPrefixSuffix = new System.Windows.Forms.SplitContainer();
-            this.textBoxPrefix = new System.Windows.Forms.TextBox();
-            this.labelPrefix = new System.Windows.Forms.Label();
-            this.textBoxSuffix = new System.Windows.Forms.TextBox();
-            this.labelSuffix = new System.Windows.Forms.Label();
             this.panelVideoTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerPrefixSuffix)).BeginInit();
             this.splitContainerPrefixSuffix.Panel1.SuspendLayout();
@@ -80,67 +80,6 @@ namespace Encoder_Helper_GUI
             this.panelVideoTab.Name = "panelVideoTab";
             this.panelVideoTab.Size = new System.Drawing.Size(408, 190);
             this.panelVideoTab.TabIndex = 0;
-            // 
-            // Label_Encoder
-            // 
-            this.Label_Encoder.AutoSize = true;
-            this.Label_Encoder.Location = new System.Drawing.Point(4, 102);
-            this.Label_Encoder.Name = "Label_Encoder";
-            this.Label_Encoder.Size = new System.Drawing.Size(47, 13);
-            this.Label_Encoder.TabIndex = 17;
-            this.Label_Encoder.Text = "Encoder";
-            // 
-            // ComboBox_Encoder
-            // 
-            this.ComboBox_Encoder.FormattingEnabled = true;
-            this.ComboBox_Encoder.Items.AddRange(new object[] {
-            "x264 x86 8bit",
-            "x264 x86 10bit",
-            "x264 x64 8bit",
-            "x264 x64 10bit"});
-            this.ComboBox_Encoder.Location = new System.Drawing.Point(7, 118);
-            this.ComboBox_Encoder.Name = "ComboBox_Encoder";
-            this.ComboBox_Encoder.Size = new System.Drawing.Size(157, 21);
-            this.ComboBox_Encoder.TabIndex = 16;
-            this.ComboBox_Encoder.Text = "Select Encoder";
-            // 
-            // Label_x264_Args
-            // 
-            this.Label_x264_Args.AutoSize = true;
-            this.Label_x264_Args.Location = new System.Drawing.Point(4, 6);
-            this.Label_x264_Args.Name = "Label_x264_Args";
-            this.Label_x264_Args.Size = new System.Drawing.Size(83, 13);
-            this.Label_x264_Args.TabIndex = 12;
-            this.Label_x264_Args.Text = "x264 Arguments";
-            // 
-            // TextBox_x264_Args
-            // 
-            this.TextBox_x264_Args.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TextBox_x264_Args.Location = new System.Drawing.Point(7, 22);
-            this.TextBox_x264_Args.Multiline = true;
-            this.TextBox_x264_Args.Name = "TextBox_x264_Args";
-            this.TextBox_x264_Args.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TextBox_x264_Args.Size = new System.Drawing.Size(397, 77);
-            this.TextBox_x264_Args.TabIndex = 14;
-            // 
-            // textBoxBody
-            // 
-            this.textBoxBody.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxBody.Location = new System.Drawing.Point(173, 118);
-            this.textBoxBody.Name = "textBoxBody";
-            this.textBoxBody.Size = new System.Drawing.Size(231, 20);
-            this.textBoxBody.TabIndex = 11;
-            // 
-            // labelBody
-            // 
-            this.labelBody.AutoSize = true;
-            this.labelBody.Location = new System.Drawing.Point(174, 102);
-            this.labelBody.Name = "labelBody";
-            this.labelBody.Size = new System.Drawing.Size(76, 13);
-            this.labelBody.TabIndex = 10;
-            this.labelBody.Text = "Filename Body";
             // 
             // splitContainerPrefixSuffix
             // 
@@ -170,6 +109,7 @@ namespace Encoder_Helper_GUI
             this.textBoxPrefix.Name = "textBoxPrefix";
             this.textBoxPrefix.Size = new System.Drawing.Size(194, 20);
             this.textBoxPrefix.TabIndex = 19;
+            this.textBoxPrefix.TextChanged += new System.EventHandler(this.textBoxPrefix_TextChanged);
             // 
             // labelPrefix
             // 
@@ -188,6 +128,7 @@ namespace Encoder_Helper_GUI
             this.textBoxSuffix.Name = "textBoxSuffix";
             this.textBoxSuffix.Size = new System.Drawing.Size(193, 20);
             this.textBoxSuffix.TabIndex = 15;
+            this.textBoxSuffix.TextChanged += new System.EventHandler(this.textBoxSuffix_TextChanged);
             // 
             // labelSuffix
             // 
@@ -197,6 +138,70 @@ namespace Encoder_Helper_GUI
             this.labelSuffix.Size = new System.Drawing.Size(78, 13);
             this.labelSuffix.TabIndex = 13;
             this.labelSuffix.Text = "Filename Suffix";
+            // 
+            // Label_Encoder
+            // 
+            this.Label_Encoder.AutoSize = true;
+            this.Label_Encoder.Location = new System.Drawing.Point(4, 102);
+            this.Label_Encoder.Name = "Label_Encoder";
+            this.Label_Encoder.Size = new System.Drawing.Size(47, 13);
+            this.Label_Encoder.TabIndex = 17;
+            this.Label_Encoder.Text = "Encoder";
+            // 
+            // ComboBox_Encoder
+            // 
+            this.ComboBox_Encoder.FormattingEnabled = true;
+            this.ComboBox_Encoder.Items.AddRange(new object[] {
+            "x264 x86 8bit",
+            "x264 x86 10bit",
+            "x264 x64 8bit",
+            "x264 x64 10bit"});
+            this.ComboBox_Encoder.Location = new System.Drawing.Point(7, 118);
+            this.ComboBox_Encoder.Name = "ComboBox_Encoder";
+            this.ComboBox_Encoder.Size = new System.Drawing.Size(157, 21);
+            this.ComboBox_Encoder.TabIndex = 16;
+            this.ComboBox_Encoder.Text = "Select Encoder";
+            this.ComboBox_Encoder.SelectedIndexChanged += new System.EventHandler(this.ComboBox_Encoder_SelectedIndexChanged);
+            // 
+            // Label_x264_Args
+            // 
+            this.Label_x264_Args.AutoSize = true;
+            this.Label_x264_Args.Location = new System.Drawing.Point(4, 6);
+            this.Label_x264_Args.Name = "Label_x264_Args";
+            this.Label_x264_Args.Size = new System.Drawing.Size(83, 13);
+            this.Label_x264_Args.TabIndex = 12;
+            this.Label_x264_Args.Text = "x264 Arguments";
+            // 
+            // TextBox_x264_Args
+            // 
+            this.TextBox_x264_Args.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TextBox_x264_Args.Location = new System.Drawing.Point(7, 22);
+            this.TextBox_x264_Args.Multiline = true;
+            this.TextBox_x264_Args.Name = "TextBox_x264_Args";
+            this.TextBox_x264_Args.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TextBox_x264_Args.Size = new System.Drawing.Size(397, 77);
+            this.TextBox_x264_Args.TabIndex = 14;
+            this.TextBox_x264_Args.TextChanged += new System.EventHandler(this.TextBox_x264_Args_TextChanged);
+            // 
+            // textBoxBody
+            // 
+            this.textBoxBody.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxBody.Location = new System.Drawing.Point(173, 118);
+            this.textBoxBody.Name = "textBoxBody";
+            this.textBoxBody.Size = new System.Drawing.Size(231, 20);
+            this.textBoxBody.TabIndex = 11;
+            this.textBoxBody.TextChanged += new System.EventHandler(this.textBoxBody_TextChanged);
+            // 
+            // labelBody
+            // 
+            this.labelBody.AutoSize = true;
+            this.labelBody.Location = new System.Drawing.Point(174, 102);
+            this.labelBody.Name = "labelBody";
+            this.labelBody.Size = new System.Drawing.Size(76, 13);
+            this.labelBody.TabIndex = 10;
+            this.labelBody.Text = "Filename Body";
             // 
             // VideoTabControl
             // 

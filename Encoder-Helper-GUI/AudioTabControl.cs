@@ -44,6 +44,7 @@ namespace Encoder_Helper_GUI
             get { return TextBox_LanguageCode.Text; }
             set { TextBox_LanguageCode.Text = value; }
         }
+        public bool UnsavedChanges { get; set; }
 
         public AudioTabControl()
         {
@@ -76,6 +77,21 @@ namespace Encoder_Helper_GUI
             lastPage.Controls.Add(TextBox_AudioTrackName);
             lastPage.Controls.Add(TextBox_LanguageCode);
             tc.TabPages[tc.TabCount - 1].UseVisualStyleBackColor = true;
+        }
+
+        private void NumericUpDown_Quality_ValueChanged(object sender, EventArgs e)
+        {
+            UnsavedChanges = true;
+        }
+
+        private void TextBox_AudioTrackName_TextChanged(object sender, EventArgs e)
+        {
+            UnsavedChanges = true;
+        }
+
+        private void TextBox_LanguageCode_TextChanged(object sender, EventArgs e)
+        {
+            UnsavedChanges = true;
         }
     }
 }

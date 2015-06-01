@@ -61,7 +61,6 @@ namespace Encoder_Helper_GUI
             this.OptionsToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.OptionsToolStrip_SettingsItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button_Apply = new System.Windows.Forms.Button();
             this.saveEhFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openEhFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveBatFileDialog = new System.Windows.Forms.SaveFileDialog();
@@ -213,17 +212,6 @@ namespace Encoder_Helper_GUI
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
             // 
-            // button_Apply
-            // 
-            this.button_Apply.Enabled = false;
-            this.button_Apply.Location = new System.Drawing.Point(338, 27);
-            this.button_Apply.Name = "button_Apply";
-            this.button_Apply.Size = new System.Drawing.Size(75, 23);
-            this.button_Apply.TabIndex = 7;
-            this.button_Apply.Text = "Apply";
-            this.button_Apply.UseVisualStyleBackColor = true;
-            this.button_Apply.Click += new System.EventHandler(this.button_Apply_Click);
-            // 
             // saveEhFileDialog
             // 
             this.saveEhFileDialog.DefaultExt = "eh";
@@ -259,7 +247,6 @@ namespace Encoder_Helper_GUI
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(623, 589);
             this.Controls.Add(this.settingsTabCollection);
-            this.Controls.Add(this.button_Apply);
             this.Controls.Add(this.Button_MoveDown_ListBox_Files);
             this.Controls.Add(this.Button_MoveUp_ListBox_Files);
             this.Controls.Add(this.Button_TextBox_Files_Add);
@@ -290,7 +277,6 @@ namespace Encoder_Helper_GUI
         private System.Windows.Forms.ToolStripMenuItem OptionsToolStrip;
         private System.Windows.Forms.ToolStripMenuItem OptionsToolStrip_SettingsItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-        private System.Windows.Forms.Button button_Apply;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveEhFileDialog;
