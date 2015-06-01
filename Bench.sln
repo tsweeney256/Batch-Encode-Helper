@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encoder-Helper-GUI", "Encoder-Helper-GUI\Encoder-Helper-GUI.csproj", "{75BDEA2C-0F4A-4B8A-8323-958B1521D751}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bench", "Bench\Bench.csproj", "{75BDEA2C-0F4A-4B8A-8323-958B1521D751}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

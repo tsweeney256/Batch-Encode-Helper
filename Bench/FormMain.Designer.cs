@@ -1,13 +1,13 @@
-﻿/*Batch Encoder Helper
+﻿/*Bench
 Copyright (C) 2015 Thomas Sweeney
 
-This file is part of Batch Encoder Helper.
-Batch Encoder Helper is free software: you can redistribute it and/or modify
+This file is part of Bench.
+Bench is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
 (at your option) any later version.
 
-Batch Encoder Helper is distributed in the hope that it will be useful,
+Bench is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
@@ -15,7 +15,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.*/
 
-namespace Encoder_Helper_GUI
+namespace Bench
 {
     partial class FormMain
     {
@@ -64,7 +64,7 @@ namespace Encoder_Helper_GUI
             this.saveEhFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openEhFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveBatFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.settingsTabCollection = new Encoder_Helper_GUI.SettingsTabCollectionMain();
+            this.settingsTabCollection = new Bench.SettingsTabCollectionMain();
             this.MenuStrip_Main.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -240,6 +240,7 @@ namespace Encoder_Helper_GUI
             this.settingsTabCollection.TextBox_AvisynthTemplate_Text = "";
             this.settingsTabCollection.TextBox_VideoLanguageCode_Text = "";
             this.settingsTabCollection.TextBox_VideoTrackName_Text = "";
+            this.settingsTabCollection.UnsavedChanges = true;
             // 
             // FormMain
             // 
@@ -255,7 +256,7 @@ namespace Encoder_Helper_GUI
             this.Controls.Add(this.MenuStrip_Main);
             this.MainMenuStrip = this.MenuStrip_Main;
             this.Name = "FormMain";
-            this.Text = "BD Encoder Helper";
+            this.Text = "Bench";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);
             this.MenuStrip_Main.ResumeLayout(false);
             this.MenuStrip_Main.PerformLayout();
