@@ -72,6 +72,11 @@ namespace Bench
             get { return (int)numericUpDownCounter.Value; }
             set { numericUpDownCounter.Value = value; }
         }
+        public bool CheckBoxNoAudio
+        {
+            get { return checkBoxNoAudio.Checked; }
+            set { checkBoxNoAudio.Checked = value; }
+        }
         public bool UnsavedChanges
         {
             get
@@ -148,6 +153,7 @@ namespace Bench
                 audioTab[i].TextBox_AudioTrackName_Text = settings.audioTrackName[i];
                 audioTab[i].TextBox_LanguageCode_Text = settings.audioLanguageCode[i];
             }
+            checkBoxNoAudio.Checked = settings.noAudio;
             TabControl_VideoArgSettings.TabPages.Add("    +");
             TabControl_AudioArgSettings.TabPages.Add("    +");
             UnsavedChanges = unsavedChangesState;
@@ -251,6 +257,18 @@ namespace Bench
         private void numericUpDownCounter_ValueChanged(object sender, EventArgs e)
         {
             unsavedChanges = true;
+        }
+
+        private void checkBoxNoAudio_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxNoAudio.Checked)
+            {
+                TabControl_AudioArgSettings.Enabled = false;
+            }
+            else
+            {
+                TabControl_AudioArgSettings.Enabled = true;
+            }
         }
     }
 

@@ -39,6 +39,7 @@ namespace Bench
         public string[] audioLanguageCode { get; set; }
         public int counterIndex { get; set; }
         public int counterValue { get; set; }
+        public bool noAudio { get; set; }
 
         public Settings() { }
 
@@ -57,6 +58,7 @@ namespace Bench
             audioLanguageCode = (string[])settings.audioLanguageCode.Clone();
             counterIndex = settings.counterIndex;
             counterValue = settings.counterValue;
+            noAudio = settings.noAudio;
         }
 
         public virtual void Initialize()

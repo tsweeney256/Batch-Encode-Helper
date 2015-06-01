@@ -100,7 +100,7 @@ namespace Bench
                 settings.audioTrackName[i] = audioTab[i].TextBox_AudioTrackName_Text;
                 settings.audioLanguageCode[i] = audioTab[i].TextBox_LanguageCode_Text;
             }
-
+            settings.noAudio = settingsTabCollection.CheckBoxNoAudio;
             settings.Save();
             this.Close();
         }

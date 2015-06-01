@@ -264,6 +264,7 @@ namespace Bench
                     outputSettings[index].quality = new decimal[audioTabCount];
                     outputSettings[index].audioTrackName = new string[audioTabCount];
                     outputSettings[index].audioLanguageCode = new string[audioTabCount];
+                    outputSettings[index].noAudio = settingsTabCollection.CheckBoxNoAudio;
                     for (int i = 0; i < audioTabCount; i++)
                     {
                         outputSettings[index].quality[i] = settingsTabCollection.AudioTabList[i].NumericUpDown_Quality_Value;
@@ -496,10 +497,13 @@ namespace Bench
                     string filename = String.Format(outputSettings[i].fileNamePrefix[0] + outputSettings[i].fileNameBody[0] + outputSettings[i].fileNameSuffix[0], fileCount[i]);
                     for (int j = 0; j < outputSettings[i].audioLanguageCode.Length; j++) //audiolanguagecode.length is equal to the number of tabs/audio tracks
                     {
-                        sb.Append("REM Audio " + filename + " Track " + (j+1) + Environment.NewLine);
-                        sb.Append("\"" + appSettings.BePipeLocation + "\" --script \"LWLibavAudioSource(^" + outputSettings[i].FileName + "^, stream_index=" + (j+1) + ")\" | \"" +
-                            appSettings.NeroAACLocation + "\" -q " + outputSettings[i].quality[j] + " -if - -of \"" + "Audio\\" + filename + " Track " + (j+1) + ".m4a\"" 
-                            + Environment.NewLine + Environment.NewLine);
+                        if (!outputSettings[i].noAudio)
+                        {
+                            sb.Append("REM Audio " + filename + " Track " + (j + 1) + Environment.NewLine);
+                            sb.Append("\"" + appSettings.BePipeLocation + "\" --script \"LWLibavAudioSource(^" + outputSettings[i].FileName + "^, stream_index=" + (j + 1) + ")\" | \"" +
+                                appSettings.NeroAACLocation + "\" -q " + outputSettings[i].quality[j] + " -if - -of \"" + "Audio\\" + filename + " Track " + (j + 1) + ".m4a\""
+                                + Environment.NewLine + Environment.NewLine);
+                        }
                     }
                         
                 }
@@ -548,18 +552,22 @@ namespace Bench
                             sb.Append("REM Mux " + filename + Environment.NewLine);
                             sb.Append("\"" + appSettings.MKVMergeLocation + "\" -o \"Muxed\\" + filename + ".mkv\" --language 0:" + vidLang + 
                                 " --track-name 0:\"" + outputSettings[i].videoTrackName +  "\" \"Videos\\" + filename + ".264\"");
-                            for (int x = 0; x < outputSettings[i].audioLanguageCode.Length; x++)
+                            if (!outputSettings[i].noAudio)
                             {
-                                string audioLang;
-                                if(outputSettings[i].audioLanguageCode[x] == ""){
-                                    audioLang = "und";
-                                }
-                                else
+                                for (int x = 0; x < outputSettings[i].audioLanguageCode.Length; x++)
                                 {
-                                    audioLang = outputSettings[i].audioLanguageCode[x];
+                                    string audioLang;
+                                    if (outputSettings[i].audioLanguageCode[x] == "")
+                                    {
+                                        audioLang = "und";
+                                    }
+                                    else
+                                    {
+                                        audioLang = outputSettings[i].audioLanguageCode[x];
+                                    }
+                                    sb.Append(" --language 0:" + audioLang + " --no-chapters --track-name 0:\"" + outputSettings[i].audioTrackName[x] +
+                                        "\" \"Audio\\" + audioFilename + " Track " + (x + 1) + ".m4a\"");
                                 }
-                                sb.Append(" --language 0:" + audioLang + " --no-chapters --track-name 0:\"" + outputSettings[i].audioTrackName[x] + 
-                                    "\" \"Audio\\" + audioFilename + " Track " + (x+1) + ".m4a\"");
                             }
                             sb.Append(Environment.NewLine + Environment.NewLine);
                         }

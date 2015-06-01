@@ -79,6 +79,7 @@ namespace Bench
             quality = settings.quality;
             audioTrackName = settings.audioTrackName;
             audioLanguageCode = settings.audioLanguageCode;
+            noAudio = settings.noAudio;
             x264_x86_8bit_location = settings.x264_x86_8bit_location;
             x264_x86_10bit_location = settings.x264_x86_10bit_location;
             x264_x64_8bit_location = settings.x264_x64_8bit_location;

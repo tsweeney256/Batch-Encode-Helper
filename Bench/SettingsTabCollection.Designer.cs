@@ -68,6 +68,7 @@ namespace Bench
             this.TabControl_VideoArgSettings = new System.Windows.Forms.TabControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.TabControl_Settings = new System.Windows.Forms.TabControl();
+            this.checkBoxNoAudio = new System.Windows.Forms.CheckBox();
             this.ContextMenuStrip_Tabs.SuspendLayout();
             this.tabPage_Audio.SuspendLayout();
             this.TabControl_AudioArgSettings.SuspendLayout();
@@ -103,6 +104,7 @@ namespace Bench
             // 
             // tabPage_Audio
             // 
+            this.tabPage_Audio.Controls.Add(this.checkBoxNoAudio);
             this.tabPage_Audio.Controls.Add(this.TabControl_AudioArgSettings);
             this.tabPage_Audio.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Audio.Name = "tabPage_Audio";
@@ -324,6 +326,17 @@ namespace Bench
             this.TabControl_Settings.Size = new System.Drawing.Size(448, 400);
             this.TabControl_Settings.TabIndex = 1;
             // 
+            // checkBoxNoAudio
+            // 
+            this.checkBoxNoAudio.AutoSize = true;
+            this.checkBoxNoAudio.Location = new System.Drawing.Point(11, 135);
+            this.checkBoxNoAudio.Name = "checkBoxNoAudio";
+            this.checkBoxNoAudio.Size = new System.Drawing.Size(70, 17);
+            this.checkBoxNoAudio.TabIndex = 1;
+            this.checkBoxNoAudio.Text = "No Audio";
+            this.checkBoxNoAudio.UseVisualStyleBackColor = true;
+            this.checkBoxNoAudio.CheckedChanged += new System.EventHandler(this.checkBoxNoAudio_CheckedChanged);
+            // 
             // SettingsTabCollection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -333,6 +346,7 @@ namespace Bench
             this.Size = new System.Drawing.Size(448, 402);
             this.ContextMenuStrip_Tabs.ResumeLayout(false);
             this.tabPage_Audio.ResumeLayout(false);
+            this.tabPage_Audio.PerformLayout();
             this.TabControl_AudioArgSettings.ResumeLayout(false);
             this.tabPage_Video.ResumeLayout(false);
             this.tabPage_Video.PerformLayout();
@@ -367,6 +381,7 @@ namespace Bench
         private System.Windows.Forms.TabControl TabControl_VideoArgSettings;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.TabControl TabControl_Settings;
+        private System.Windows.Forms.CheckBox checkBoxNoAudio;
 
 
     }
