@@ -109,6 +109,10 @@ namespace Encoder_Helper_GUI
         public SettingsTabCollection()
         {
             InitializeComponent();
+            //need to initialize vidTab and audioTab in the constructor even though they're just going to be overwritten
+            //so that visual studio can generate the code needed for the UnsavedChanges property for the designer
+            vidTab = new List<VideoTabControl>();
+            audioTab = new List<AudioTabControl>();
             toolTipCounter.SetToolTip(comboBoxCounter, "Use {0}, {0:D1}, {0:D2}, etc. in your filename for it to have a counter.");
         }
 
