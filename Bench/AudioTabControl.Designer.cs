@@ -59,16 +59,16 @@ namespace Bench
             // 
             // TextBox_LanguageCode
             // 
-            this.TextBox_LanguageCode.Location = new System.Drawing.Point(202, 59);
+            this.TextBox_LanguageCode.Location = new System.Drawing.Point(178, 59);
             this.TextBox_LanguageCode.Name = "TextBox_LanguageCode";
-            this.TextBox_LanguageCode.Size = new System.Drawing.Size(180, 20);
+            this.TextBox_LanguageCode.Size = new System.Drawing.Size(169, 20);
             this.TextBox_LanguageCode.TabIndex = 16;
             this.TextBox_LanguageCode.TextChanged += new System.EventHandler(this.TextBox_LanguageCode_TextChanged);
             // 
             // Label_LanguageCode
             // 
             this.Label_LanguageCode.AutoSize = true;
-            this.Label_LanguageCode.Location = new System.Drawing.Point(199, 42);
+            this.Label_LanguageCode.Location = new System.Drawing.Point(175, 42);
             this.Label_LanguageCode.Name = "Label_LanguageCode";
             this.Label_LanguageCode.Size = new System.Drawing.Size(144, 13);
             this.Label_LanguageCode.TabIndex = 15;
@@ -121,7 +121,7 @@ namespace Bench
             // 
             // numericUpDownTrackNumber
             // 
-            this.numericUpDownTrackNumber.Location = new System.Drawing.Point(202, 19);
+            this.numericUpDownTrackNumber.Location = new System.Drawing.Point(178, 19);
             this.numericUpDownTrackNumber.Minimum = new decimal(new int[] {
             1,
             0,
@@ -140,7 +140,7 @@ namespace Bench
             // labelTrackNumber
             // 
             this.labelTrackNumber.AutoSize = true;
-            this.labelTrackNumber.Location = new System.Drawing.Point(202, 3);
+            this.labelTrackNumber.Location = new System.Drawing.Point(178, 3);
             this.labelTrackNumber.Name = "labelTrackNumber";
             this.labelTrackNumber.Size = new System.Drawing.Size(112, 13);
             this.labelTrackNumber.TabIndex = 18;
@@ -159,7 +159,7 @@ namespace Bench
             this.Controls.Add(this.NumericUpDown_Quality);
             this.Controls.Add(this.Label_AudioQuality);
             this.Name = "AudioTabControl";
-            this.Size = new System.Drawing.Size(392, 98);
+            this.Size = new System.Drawing.Size(354, 98);
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown_Quality)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTrackNumber)).EndInit();
             this.ResumeLayout(false);
