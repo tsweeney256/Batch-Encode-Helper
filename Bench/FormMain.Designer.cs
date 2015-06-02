@@ -194,7 +194,7 @@ namespace Bench
             // 
             this.createBatchToolStripMenuItem.Enabled = false;
             this.createBatchToolStripMenuItem.Name = "createBatchToolStripMenuItem";
-            this.createBatchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.createBatchToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.createBatchToolStripMenuItem.Text = "Create Batch";
             this.createBatchToolStripMenuItem.Click += new System.EventHandler(this.createBatchToolStripMenuItem_Click);
             // 
@@ -209,7 +209,7 @@ namespace Bench
             // OptionsToolStrip_SettingsItem
             // 
             this.OptionsToolStrip_SettingsItem.Name = "OptionsToolStrip_SettingsItem";
-            this.OptionsToolStrip_SettingsItem.Size = new System.Drawing.Size(152, 22);
+            this.OptionsToolStrip_SettingsItem.Size = new System.Drawing.Size(116, 22);
             this.OptionsToolStrip_SettingsItem.Text = "Settings";
             this.OptionsToolStrip_SettingsItem.Click += new System.EventHandler(this.OptionsToolStrip_SettingsItem_Click);
             // 
@@ -230,11 +230,13 @@ namespace Bench
             // 
             // saveEhFileDialog
             // 
-            this.saveEhFileDialog.DefaultExt = "eh";
+            this.saveEhFileDialog.DefaultExt = "ben";
+            this.saveEhFileDialog.FileName = "*.ben";
+            this.saveEhFileDialog.Filter = "Bench File|*.ben";
             // 
             // openEhFileDialog
             // 
-            this.openEhFileDialog.Filter = "EH File|*.eh";
+            this.openEhFileDialog.Filter = "Bench File|*.ben";
             // 
             // saveBatFileDialog
             // 
