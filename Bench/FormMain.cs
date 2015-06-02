@@ -33,6 +33,7 @@ namespace Bench
         private AppSettings appSettings;
         private List<OutputSettings> outputSettings;
         private int[] selectedIndicesToSave;
+        private int lastSelectedIndex;
         private string saveFileName;
         bool unsavedChanges;
 
@@ -48,6 +49,7 @@ namespace Bench
             settingsTabCollection.LoadSettings(appSettings);
             settingsTabCollection.Enabled = false;
             settingsTabCollection.UnsavedChanges = false;
+            lastSelectedIndex = -2;
         }
 
         private bool ListBoxCheckForDuplicates(ListBox lb, string str)
@@ -220,16 +222,21 @@ namespace Bench
         {
             if (ListBox_Files.SelectedIndices.Count == 1)
             {
-                if (settingsTabCollection.UnsavedChanges)
+                if (lastSelectedIndex != ListBox_Files.SelectedIndex)
                 {
-                    SaveSelectedIndices();
-                    settingsTabCollection.UnsavedChanges = false;
-                    unsavedChanges = true;
+                    if (settingsTabCollection.UnsavedChanges)
+                    {
+                        SaveSelectedIndices();
+                        settingsTabCollection.UnsavedChanges = false;
+                        unsavedChanges = true;
+                    }
+                    settingsTabCollection.Enabled = true;
+                    settingsTabCollection.LoadSettings(outputSettings[ListBox_Files.SelectedIndex]);
+                    selectedIndicesToSave = new int[ListBox_Files.SelectedIndices.Count];
+                    ListBox_Files.SelectedIndices.CopyTo(selectedIndicesToSave, 0);
                 }
-                settingsTabCollection.Enabled = true;
-                settingsTabCollection.LoadSettings(outputSettings[ListBox_Files.SelectedIndex]);
-                selectedIndicesToSave = new int[ListBox_Files.SelectedIndices.Count];
-                ListBox_Files.SelectedIndices.CopyTo(selectedIndicesToSave, 0);
+                lastSelectedIndex = ListBox_Files.SelectedIndex;
+                ListBox_Files.Focus(); //or else focus will change to settingsTabCollection
             }
         }
 
