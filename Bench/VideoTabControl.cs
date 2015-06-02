@@ -117,5 +117,14 @@ namespace Bench
                 textBox_AvisynthTemplate.Text = openFileDialog.FileName;
             }
         }
+
+        private void TextBox_x264_Args_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.A)
+            {
+                ((TextBox)sender).SelectAll();
+                e.Handled = true;
+            }
+        }
     }
 }

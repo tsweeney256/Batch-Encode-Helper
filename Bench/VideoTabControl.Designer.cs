@@ -216,6 +216,7 @@ namespace Bench
             this.TextBox_x264_Args.Size = new System.Drawing.Size(397, 77);
             this.TextBox_x264_Args.TabIndex = 14;
             this.TextBox_x264_Args.TextChanged += new System.EventHandler(this.TextBox_x264_Args_TextChanged);
+            this.TextBox_x264_Args.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_x264_Args_KeyDown);
             // 
             // openFileDialog
             // 

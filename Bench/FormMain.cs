@@ -110,6 +110,13 @@ namespace Bench
 
         private void ListBox_Files_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.Control && e.KeyCode == Keys.A)
+            {
+                for (int i = 0; i < ((ListBox)sender).Items.Count; i++)
+                {
+                    ((ListBox)sender).SetSelected(i, true);
+                }
+            }
             if (e.KeyCode == Keys.Delete)
             {
                 ListBoxFilesRemove();
