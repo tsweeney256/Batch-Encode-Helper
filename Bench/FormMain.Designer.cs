@@ -82,7 +82,8 @@ namespace Bench
             this.ListBox_Files.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.ListBox_Files.Size = new System.Drawing.Size(599, 121);
             this.ListBox_Files.TabIndex = 0;
-            this.toolTip.SetToolTip(this.ListBox_Files, "Add files here that you wish to encode.\r\n");
+            this.toolTip.SetToolTip(this.ListBox_Files, "Add files here that you wish to encode.\r\n\r\nYou can have more than one item select" +
+        "ed at a time for editing.");
             this.ListBox_Files.SelectedIndexChanged += new System.EventHandler(this.ListBox_Files_SelectedIndexChanged);
             this.ListBox_Files.DragDrop += new System.Windows.Forms.DragEventHandler(this.ListBox_Files_DragDrop);
             this.ListBox_Files.DragEnter += new System.Windows.Forms.DragEventHandler(this.ListBox_Files_DragEnter);

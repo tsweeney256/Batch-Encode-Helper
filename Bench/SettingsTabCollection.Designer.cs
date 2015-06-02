@@ -49,30 +49,30 @@ namespace Bench
             this.ContextMenuStrip_Tabs = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.StripMenuItem_DeleteTab = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.tabPage_Audio = new System.Windows.Forms.TabPage();
             this.checkBoxNoAudio = new System.Windows.Forms.CheckBox();
             this.TabControl_AudioArgSettings = new System.Windows.Forms.TabControl();
             this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.comboBoxCounter = new System.Windows.Forms.ComboBox();
+            this.TabControl_VideoArgSettings = new System.Windows.Forms.TabControl();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabPage_Audio = new System.Windows.Forms.TabPage();
             this.tabPage_Video = new System.Windows.Forms.TabPage();
             this.textBoxBody = new System.Windows.Forms.TextBox();
             this.labelBody = new System.Windows.Forms.Label();
             this.numericUpDownCounter = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBoxCounter = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.TextBox_VideoLanguageCode = new System.Windows.Forms.TextBox();
             this.TextBox_VideoTrackName = new System.Windows.Forms.TextBox();
             this.label_videoLanguageCode = new System.Windows.Forms.Label();
             this.Label_VideoTrackName = new System.Windows.Forms.Label();
-            this.TabControl_VideoArgSettings = new System.Windows.Forms.TabControl();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.TabControl_Settings = new System.Windows.Forms.TabControl();
             this.ContextMenuStrip_Tabs.SuspendLayout();
-            this.tabPage_Audio.SuspendLayout();
             this.TabControl_AudioArgSettings.SuspendLayout();
+            this.TabControl_VideoArgSettings.SuspendLayout();
+            this.tabPage_Audio.SuspendLayout();
             this.tabPage_Video.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCounter)).BeginInit();
-            this.TabControl_VideoArgSettings.SuspendLayout();
             this.TabControl_Settings.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -94,17 +94,6 @@ namespace Bench
             // 
             this.toolTip.AutomaticDelay = 500000;
             this.toolTip.ShowAlways = true;
-            // 
-            // tabPage_Audio
-            // 
-            this.tabPage_Audio.Controls.Add(this.checkBoxNoAudio);
-            this.tabPage_Audio.Controls.Add(this.TabControl_AudioArgSettings);
-            this.tabPage_Audio.Location = new System.Drawing.Point(4, 22);
-            this.tabPage_Audio.Name = "tabPage_Audio";
-            this.tabPage_Audio.Size = new System.Drawing.Size(440, 407);
-            this.tabPage_Audio.TabIndex = 2;
-            this.tabPage_Audio.Text = "Audio";
-            this.tabPage_Audio.UseVisualStyleBackColor = true;
             // 
             // checkBoxNoAudio
             // 
@@ -141,6 +130,79 @@ namespace Bench
             this.tabPage5.TabIndex = 1;
             this.tabPage5.Text = "    +";
             this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // comboBoxCounter
+            // 
+            this.comboBoxCounter.FormattingEnabled = true;
+            this.comboBoxCounter.Items.AddRange(new object[] {
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"});
+            this.comboBoxCounter.Location = new System.Drawing.Point(6, 372);
+            this.comboBoxCounter.Name = "comboBoxCounter";
+            this.comboBoxCounter.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxCounter.TabIndex = 12;
+            this.toolTip.SetToolTip(this.comboBoxCounter, "Use {0}, {0:D1}, {0:D2}, etc. in your filename for it to have a counter.");
+            this.comboBoxCounter.SelectedIndexChanged += new System.EventHandler(this.comboBoxCounter_SelectedIndexChanged);
+            // 
+            // TabControl_VideoArgSettings
+            // 
+            this.TabControl_VideoArgSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TabControl_VideoArgSettings.Controls.Add(this.tabPage2);
+            this.TabControl_VideoArgSettings.Location = new System.Drawing.Point(7, 7);
+            this.TabControl_VideoArgSettings.Name = "TabControl_VideoArgSettings";
+            this.TabControl_VideoArgSettings.SelectedIndex = 0;
+            this.TabControl_VideoArgSettings.Size = new System.Drawing.Size(427, 266);
+            this.TabControl_VideoArgSettings.TabIndex = 2;
+            this.toolTip.SetToolTip(this.TabControl_VideoArgSettings, "Add tabs to encode a video with the same input, but with different settings.");
+            this.TabControl_VideoArgSettings.SelectedIndexChanged += new System.EventHandler(this.TabControl_VideoArgSettings_TabIndexChanged);
+            this.TabControl_VideoArgSettings.TabIndexChanged += new System.EventHandler(this.TabControl_VideoArgSettings_TabIndexChanged);
+            this.TabControl_VideoArgSettings.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TabControl_AVSettings_MouseClick);
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(419, 240);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "    +";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabPage_Audio
+            // 
+            this.tabPage_Audio.Controls.Add(this.checkBoxNoAudio);
+            this.tabPage_Audio.Controls.Add(this.TabControl_AudioArgSettings);
+            this.tabPage_Audio.Location = new System.Drawing.Point(4, 22);
+            this.tabPage_Audio.Name = "tabPage_Audio";
+            this.tabPage_Audio.Size = new System.Drawing.Size(440, 407);
+            this.tabPage_Audio.TabIndex = 2;
+            this.tabPage_Audio.Text = "Audio";
+            this.tabPage_Audio.UseVisualStyleBackColor = true;
             // 
             // tabPage_Video
             // 
@@ -204,43 +266,6 @@ namespace Bench
             this.label2.TabIndex = 13;
             this.label2.Text = "Counter Start Position";
             // 
-            // comboBoxCounter
-            // 
-            this.comboBoxCounter.FormattingEnabled = true;
-            this.comboBoxCounter.Items.AddRange(new object[] {
-            "A",
-            "B",
-            "C",
-            "D",
-            "E",
-            "F",
-            "G",
-            "H",
-            "I",
-            "J",
-            "K",
-            "L",
-            "M",
-            "N",
-            "O",
-            "P",
-            "Q",
-            "R",
-            "S",
-            "T",
-            "U",
-            "V",
-            "W",
-            "X",
-            "Y",
-            "Z"});
-            this.comboBoxCounter.Location = new System.Drawing.Point(6, 372);
-            this.comboBoxCounter.Name = "comboBoxCounter";
-            this.comboBoxCounter.Size = new System.Drawing.Size(121, 21);
-            this.comboBoxCounter.TabIndex = 12;
-            this.toolTip.SetToolTip(this.comboBoxCounter, "Use {0}, {0:D1}, {0:D2}, etc. in your filename for it to have a counter.");
-            this.comboBoxCounter.SelectedIndexChanged += new System.EventHandler(this.comboBoxCounter_SelectedIndexChanged);
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -256,6 +281,7 @@ namespace Bench
             this.TextBox_VideoLanguageCode.Name = "TextBox_VideoLanguageCode";
             this.TextBox_VideoLanguageCode.Size = new System.Drawing.Size(180, 20);
             this.TextBox_VideoLanguageCode.TabIndex = 6;
+            this.toolTip.SetToolTip(this.TextBox_VideoLanguageCode, "ISO 639-2 language code");
             this.TextBox_VideoLanguageCode.TextChanged += new System.EventHandler(this.TextBox_VideoLanguageCode_TextChanged);
             // 
             // TextBox_VideoTrackName
@@ -284,31 +310,6 @@ namespace Bench
             this.Label_VideoTrackName.TabIndex = 3;
             this.Label_VideoTrackName.Text = "Video Track Name";
             // 
-            // TabControl_VideoArgSettings
-            // 
-            this.TabControl_VideoArgSettings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TabControl_VideoArgSettings.Controls.Add(this.tabPage2);
-            this.TabControl_VideoArgSettings.Location = new System.Drawing.Point(7, 7);
-            this.TabControl_VideoArgSettings.Name = "TabControl_VideoArgSettings";
-            this.TabControl_VideoArgSettings.SelectedIndex = 0;
-            this.TabControl_VideoArgSettings.Size = new System.Drawing.Size(427, 266);
-            this.TabControl_VideoArgSettings.TabIndex = 2;
-            this.toolTip.SetToolTip(this.TabControl_VideoArgSettings, "Add tabs to encode a video with the same input, but with different settings.");
-            this.TabControl_VideoArgSettings.SelectedIndexChanged += new System.EventHandler(this.TabControl_VideoArgSettings_TabIndexChanged);
-            this.TabControl_VideoArgSettings.TabIndexChanged += new System.EventHandler(this.TabControl_VideoArgSettings_TabIndexChanged);
-            this.TabControl_VideoArgSettings.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TabControl_AVSettings_MouseClick);
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(419, 240);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "    +";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
             // TabControl_Settings
             // 
             this.TabControl_Settings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -330,13 +331,13 @@ namespace Bench
             this.Name = "SettingsTabCollection";
             this.Size = new System.Drawing.Size(448, 435);
             this.ContextMenuStrip_Tabs.ResumeLayout(false);
+            this.TabControl_AudioArgSettings.ResumeLayout(false);
+            this.TabControl_VideoArgSettings.ResumeLayout(false);
             this.tabPage_Audio.ResumeLayout(false);
             this.tabPage_Audio.PerformLayout();
-            this.TabControl_AudioArgSettings.ResumeLayout(false);
             this.tabPage_Video.ResumeLayout(false);
             this.tabPage_Video.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCounter)).EndInit();
-            this.TabControl_VideoArgSettings.ResumeLayout(false);
             this.TabControl_Settings.ResumeLayout(false);
             this.ResumeLayout(false);
 
