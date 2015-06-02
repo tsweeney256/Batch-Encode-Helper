@@ -256,6 +256,7 @@ namespace Bench
             this.Controls.Add(this.ListBox_Files);
             this.Controls.Add(this.MenuStrip_Main);
             this.MainMenuStrip = this.MenuStrip_Main;
+            this.MinimumSize = new System.Drawing.Size(415, 594);
             this.Name = "FormMain";
             this.Text = "Bench";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormMain_FormClosing);

@@ -97,6 +97,9 @@ namespace Bench
             this.Controls.Add(this.settingsTabCollection);
             this.Controls.Add(this.Button_OK_Settings);
             this.Controls.Add(this.Button_Cancel_Settings);
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(50000, 532);
+            this.MinimumSize = new System.Drawing.Size(415, 532);
             this.Name = "Form_Settings";
             this.Text = "Settings";
             this.ResumeLayout(false);
