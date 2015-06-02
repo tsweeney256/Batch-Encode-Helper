@@ -45,6 +45,8 @@ namespace Bench
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(VideoTabControl));
             this.panelVideoTab = new System.Windows.Forms.Panel();
             this.button_BrowseAvisynthTemplate = new System.Windows.Forms.Button();
             this.textBox_AvisynthTemplate = new System.Windows.Forms.TextBox();
@@ -59,6 +61,7 @@ namespace Bench
             this.Label_x264_Args = new System.Windows.Forms.Label();
             this.TextBox_x264_Args = new System.Windows.Forms.TextBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.panelVideoTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerPrefixSuffix)).BeginInit();
             this.splitContainerPrefixSuffix.Panel1.SuspendLayout();
@@ -103,6 +106,7 @@ namespace Bench
             this.textBox_AvisynthTemplate.Name = "textBox_AvisynthTemplate";
             this.textBox_AvisynthTemplate.Size = new System.Drawing.Size(316, 20);
             this.textBox_AvisynthTemplate.TabIndex = 23;
+            this.toolTip.SetToolTip(this.textBox_AvisynthTemplate, resources.GetString("textBox_AvisynthTemplate.ToolTip"));
             this.textBox_AvisynthTemplate.TextChanged += new System.EventHandler(this.textBoxSuffix_TextChanged);
             // 
             // label_AvisynthTemplate
@@ -149,9 +153,9 @@ namespace Bench
             this.labelPrefix.AutoSize = true;
             this.labelPrefix.Location = new System.Drawing.Point(3, 3);
             this.labelPrefix.Name = "labelPrefix";
-            this.labelPrefix.Size = new System.Drawing.Size(78, 13);
+            this.labelPrefix.Size = new System.Drawing.Size(113, 13);
             this.labelPrefix.TabIndex = 18;
-            this.labelPrefix.Text = "Filename Prefix";
+            this.labelPrefix.Text = "Output Filename Prefix";
             // 
             // textBoxSuffix
             // 
@@ -168,9 +172,9 @@ namespace Bench
             this.labelSuffix.AutoSize = true;
             this.labelSuffix.Location = new System.Drawing.Point(3, 3);
             this.labelSuffix.Name = "labelSuffix";
-            this.labelSuffix.Size = new System.Drawing.Size(78, 13);
+            this.labelSuffix.Size = new System.Drawing.Size(113, 13);
             this.labelSuffix.TabIndex = 13;
-            this.labelSuffix.Text = "Filename Suffix";
+            this.labelSuffix.Text = "Output Filename Suffix";
             // 
             // Label_Encoder
             // 
@@ -215,6 +219,8 @@ namespace Bench
             this.TextBox_x264_Args.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.TextBox_x264_Args.Size = new System.Drawing.Size(397, 77);
             this.TextBox_x264_Args.TabIndex = 14;
+            this.toolTip.SetToolTip(this.TextBox_x264_Args, "Arguments to give to x264.\r\nDon\'t give the output or input file as arguments.\r\nTh" +
+        "is is done automatically for you.");
             this.TextBox_x264_Args.TextChanged += new System.EventHandler(this.TextBox_x264_Args_TextChanged);
             this.TextBox_x264_Args.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBox_x264_Args_KeyDown);
             // 
@@ -257,6 +263,7 @@ namespace Bench
         private System.Windows.Forms.TextBox textBox_AvisynthTemplate;
         private System.Windows.Forms.Label label_AvisynthTemplate;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.ToolTip toolTip;
 
     }
 }

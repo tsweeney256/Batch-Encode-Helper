@@ -45,6 +45,7 @@ namespace Bench
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.ListBox_Files = new System.Windows.Forms.ListBox();
             this.Button_TextBox_Files_Remove = new System.Windows.Forms.Button();
             this.listBox_openFileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -65,6 +66,7 @@ namespace Bench
             this.openEhFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveBatFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.settingsTabCollection = new Bench.SettingsTabCollectionMain();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.MenuStrip_Main.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,6 +82,7 @@ namespace Bench
             this.ListBox_Files.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.ListBox_Files.Size = new System.Drawing.Size(599, 121);
             this.ListBox_Files.TabIndex = 0;
+            this.toolTip.SetToolTip(this.ListBox_Files, "Add files here that you wish to encode.\r\n");
             this.ListBox_Files.SelectedIndexChanged += new System.EventHandler(this.ListBox_Files_SelectedIndexChanged);
             this.ListBox_Files.DragDrop += new System.Windows.Forms.DragEventHandler(this.ListBox_Files_DragDrop);
             this.ListBox_Files.DragEnter += new System.Windows.Forms.DragEventHandler(this.ListBox_Files_DragEnter);
@@ -289,6 +292,7 @@ namespace Bench
         private System.Windows.Forms.ToolStripMenuItem createBatchToolStripMenuItem;
         private System.Windows.Forms.SaveFileDialog saveBatFileDialog;
         private SettingsTabCollectionMain settingsTabCollection;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
 

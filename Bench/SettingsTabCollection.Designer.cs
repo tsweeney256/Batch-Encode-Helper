@@ -48,7 +48,7 @@ namespace Bench
             this.components = new System.ComponentModel.Container();
             this.ContextMenuStrip_Tabs = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.StripMenuItem_DeleteTab = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolTipCounter = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.tabPage_Audio = new System.Windows.Forms.TabPage();
             this.checkBoxNoAudio = new System.Windows.Forms.CheckBox();
             this.TabControl_AudioArgSettings = new System.Windows.Forms.TabControl();
@@ -90,10 +90,10 @@ namespace Bench
             this.StripMenuItem_DeleteTab.Text = "Delete Tab";
             this.StripMenuItem_DeleteTab.Click += new System.EventHandler(this.StripMenuItem_DeleteTab_Click);
             // 
-            // toolTipCounter
+            // toolTip
             // 
-            this.toolTipCounter.AutomaticDelay = 500000;
-            this.toolTipCounter.ShowAlways = true;
+            this.toolTip.AutomaticDelay = 500000;
+            this.toolTip.ShowAlways = true;
             // 
             // tabPage_Audio
             // 
@@ -114,6 +114,7 @@ namespace Bench
             this.checkBoxNoAudio.Size = new System.Drawing.Size(70, 17);
             this.checkBoxNoAudio.TabIndex = 1;
             this.checkBoxNoAudio.Text = "No Audio";
+            this.toolTip.SetToolTip(this.checkBoxNoAudio, "Will make your video have no audio.");
             this.checkBoxNoAudio.UseVisualStyleBackColor = true;
             this.checkBoxNoAudio.CheckedChanged += new System.EventHandler(this.checkBoxNoAudio_CheckedChanged);
             // 
@@ -127,6 +128,7 @@ namespace Bench
             this.TabControl_AudioArgSettings.SelectedIndex = 0;
             this.TabControl_AudioArgSettings.Size = new System.Drawing.Size(423, 121);
             this.TabControl_AudioArgSettings.TabIndex = 0;
+            this.toolTip.SetToolTip(this.TabControl_AudioArgSettings, "Add tabs for your video to have more audio tracks.");
             this.TabControl_AudioArgSettings.SelectedIndexChanged += new System.EventHandler(this.TabControl_AudioArgSettings_SelectedIndexChanged);
             this.TabControl_AudioArgSettings.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TabControl_AVSettings_MouseClick);
             // 
@@ -236,6 +238,7 @@ namespace Bench
             this.comboBoxCounter.Name = "comboBoxCounter";
             this.comboBoxCounter.Size = new System.Drawing.Size(121, 21);
             this.comboBoxCounter.TabIndex = 12;
+            this.toolTip.SetToolTip(this.comboBoxCounter, "Use {0}, {0:D1}, {0:D2}, etc. in your filename for it to have a counter.");
             this.comboBoxCounter.SelectedIndexChanged += new System.EventHandler(this.comboBoxCounter_SelectedIndexChanged);
             // 
             // label3
@@ -291,6 +294,7 @@ namespace Bench
             this.TabControl_VideoArgSettings.SelectedIndex = 0;
             this.TabControl_VideoArgSettings.Size = new System.Drawing.Size(427, 266);
             this.TabControl_VideoArgSettings.TabIndex = 2;
+            this.toolTip.SetToolTip(this.TabControl_VideoArgSettings, "Add tabs to encode a video with the same input, but with different settings.");
             this.TabControl_VideoArgSettings.SelectedIndexChanged += new System.EventHandler(this.TabControl_VideoArgSettings_TabIndexChanged);
             this.TabControl_VideoArgSettings.TabIndexChanged += new System.EventHandler(this.TabControl_VideoArgSettings_TabIndexChanged);
             this.TabControl_VideoArgSettings.MouseClick += new System.Windows.Forms.MouseEventHandler(this.TabControl_AVSettings_MouseClick);
@@ -342,7 +346,7 @@ namespace Bench
 
         private System.Windows.Forms.ContextMenuStrip ContextMenuStrip_Tabs;
         private System.Windows.Forms.ToolStripMenuItem StripMenuItem_DeleteTab;
-        private System.Windows.Forms.ToolTip toolTipCounter;
+        private System.Windows.Forms.ToolTip toolTip;
         private System.Windows.Forms.TabPage tabPage_Audio;
         private System.Windows.Forms.TabControl TabControl_AudioArgSettings;
         private System.Windows.Forms.TabPage tabPage5;
