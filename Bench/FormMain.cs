@@ -49,6 +49,7 @@ namespace Bench
             settingsTabCollection.LoadSettings(appSettings);
             settingsTabCollection.Enabled = false;
             settingsTabCollection.UnsavedChanges = false;
+            createBatchToolStripMenuItem.Enabled = false;
             lastSelectedIndex = -2;
         }
 
@@ -84,6 +85,7 @@ namespace Bench
             int selectedIdx = ListBox_Files.SelectedIndex; //We only care about the top one when deciding our next index to select after the deletion
 
             settingsTabCollection.UnsavedChanges = true;
+            createBatchToolStripMenuItem.Enabled = false;
             unsavedChanges = true;
             for (int i = ListBox_Files.SelectedIndices.Count-1; i >= 0; i--)
             {
@@ -231,6 +233,7 @@ namespace Bench
                         unsavedChanges = true;
                     }
                     settingsTabCollection.Enabled = true;
+                    createBatchToolStripMenuItem.Enabled = true;
                     settingsTabCollection.LoadSettings(outputSettings[ListBox_Files.SelectedIndex]);
                     selectedIndicesToSave = new int[ListBox_Files.SelectedIndices.Count];
                     ListBox_Files.SelectedIndices.CopyTo(selectedIndicesToSave, 0);
@@ -383,7 +386,13 @@ namespace Bench
                         }
                         if (ListBox_Files.Items.Count > 0)
                         {
+                            lastSelectedIndex = -2; //to force the tab collection to update
                             ListBox_Files.SelectedIndex = 0;
+                        }
+                        else
+                        {
+                            settingsTabCollection.Enabled = false;
+                            createBatchToolStripMenuItem.Enabled = false;
                         }
                         unsavedChanges = false;
                         settingsTabCollection.UnsavedChanges = false;
@@ -437,6 +446,78 @@ namespace Bench
                 ListBox_Files.Items.RemoveAt(i);
             }
             outputSettings = new List<OutputSettings>();
+        }
+
+        private bool InputErrorsExist()
+        {
+            foreach (var settings in outputSettings)
+            {
+                for (int i = 0; i < settings.x264Args.Length; i++)
+                {
+                    if (String.IsNullOrWhiteSpace(settings.x264Args[i]))
+                    {
+                        MessageBox.Show("There are no x264 arguments for tab #" + (i + 1) + " of " + settings.FileName, "Error");
+                        return true;
+                    }
+                    if (String.IsNullOrWhiteSpace(settings.fileNamePrefix[i]) && 
+                            String.IsNullOrWhiteSpace(settings.fileNameBody) &&
+                            String.IsNullOrWhiteSpace(settings.fileNameSuffix[i]))
+                    {
+                        MessageBox.Show("There are no output filename for tab #" + (i+1) + " of " + settings.FileName, "Error");
+                        return true;
+                    }
+                    bool x264Exists = false;
+                    string x264Version = "";
+                    switch (settings.encoder[i])
+                    {
+                        case 0:
+                            x264Exists = String.IsNullOrWhiteSpace(appSettings.x264_x86_8bit_location);
+                            x264Version = "x86 8bit";
+                            break;
+                        case 1:
+                            x264Exists = String.IsNullOrWhiteSpace(appSettings.x264_x86_10bit_location);
+                            x264Version = "x86 10bit";
+                            break;
+                        case 2:
+                            x264Exists = String.IsNullOrWhiteSpace(appSettings.x264_x64_8bit_location);
+                            x264Version = "x64 8bit";
+                            break;
+                        case 3:
+                            x264Exists = String.IsNullOrWhiteSpace(appSettings.x264_x64_10bit_location);
+                            x264Version = "x64 10bit";
+                            break;
+                        default:
+                            //this should never be reached
+                            MessageBox.Show("Critical Error: x264 Location Error");
+                            return true;
+                    }
+                    if (x264Exists)
+                    {
+                        MessageBox.Show("The location for the " + x264Version + " version of x264 is not set, but you are trying to use it." +
+                            Environment.NewLine + Environment.NewLine + "You can set it in Options->Settings->Locations.", "Error");
+                        return true;
+                    }
+                }
+                if (!settings.noAudio && String.IsNullOrWhiteSpace(appSettings.NeroAACLocation))
+                {
+                    MessageBox.Show("The location for the Nero AAC encoder is not set, but you are trying to encode audio, which requires it." +
+                            Environment.NewLine + Environment.NewLine + "You can set it in Options->Settings->Locations.", "Error");
+                    return true;
+                }
+                if (!settings.noAudio && String.IsNullOrWhiteSpace(appSettings.BePipeLocation))
+                {
+                    MessageBox.Show("The location for BePipe is not set, but you are trying to encode audio, which requires it." +
+                            Environment.NewLine + Environment.NewLine +"You can set it in Options->Settings->Locations.", "Error");
+                    return true;
+                }
+            }
+            if (String.IsNullOrWhiteSpace(appSettings.MKVMergeLocation))
+            {
+                MessageBox.Show("The location for mkvmerge.exe is not set." + Environment.NewLine + Environment.NewLine + 
+                    "You can set it in Options->Settings->Locations.", "Error");
+                return true;
+            }
+            return false;
         }
 
         private bool handleAvisynthTemplates(string[][] inputFile) //just for organizational convenience
@@ -505,6 +586,10 @@ namespace Bench
                     {
                         inputFile[i][j] = outputSettings[i].FileName;
                     }
+                }
+                if (InputErrorsExist())
+                {
+                    return;
                 }
                 if (!handleAvisynthTemplates(inputFile))
                 {
