@@ -245,17 +245,18 @@ namespace Bench
                     outputSettings[index].encoder = new int[vidTabCount];
                     outputSettings[index].fileNamePrefix = new string[vidTabCount];
                     outputSettings[index].fileNameSuffix = new string[vidTabCount];
+                    outputSettings[index].avisynthTemplate = new string[vidTabCount];
                     for (int i = 0; i < vidTabCount; i++)
                     {
                         outputSettings[index].x264Args[i] = settingsTabCollection.VideoTabList[i].TextBox_x264_Args_Text;
                         outputSettings[index].encoder[i] = settingsTabCollection.VideoTabList[i].ComboBox_Encoder_SelectedIndex;
                         outputSettings[index].fileNamePrefix[i] = settingsTabCollection.VideoTabList[i].FileNamePrefixText;
                         outputSettings[index].fileNameSuffix[i] = settingsTabCollection.VideoTabList[i].FileNameSuffixText;
+                        outputSettings[index].avisynthTemplate[i] = settingsTabCollection.VideoTabList[i].TextBox_AvisynthTemplate_Text;
                     }
                     outputSettings[index].fileNameBody = settingsTabCollection.FileNameBodyText;
                     outputSettings[index].videoTrackName = settingsTabCollection.TextBox_VideoTrackName_Text;
                     outputSettings[index].videoLanguageCode = settingsTabCollection.TextBox_VideoLanguageCode_Text;
-                    outputSettings[index].avisynthTemplate = settingsTabCollection.TextBox_AvisynthTemplate_Text;
                     outputSettings[index].counterIndex = settingsTabCollection.ComboBoxCounterSelectedIndex;
                     outputSettings[index].counterValue = settingsTabCollection.NumericUpDownCounterValue;
 
@@ -419,7 +420,7 @@ namespace Bench
             outputSettings = new List<OutputSettings>();
         }
 
-        private bool handleAvisynthTemplates(string[] inputFile) //just for organizational convenience
+        private bool handleAvisynthTemplates(string[][] inputFile) //just for organizational convenience
         {
             int avisynthCounter = 1;
             bool alreadyCreatedDirectory = false;
@@ -427,33 +428,36 @@ namespace Bench
             for (int i = 0; i < outputSettings.Count; i++)
             {
                 string avisynthFileString;
-                if (outputSettings[i].avisynthTemplate != "")
+                for (int j = 0; j < outputSettings[i].avisynthTemplate.Length; j++)
                 {
-                    try
+                    if (!String.IsNullOrWhiteSpace(outputSettings[i].avisynthTemplate[j]))
                     {
-                        avisynthFileString = String.Format(File.ReadAllText(outputSettings[i].avisynthTemplate), "\"" + outputSettings[i].FileName + "\"");
-                    }
-                    catch(FileNotFoundException)
-                    {
-                        MessageBox.Show("Specified Avisynth File for the following entry does not exist." + Environment.NewLine +
-                            "Entry: " + outputSettings[i].FileName + Environment.NewLine + "Specified Avisynth file: " + outputSettings[i].avisynthTemplate);
-                        return false;
-                    }
-                    string generatedAvsFileShort = "Generated Avisynth Files\\" + avisynthCounter + ".avs";
-                    string generatedAvsFileFull = Path.GetDirectoryName(saveBatFileDialog.FileName) + "\\Generated Avisynth Files\\" + avisynthCounter++ + ".avs";
-                    if (!alreadyCreatedDirectory)
-                    {
-                        Directory.CreateDirectory(Path.GetDirectoryName(saveBatFileDialog.FileName) + "\\Generated Avisynth Files\\");
-                    }
-                    inputFile[i] = generatedAvsFileShort;
-                    try
-                    {
-                        File.WriteAllText(generatedAvsFileFull, avisynthFileString, new UTF8Encoding(false));
-                    }
-                    catch(Exception e)
-                    {
-                        MessageBox.Show("There was an error making one of the generated avisynth files: " + e.Message);
-                        return false;
+                        try
+                        {
+                            avisynthFileString = String.Format(File.ReadAllText(outputSettings[i].avisynthTemplate[j]), "\"" + outputSettings[i].FileName + "\"");
+                        }
+                        catch (FileNotFoundException)
+                        {
+                            MessageBox.Show("Specified Avisynth File for the following entry does not exist." + Environment.NewLine +
+                                "Entry: " + outputSettings[i].FileName + Environment.NewLine + "Specified Avisynth file: " + outputSettings[i].avisynthTemplate);
+                            return false;
+                        }
+                        string generatedAvsFileShort = "Generated Avisynth Files\\" + avisynthCounter + ".avs";
+                        string generatedAvsFileFull = Path.GetDirectoryName(saveBatFileDialog.FileName) + "\\Generated Avisynth Files\\" + avisynthCounter++ + ".avs";
+                        if (!alreadyCreatedDirectory)
+                        {
+                            Directory.CreateDirectory(Path.GetDirectoryName(saveBatFileDialog.FileName) + "\\Generated Avisynth Files\\");
+                        }
+                        inputFile[i][j] = generatedAvsFileShort;
+                        try
+                        {
+                            File.WriteAllText(generatedAvsFileFull, avisynthFileString, new UTF8Encoding(false));
+                        }
+                        catch (Exception e)
+                        {
+                            MessageBox.Show("There was an error making one of the generated avisynth files: " + e.Message);
+                            return false;
+                        }
                     }
                 }
             }
@@ -469,12 +473,19 @@ namespace Bench
                 StringBuilder sb = new StringBuilder();
                 int[] fileCount = new int[ListBox_Files.Items.Count];
                 int[] counter = new int[26]; //using an int literal here isn't a big deal since I don't see a-z changing anytime soon
-                string[] inputFile = new string[outputSettings.Count];
+                string[][] inputFile = new string[outputSettings.Count][];
+                for (int i = 0; i < outputSettings.Count; i++)
+                {
+                    inputFile[i] = new string[outputSettings[i].x264Args.Length];
+                }
 
-                SaveSelectedIndices();
+                    SaveSelectedIndices();
                 for(int i=0; i<outputSettings.Count; i++)
                 {
-                    inputFile[i] = outputSettings[i].FileName;
+                    for (int j = 0; j < outputSettings[i].x264Args.Length; j++)
+                    {
+                        inputFile[i][j] = outputSettings[i].FileName; //who needs silly things like performance
+                    }
                 }
                 if (!handleAvisynthTemplates(inputFile))
                 {
@@ -547,7 +558,7 @@ namespace Bench
                             string audioFilename = String.Format(outputSettings[i].fileNamePrefix[0] + outputSettings[i].fileNameBody + outputSettings[i].fileNameSuffix[0], fileCount[i]);
                             sb.Append("REM Video " + filename + Environment.NewLine);
                             sb.Append("\"" + x264 + "\" --output \"Videos\\" + filename + ".264\" " + outputSettings[i].x264Args[k] + " \"" 
-                                + inputFile[i] + "\"" + Environment.NewLine + Environment.NewLine);
+                                + inputFile[i][k] + "\"" + Environment.NewLine + Environment.NewLine);
                             sb.Append("REM Mux " + filename + Environment.NewLine);
                             sb.Append("\"" + appSettings.MKVMergeLocation + "\" -o \"Muxed\\" + filename + ".mkv\" --language 0:" + vidLang + 
                                 " --track-name 0:\"" + outputSettings[i].videoTrackName +  "\" \"Videos\\" + filename + ".264\"");

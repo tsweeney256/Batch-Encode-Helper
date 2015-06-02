@@ -33,7 +33,7 @@ namespace Bench
         public string[] fileNameSuffix { get; set; }
         public string videoTrackName { get; set; }
         public string videoLanguageCode { get; set; }
-        public string avisynthTemplate { get; set; }
+        public string[] avisynthTemplate { get; set; }
         public decimal[] quality { get; set; }
         public string[] audioTrackName { get; set; }
         public string[] audioLanguageCode { get; set; }
@@ -52,7 +52,7 @@ namespace Bench
             fileNameSuffix = (string[])settings.fileNameSuffix.Clone();
             videoTrackName = settings.videoTrackName;
             videoLanguageCode = settings.videoLanguageCode;
-            avisynthTemplate = settings.avisynthTemplate;
+            avisynthTemplate = (string[])settings.avisynthTemplate.Clone();
             quality = (decimal[])settings.quality.Clone();
             audioTrackName = (string[])settings.audioTrackName.Clone();
             audioLanguageCode = (string[])settings.audioLanguageCode.Clone();
@@ -67,6 +67,7 @@ namespace Bench
             encoder = new int[1];
             fileNamePrefix = new string[1];
             fileNameSuffix = new string[1];
+            avisynthTemplate = new string[1];
             quality = new decimal[1];
             audioTrackName = new string[1];
             audioLanguageCode = new string[1];

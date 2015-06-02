@@ -77,6 +77,7 @@ namespace Bench
             settings.encoder = new int[vidTab.Count];
             settings.fileNamePrefix = new string[vidTab.Count];
             settings.fileNameSuffix = new string[vidTab.Count];
+            settings.avisynthTemplate = new string[vidTab.Count];
             settings.counterIndex = settingsTabCollection.ComboBoxCounterSelectedIndex;
             settings.counterValue = settingsTabCollection.NumericUpDownCounterValue;
             settings.fileNameBody = settingsTabCollection.FileNameBodyText;
@@ -86,10 +87,11 @@ namespace Bench
                 settings.encoder[i] = vidTab[i].ComboBox_Encoder_SelectedIndex;
                 settings.fileNamePrefix[i] = vidTab[i].FileNamePrefixText;
                 settings.fileNameSuffix[i] = vidTab[i].FileNameSuffixText;
+                settings.avisynthTemplate[i] = vidTab[i].TextBox_AvisynthTemplate_Text;
             }
             settings.videoTrackName = settingsTabCollection.TextBox_VideoTrackName_Text;
             settings.videoLanguageCode = settingsTabCollection.TextBox_VideoLanguageCode_Text;
-            settings.avisynthTemplate = settingsTabCollection.TextBox_AvisynthTemplate_Text;
+            
             settings.quality = new decimal[audioTab.Count];
             settings.audioTrackName = new string[audioTab.Count];
             settings.audioLanguageCode = new string[audioTab.Count];

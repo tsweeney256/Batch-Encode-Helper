@@ -46,6 +46,9 @@ namespace Bench
         private void InitializeComponent()
         {
             this.panelVideoTab = new System.Windows.Forms.Panel();
+            this.button_BrowseAvisynthTemplate = new System.Windows.Forms.Button();
+            this.textBox_AvisynthTemplate = new System.Windows.Forms.TextBox();
+            this.label_AvisynthTemplate = new System.Windows.Forms.Label();
             this.splitContainerPrefixSuffix = new System.Windows.Forms.SplitContainer();
             this.textBoxPrefix = new System.Windows.Forms.TextBox();
             this.labelPrefix = new System.Windows.Forms.Label();
@@ -55,6 +58,7 @@ namespace Bench
             this.ComboBox_Encoder = new System.Windows.Forms.ComboBox();
             this.Label_x264_Args = new System.Windows.Forms.Label();
             this.TextBox_x264_Args = new System.Windows.Forms.TextBox();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.panelVideoTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerPrefixSuffix)).BeginInit();
             this.splitContainerPrefixSuffix.Panel1.SuspendLayout();
@@ -67,6 +71,9 @@ namespace Bench
             this.panelVideoTab.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelVideoTab.Controls.Add(this.button_BrowseAvisynthTemplate);
+            this.panelVideoTab.Controls.Add(this.textBox_AvisynthTemplate);
+            this.panelVideoTab.Controls.Add(this.label_AvisynthTemplate);
             this.panelVideoTab.Controls.Add(this.splitContainerPrefixSuffix);
             this.panelVideoTab.Controls.Add(this.Label_Encoder);
             this.panelVideoTab.Controls.Add(this.ComboBox_Encoder);
@@ -74,8 +81,38 @@ namespace Bench
             this.panelVideoTab.Controls.Add(this.TextBox_x264_Args);
             this.panelVideoTab.Location = new System.Drawing.Point(0, 0);
             this.panelVideoTab.Name = "panelVideoTab";
-            this.panelVideoTab.Size = new System.Drawing.Size(408, 190);
+            this.panelVideoTab.Size = new System.Drawing.Size(408, 247);
             this.panelVideoTab.TabIndex = 0;
+            // 
+            // button_BrowseAvisynthTemplate
+            // 
+            this.button_BrowseAvisynthTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_BrowseAvisynthTemplate.Location = new System.Drawing.Point(329, 207);
+            this.button_BrowseAvisynthTemplate.Name = "button_BrowseAvisynthTemplate";
+            this.button_BrowseAvisynthTemplate.Size = new System.Drawing.Size(75, 23);
+            this.button_BrowseAvisynthTemplate.TabIndex = 24;
+            this.button_BrowseAvisynthTemplate.Text = "Browse";
+            this.button_BrowseAvisynthTemplate.UseVisualStyleBackColor = true;
+            this.button_BrowseAvisynthTemplate.Click += new System.EventHandler(this.button_BrowseAvisynthTemplate_Click);
+            // 
+            // textBox_AvisynthTemplate
+            // 
+            this.textBox_AvisynthTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBox_AvisynthTemplate.Location = new System.Drawing.Point(7, 209);
+            this.textBox_AvisynthTemplate.Name = "textBox_AvisynthTemplate";
+            this.textBox_AvisynthTemplate.Size = new System.Drawing.Size(316, 20);
+            this.textBox_AvisynthTemplate.TabIndex = 23;
+            this.textBox_AvisynthTemplate.TextChanged += new System.EventHandler(this.textBoxSuffix_TextChanged);
+            // 
+            // label_AvisynthTemplate
+            // 
+            this.label_AvisynthTemplate.AutoSize = true;
+            this.label_AvisynthTemplate.Location = new System.Drawing.Point(7, 190);
+            this.label_AvisynthTemplate.Name = "label_AvisynthTemplate";
+            this.label_AvisynthTemplate.Size = new System.Drawing.Size(94, 13);
+            this.label_AvisynthTemplate.TabIndex = 22;
+            this.label_AvisynthTemplate.Text = "Avisynth Template";
             // 
             // splitContainerPrefixSuffix
             // 
@@ -180,13 +217,17 @@ namespace Bench
             this.TextBox_x264_Args.TabIndex = 14;
             this.TextBox_x264_Args.TextChanged += new System.EventHandler(this.TextBox_x264_Args_TextChanged);
             // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog1";
+            // 
             // VideoTabControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panelVideoTab);
             this.Name = "VideoTabControl";
-            this.Size = new System.Drawing.Size(408, 190);
+            this.Size = new System.Drawing.Size(408, 247);
             this.panelVideoTab.ResumeLayout(false);
             this.panelVideoTab.PerformLayout();
             this.splitContainerPrefixSuffix.Panel1.ResumeLayout(false);
@@ -211,6 +252,10 @@ namespace Bench
         private System.Windows.Forms.Label labelPrefix;
         private System.Windows.Forms.TextBox textBoxSuffix;
         private System.Windows.Forms.Label labelSuffix;
+        private System.Windows.Forms.Button button_BrowseAvisynthTemplate;
+        private System.Windows.Forms.TextBox textBox_AvisynthTemplate;
+        private System.Windows.Forms.Label label_AvisynthTemplate;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
 
     }
 }

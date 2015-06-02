@@ -48,6 +48,11 @@ namespace Bench
             get { return textBoxSuffix.Text; }
             set { textBoxSuffix.Text = value; }
         }
+        public string TextBox_AvisynthTemplate_Text
+        {
+            get { return textBox_AvisynthTemplate.Text; }
+            set { textBox_AvisynthTemplate.Text = value; }
+        }
         public bool UnsavedChanges { get; set; }
 
         public VideoTabControl()
@@ -102,6 +107,15 @@ namespace Bench
         private void textBoxSuffix_TextChanged(object sender, EventArgs e)
         {
             UnsavedChanges = true;
+        }
+
+        private void button_BrowseAvisynthTemplate_Click(object sender, EventArgs e)
+        {
+            var dialogResult = openFileDialog.ShowDialog();
+            if (dialogResult == DialogResult.OK)
+            {
+                textBox_AvisynthTemplate.Text = openFileDialog.FileName;
+            }
         }
     }
 }

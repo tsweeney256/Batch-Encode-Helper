@@ -57,11 +57,6 @@ namespace Bench
             get { return TextBox_VideoLanguageCode.Text; }
             set { TextBox_VideoLanguageCode.Text = value; }
         }
-        public string TextBox_AvisynthTemplate_Text
-        {
-            get { return textBox_AvisynthTemplate.Text; }
-            set { textBox_AvisynthTemplate.Text = value; }
-        }
         public int ComboBoxCounterSelectedIndex
         {
             get { return comboBoxCounter.SelectedIndex; }
@@ -143,11 +138,11 @@ namespace Bench
                 vidTab[i].ComboBox_Encoder_SelectedIndex = settings.encoder[i];
                 vidTab[i].FileNamePrefixText = settings.fileNamePrefix[i];
                 vidTab[i].FileNameSuffixText = settings.fileNameSuffix[i];
+                vidTab[i].TextBox_AvisynthTemplate_Text = settings.avisynthTemplate[i];
             }
             textBoxBody.Text = settings.fileNameBody;
             TextBox_VideoTrackName.Text = settings.videoTrackName;
             TextBox_VideoLanguageCode.Text = settings.videoLanguageCode;
-            textBox_AvisynthTemplate.Text = settings.avisynthTemplate;
             comboBoxCounter.SelectedIndex = settings.counterIndex;
             numericUpDownCounter.Value = settings.counterValue;
             for (int i = 0; i < settings.audioTrackName.Length; i++)
@@ -162,15 +157,6 @@ namespace Bench
             TabControl_VideoArgSettings.TabPages.Add("    +");
             TabControl_AudioArgSettings.TabPages.Add("    +");
             UnsavedChanges = unsavedChangesState;
-        }
-
-        private void button_BrowseAvisynthTemplate_Click(object sender, EventArgs e)
-        {
-            var dialogResult = openFileDialog.ShowDialog();
-            if (dialogResult == DialogResult.OK)
-            {
-                textBox_AvisynthTemplate.Text = openFileDialog.FileName;
-            }
         }
 
         private void TabControl_VideoArgSettings_TabIndexChanged(object sender, EventArgs e)
