@@ -40,6 +40,7 @@ namespace Bench
         public int counterIndex { get; set; }
         public int counterValue { get; set; }
         public bool noAudio { get; set; }
+        public int[] audioTrackNumber { get; set; }
 
         public Settings() { }
 
@@ -59,6 +60,7 @@ namespace Bench
             counterIndex = settings.counterIndex;
             counterValue = settings.counterValue;
             noAudio = settings.noAudio;
+            audioTrackNumber = (int[])settings.audioTrackNumber.Clone();
         }
 
         public virtual void Initialize()
@@ -71,6 +73,8 @@ namespace Bench
             quality = new decimal[1];
             audioTrackName = new string[1];
             audioLanguageCode = new string[1];
+            audioTrackNumber = new int[1];
+            audioTrackNumber[0] = 1; //because the updown box can't be less than 1
             counterValue = 1;
         }
     }

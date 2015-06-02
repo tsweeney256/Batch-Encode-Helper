@@ -44,6 +44,11 @@ namespace Bench
             get { return TextBox_LanguageCode.Text; }
             set { TextBox_LanguageCode.Text = value; }
         }
+        public int NumericUpDownTrackNumber_Value
+        {
+            get { return (int)numericUpDownTrackNumber.Value; }
+            set { numericUpDownTrackNumber.Value = value; }
+        }
         public bool UnsavedChanges { get; set; }
 
         public AudioTabControl()
@@ -61,6 +66,8 @@ namespace Bench
             lastPage.Controls.Add(NumericUpDown_Quality);
             lastPage.Controls.Add(TextBox_AudioTrackName);
             lastPage.Controls.Add(TextBox_LanguageCode);
+            lastPage.Controls.Add(numericUpDownTrackNumber);
+            lastPage.Controls.Add(labelTrackNumber);
             tc.TabPages[tc.TabCount - 2].UseVisualStyleBackColor = true;
             tc.SelectTab(tc.TabCount - 2);
         }
@@ -76,6 +83,8 @@ namespace Bench
             lastPage.Controls.Add(NumericUpDown_Quality);
             lastPage.Controls.Add(TextBox_AudioTrackName);
             lastPage.Controls.Add(TextBox_LanguageCode);
+            lastPage.Controls.Add(numericUpDownTrackNumber);
+            lastPage.Controls.Add(labelTrackNumber);
             tc.TabPages[tc.TabCount - 1].UseVisualStyleBackColor = true;
         }
 
@@ -90,6 +99,11 @@ namespace Bench
         }
 
         private void TextBox_LanguageCode_TextChanged(object sender, EventArgs e)
+        {
+            UnsavedChanges = true;
+        }
+
+        private void numericUpDownTrackNumber_ValueChanged(object sender, EventArgs e)
         {
             UnsavedChanges = true;
         }

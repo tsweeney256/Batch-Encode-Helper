@@ -95,11 +95,13 @@ namespace Bench
             settings.quality = new decimal[audioTab.Count];
             settings.audioTrackName = new string[audioTab.Count];
             settings.audioLanguageCode = new string[audioTab.Count];
+            settings.audioTrackNumber = new int[audioTab.Count];
             for (int i = 0; i < audioTab.Count; i++)
             {
                 settings.quality[i] = audioTab[i].NumericUpDown_Quality_Value;
                 settings.audioTrackName[i] = audioTab[i].TextBox_AudioTrackName_Text;
                 settings.audioLanguageCode[i] = audioTab[i].TextBox_LanguageCode_Text;
+                settings.audioTrackNumber[i] = audioTab[i].NumericUpDownTrackNumber_Value;
             }
             settings.noAudio = settingsTabCollection.CheckBoxNoAudio;
             settings.Save();

@@ -51,7 +51,10 @@ namespace Bench
             this.Label_AudioTrackName = new System.Windows.Forms.Label();
             this.NumericUpDown_Quality = new System.Windows.Forms.NumericUpDown();
             this.Label_AudioQuality = new System.Windows.Forms.Label();
+            this.numericUpDownTrackNumber = new System.Windows.Forms.NumericUpDown();
+            this.labelTrackNumber = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown_Quality)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTrackNumber)).BeginInit();
             this.SuspendLayout();
             // 
             // TextBox_LanguageCode
@@ -116,10 +119,39 @@ namespace Bench
             this.Label_AudioQuality.TabIndex = 11;
             this.Label_AudioQuality.Text = "Quality";
             // 
+            // numericUpDownTrackNumber
+            // 
+            this.numericUpDownTrackNumber.Location = new System.Drawing.Point(202, 19);
+            this.numericUpDownTrackNumber.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownTrackNumber.Name = "numericUpDownTrackNumber";
+            this.numericUpDownTrackNumber.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDownTrackNumber.TabIndex = 17;
+            this.numericUpDownTrackNumber.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownTrackNumber.ValueChanged += new System.EventHandler(this.numericUpDownTrackNumber_ValueChanged);
+            // 
+            // labelTrackNumber
+            // 
+            this.labelTrackNumber.AutoSize = true;
+            this.labelTrackNumber.Location = new System.Drawing.Point(202, 3);
+            this.labelTrackNumber.Name = "labelTrackNumber";
+            this.labelTrackNumber.Size = new System.Drawing.Size(112, 13);
+            this.labelTrackNumber.TabIndex = 18;
+            this.labelTrackNumber.Text = "Source Track Number";
+            // 
             // AudioTabControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.labelTrackNumber);
+            this.Controls.Add(this.numericUpDownTrackNumber);
             this.Controls.Add(this.TextBox_LanguageCode);
             this.Controls.Add(this.Label_LanguageCode);
             this.Controls.Add(this.TextBox_AudioTrackName);
@@ -129,6 +161,7 @@ namespace Bench
             this.Name = "AudioTabControl";
             this.Size = new System.Drawing.Size(392, 98);
             ((System.ComponentModel.ISupportInitialize)(this.NumericUpDown_Quality)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownTrackNumber)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -142,5 +175,7 @@ namespace Bench
         private System.Windows.Forms.Label Label_AudioTrackName;
         private System.Windows.Forms.NumericUpDown NumericUpDown_Quality;
         private System.Windows.Forms.Label Label_AudioQuality;
+        private System.Windows.Forms.NumericUpDown numericUpDownTrackNumber;
+        private System.Windows.Forms.Label labelTrackNumber;
     }
 }

@@ -152,6 +152,7 @@ namespace Bench
                 audioTab[i].NumericUpDown_Quality_Value = settings.quality[i];
                 audioTab[i].TextBox_AudioTrackName_Text = settings.audioTrackName[i];
                 audioTab[i].TextBox_LanguageCode_Text = settings.audioLanguageCode[i];
+                audioTab[i].NumericUpDownTrackNumber_Value = settings.audioTrackNumber[i];
             }
             checkBoxNoAudio.Checked = settings.noAudio;
             TabControl_VideoArgSettings.TabPages.Add("    +");

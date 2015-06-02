@@ -264,12 +264,14 @@ namespace Bench
                     outputSettings[index].quality = new decimal[audioTabCount];
                     outputSettings[index].audioTrackName = new string[audioTabCount];
                     outputSettings[index].audioLanguageCode = new string[audioTabCount];
+                    outputSettings[index].audioTrackNumber = new int[audioTabCount];
                     outputSettings[index].noAudio = settingsTabCollection.CheckBoxNoAudio;
                     for (int i = 0; i < audioTabCount; i++)
                     {
                         outputSettings[index].quality[i] = settingsTabCollection.AudioTabList[i].NumericUpDown_Quality_Value;
                         outputSettings[index].audioTrackName[i] = settingsTabCollection.AudioTabList[i].TextBox_AudioTrackName_Text;
                         outputSettings[index].audioLanguageCode[i] = settingsTabCollection.AudioTabList[i].TextBox_LanguageCode_Text;
+                        outputSettings[index].audioTrackNumber[i] = settingsTabCollection.AudioTabList[i].NumericUpDownTrackNumber_Value;
                     }
                 }
                 int idx = outputSettings[selectedIndicesToSave[0]].counterIndex;
@@ -484,7 +486,7 @@ namespace Bench
                 {
                     for (int j = 0; j < outputSettings[i].x264Args.Length; j++)
                     {
-                        inputFile[i][j] = outputSettings[i].FileName; //who needs silly things like performance
+                        inputFile[i][j] = outputSettings[i].FileName;
                     }
                 }
                 if (!handleAvisynthTemplates(inputFile))
@@ -510,9 +512,9 @@ namespace Bench
                         if (!outputSettings[i].noAudio)
                         {
                             sb.Append("REM Audio " + filename + " Track " + (j + 1) + Environment.NewLine);
-                            sb.Append("\"" + appSettings.BePipeLocation + "\" --script \"LWLibavAudioSource(^" + outputSettings[i].FileName + "^, stream_index=" + (j + 1) + ")\" | \"" +
-                                appSettings.NeroAACLocation + "\" -q " + outputSettings[i].quality[j] + " -if - -of \"" + "Audio\\" + filename + " Track " + (j + 1) + ".m4a\""
-                                + Environment.NewLine + Environment.NewLine);
+                            sb.Append("\"" + appSettings.BePipeLocation + "\" --script \"LWLibavAudioSource(^" + outputSettings[i].FileName + "^, stream_index=" + 
+                                outputSettings[i].audioTrackNumber[j] + ")\" | \"" + appSettings.NeroAACLocation + "\" -q " + outputSettings[i].quality[j] + 
+                                " -if - -of \"" + "Audio\\" + filename + " Track " + (j + 1) + ".m4a\"" + Environment.NewLine + Environment.NewLine);
                         }
                     }
                         
