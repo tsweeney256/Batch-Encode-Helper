@@ -663,7 +663,8 @@ namespace Bench
                                 + inputFile[i][k] + "\"" + Environment.NewLine + Environment.NewLine);
                             sb.Append("REM Mux " + filename + Environment.NewLine);
                             sb.Append("\"" + appSettings.MKVMergeLocation + "\" -o \"Muxed\\" + filename + ".mkv\" --language 0:" + vidLang + 
-                                " --track-name 0:\"" + outputSettings[i].videoTrackName +  "\" \"Videos\\" + filename + ".264\"");
+                                (!String.IsNullOrWhiteSpace(outputSettings[i].videoTrackName) ? " --track-name 0:\"" + outputSettings[i].videoTrackName + "\"" : "") + 
+                                " \"Videos\\" + filename + ".264\"");
                             if (!outputSettings[i].noAudio)
                             {
                                 for (int x = 0; x < outputSettings[i].audioLanguageCode.Length; x++)
@@ -677,8 +678,9 @@ namespace Bench
                                     {
                                         audioLang = outputSettings[i].audioLanguageCode[x];
                                     }
-                                    sb.Append(" --language 0:" + audioLang + " --no-chapters --track-name 0:\"" + outputSettings[i].audioTrackName[x] +
-                                        "\" \"Audio\\" + audioFilename + " Track " + (x + 1) + ".m4a\"");
+                                    sb.Append(" --language 0:" + audioLang + " --no-chapters" +  
+                                        (!String.IsNullOrWhiteSpace(outputSettings[i].videoTrackName) ? " --track-name 0:\"" + outputSettings[i].audioTrackName[x] + "\"" : "") +
+                                        " \"Audio\\" + audioFilename + " Track " + (x + 1) + ".m4a\"");
                                 }
                             }
                             sb.Append(Environment.NewLine + Environment.NewLine);
