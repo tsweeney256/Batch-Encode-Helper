@@ -188,7 +188,7 @@ namespace Bench
         {
             var tc = (TabControl)sender;
 
-            if (e.Button == MouseButtons.Right && tc.TabCount != 2)
+            if ((e.Button == MouseButtons.Right || e.Button == MouseButtons.Middle) && tc.TabCount != 2)
             {
                 lastTc = tc;
                 for (int i = 0; i < tc.TabCount - 1; i++)
@@ -196,14 +196,23 @@ namespace Bench
                     var rect = tc.GetTabRect(i);
                     if (rect.Contains(e.Location))
                     {
-                        ContextMenuStrip_Tabs.Show(TabControl_VideoArgSettings, e.Location);
-                        RightClickedArgSettingsTab = i;
+                        //so that deleteTab() knows what to delete if it needs to be
+                        //can't make it an argument to deleteTab because it's fired by event if done by the context menu
+                        RightClickedArgSettingsTab = i; 
+                        if (e.Button == MouseButtons.Right)
+                        {
+                            ContextMenuStrip_Tabs.Show(TabControl_VideoArgSettings, e.Location);
+                        }
+                        else //middle click
+                        {
+                            deleteTab();
+                        }
                     }
                 }
             }
         }
 
-        private void StripMenuItem_DeleteTab_Click(object sender, EventArgs e)
+        private void deleteTab()
         {
             unsavedChanges = true;
             for (int i = RightClickedArgSettingsTab + 1; i < lastTc.TabCount - 1; i++)
@@ -219,6 +228,11 @@ namespace Bench
             {
                 audioTab.RemoveAt(RightClickedArgSettingsTab);
             }
+        }
+
+        private void StripMenuItem_DeleteTab_Click(object sender, EventArgs e)
+        {
+            deleteTab();
         }
 
         protected virtual void comboBoxCounter_SelectedIndexChanged(object sender, EventArgs e)
