@@ -167,7 +167,7 @@ namespace Bench
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxBody.Location = new System.Drawing.Point(6, 292);
             this.textBoxBody.Name = "textBoxBody";
-            this.textBoxBody.Size = new System.Drawing.Size(419, 20);
+            this.textBoxBody.Size = new System.Drawing.Size(428, 20);
             this.textBoxBody.TabIndex = 16;
             this.textBoxBody.TextChanged += new System.EventHandler(this.textBoxBody_TextChanged);
             // 
