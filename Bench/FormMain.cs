@@ -709,5 +709,11 @@ namespace Bench
                 File.WriteAllText(saveBatFileDialog.FileName, sb.ToString(), new UTF8Encoding(false));
             }
         }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var aboutBox = new FormAbout();
+            aboutBox.ShowDialog();
+        }
     }
 }
