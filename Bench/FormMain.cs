@@ -47,9 +47,7 @@ namespace Bench
             settingsTabCollection.OutputSettings = outputSettings;
             settingsTabCollection.ListBox = ListBox_Files;
             settingsTabCollection.LoadSettings(appSettings);
-            settingsTabCollection.Enabled = false;
             settingsTabCollection.UnsavedChanges = false;
-            createBatchToolStripMenuItem.Enabled = false;
             deletingItems = false;
         }
 
@@ -85,7 +83,6 @@ namespace Bench
             int selectedIdx = ListBox_Files.SelectedIndex; //We only care about the top one when deciding our next index to select after the deletion
 
             settingsTabCollection.UnsavedChanges = true;
-            createBatchToolStripMenuItem.Enabled = false;
             unsavedChanges = true;
             deletingItems = true;
             for (int i = ListBox_Files.SelectedIndices.Count-1; i >= 0; i--)
@@ -96,6 +93,8 @@ namespace Bench
             if (ListBox_Files.Items.Count == 0)
             {
                 settingsTabCollection.Enabled = false;
+                createBatchToolStripMenuItem.Enabled = false;
+                Button_TextBox_Files_Remove.Enabled = false;
                 settingsTabCollection.LoadSettings(appSettings);
             }
             else if (selectedIdx < ListBox_Files.Items.Count)
@@ -234,6 +233,7 @@ namespace Bench
                 }
                 settingsTabCollection.Enabled = true;
                 createBatchToolStripMenuItem.Enabled = true;
+                Button_TextBox_Files_Remove.Enabled = true;
                 settingsTabCollection.LoadSettings(outputSettings[ListBox_Files.SelectedIndex]);
                 selectedIndicesToSave = new int[ListBox_Files.SelectedIndices.Count];
                 ListBox_Files.SelectedIndices.CopyTo(selectedIndicesToSave, 0);
@@ -390,6 +390,7 @@ namespace Bench
                         {
                             settingsTabCollection.Enabled = false;
                             createBatchToolStripMenuItem.Enabled = false;
+                            Button_TextBox_Files_Remove.Enabled = false;
                         }
                         unsavedChanges = false;
                         settingsTabCollection.UnsavedChanges = false;

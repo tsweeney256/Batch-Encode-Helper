@@ -62,12 +62,12 @@ namespace Bench
             this.OptionsToolStrip = new System.Windows.Forms.ToolStripMenuItem();
             this.OptionsToolStrip_SettingsItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveEhFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.openEhFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveBatFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.settingsTabCollection = new Bench.SettingsTabCollectionMain();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuStrip_Main.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,6 +92,7 @@ namespace Bench
             // 
             // Button_TextBox_Files_Remove
             // 
+            this.Button_TextBox_Files_Remove.Enabled = false;
             this.Button_TextBox_Files_Remove.Location = new System.Drawing.Point(93, 27);
             this.Button_TextBox_Files_Remove.Name = "Button_TextBox_Files_Remove";
             this.Button_TextBox_Files_Remove.Size = new System.Drawing.Size(75, 23);
@@ -162,7 +163,7 @@ namespace Bench
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -170,7 +171,7 @@ namespace Bench
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
@@ -178,19 +179,20 @@ namespace Bench
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // saveAsToolStripMenuItem
             // 
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.saveAsToolStripMenuItem.Text = "Save As";
             this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
             // 
             // createBatchToolStripMenuItem
             // 
+            this.createBatchToolStripMenuItem.Enabled = false;
             this.createBatchToolStripMenuItem.Name = "createBatchToolStripMenuItem";
             this.createBatchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.createBatchToolStripMenuItem.Text = "Create Batch";
@@ -207,7 +209,7 @@ namespace Bench
             // OptionsToolStrip_SettingsItem
             // 
             this.OptionsToolStrip_SettingsItem.Name = "OptionsToolStrip_SettingsItem";
-            this.OptionsToolStrip_SettingsItem.Size = new System.Drawing.Size(116, 22);
+            this.OptionsToolStrip_SettingsItem.Size = new System.Drawing.Size(152, 22);
             this.OptionsToolStrip_SettingsItem.Text = "Settings";
             this.OptionsToolStrip_SettingsItem.Click += new System.EventHandler(this.OptionsToolStrip_SettingsItem_Click);
             // 
@@ -218,6 +220,13 @@ namespace Bench
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // saveEhFileDialog
             // 
@@ -238,6 +247,7 @@ namespace Bench
             | System.Windows.Forms.AnchorStyles.Right)));
             this.settingsTabCollection.CheckBoxNoAudio = false;
             this.settingsTabCollection.ComboBoxCounterSelectedIndex = -1;
+            this.settingsTabCollection.Enabled = false;
             this.settingsTabCollection.FileNameBodyText = "";
             this.settingsTabCollection.ListBox = null;
             this.settingsTabCollection.Location = new System.Drawing.Point(12, 189);
@@ -249,13 +259,6 @@ namespace Bench
             this.settingsTabCollection.TextBox_VideoLanguageCode_Text = "";
             this.settingsTabCollection.TextBox_VideoTrackName_Text = "";
             this.settingsTabCollection.UnsavedChanges = true;
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // FormMain
             // 
