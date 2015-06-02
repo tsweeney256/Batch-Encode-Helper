@@ -37,6 +37,7 @@ namespace Bench
         public string BePipeLocation { get; set; }
 
         private const string settingsFile = "settings.bin";
+        private string version;
 
         public AppSettings()
         {
@@ -50,6 +51,7 @@ namespace Bench
                 using (Stream stream = File.Open(settingsFile, FileMode.Open))
                 {
                     var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                    version = (string)bformatter.Deserialize(stream);
                     settings = (AppSettings)bformatter.Deserialize(stream);
                 }
             }
@@ -63,6 +65,7 @@ namespace Bench
                 using (Stream stream = File.Open(settingsFile, FileMode.Open))
                 {
                     var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                    version = (string)bformatter.Deserialize(stream);
                     settings = (AppSettings)bformatter.Deserialize(stream);
                 }
             }
@@ -95,6 +98,7 @@ namespace Bench
             using(Stream stream = File.Open(settingsFile, FileMode.Create))
             {
                 var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                bformatter.Serialize(stream, "1.0.0");
                 bformatter.Serialize(stream, this);
             }
         }

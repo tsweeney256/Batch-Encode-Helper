@@ -299,11 +299,13 @@ namespace Bench
 
             if (saveFileName != null)
             {
+                SaveSelectedIndices();
                 settingsTabCollection.UnsavedChanges = false;
                 unsavedChanges = false;
                 using (Stream stream = File.Open(saveFileName, FileMode.Create))
                 {
                     var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                    bformatter.Serialize(stream, "1.0.0");
                     bformatter.Serialize(stream, outputSettings);
                 }
             }
@@ -352,6 +354,7 @@ namespace Bench
                     var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
                     try
                     {
+                        string version = (string)bformatter.Deserialize(stream);
                         outputSettings = (List<OutputSettings>)bformatter.Deserialize(stream);
                         settingsTabCollection.OutputSettings = outputSettings;
                         saveFileName = openEhFileDialog.FileName;
