@@ -294,6 +294,7 @@ namespace Bench
 
         protected override void comboBoxCounter_SelectedIndexChanged(object sender, EventArgs e)
         {
+            UnsavedChanges = true;
             for (int i = 0; i < this.OutputSettings.Count; i++)
             {
                 if (ComboBoxCounterSelectedIndex == this.OutputSettings[i].counterIndex && i != this.ListBox.SelectedIndex)
