@@ -53,7 +53,7 @@ namespace Bench
             // Button_Cancel_Settings
             // 
             this.Button_Cancel_Settings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_Cancel_Settings.Location = new System.Drawing.Point(374, 418);
+            this.Button_Cancel_Settings.Location = new System.Drawing.Point(374, 455);
             this.Button_Cancel_Settings.Name = "Button_Cancel_Settings";
             this.Button_Cancel_Settings.Size = new System.Drawing.Size(75, 23);
             this.Button_Cancel_Settings.TabIndex = 1;
@@ -64,7 +64,7 @@ namespace Bench
             // Button_OK_Settings
             // 
             this.Button_OK_Settings.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Button_OK_Settings.Location = new System.Drawing.Point(293, 418);
+            this.Button_OK_Settings.Location = new System.Drawing.Point(293, 455);
             this.Button_OK_Settings.Name = "Button_OK_Settings";
             this.Button_OK_Settings.Size = new System.Drawing.Size(75, 23);
             this.Button_OK_Settings.TabIndex = 2;
@@ -77,21 +77,24 @@ namespace Bench
             this.settingsTabCollection.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.settingsTabCollection.CheckBoxNoAudio = false;
             this.settingsTabCollection.ComboBoxCounterSelectedIndex = -1;
+            this.settingsTabCollection.FileNameBodyText = "";
             this.settingsTabCollection.Location = new System.Drawing.Point(13, 13);
             this.settingsTabCollection.Name = "settingsTabCollection";
             this.settingsTabCollection.NumericUpDownCounterValue = 0;
-            this.settingsTabCollection.Size = new System.Drawing.Size(448, 389);
+            this.settingsTabCollection.Size = new System.Drawing.Size(448, 429);
             this.settingsTabCollection.TabIndex = 3;
             this.settingsTabCollection.TextBox_AvisynthTemplate_Text = "";
             this.settingsTabCollection.TextBox_VideoLanguageCode_Text = "";
             this.settingsTabCollection.TextBox_VideoTrackName_Text = "";
+            this.settingsTabCollection.UnsavedChanges = false;
             // 
             // Form_Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(466, 453);
+            this.ClientSize = new System.Drawing.Size(466, 490);
             this.Controls.Add(this.settingsTabCollection);
             this.Controls.Add(this.Button_OK_Settings);
             this.Controls.Add(this.Button_Cancel_Settings);

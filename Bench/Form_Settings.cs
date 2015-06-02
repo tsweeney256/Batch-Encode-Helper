@@ -76,16 +76,15 @@ namespace Bench
             settings.x264Args = new string[vidTab.Count];
             settings.encoder = new int[vidTab.Count];
             settings.fileNamePrefix = new string[vidTab.Count];
-            settings.fileNameBody = new string[vidTab.Count];
             settings.fileNameSuffix = new string[vidTab.Count];
             settings.counterIndex = settingsTabCollection.ComboBoxCounterSelectedIndex;
             settings.counterValue = settingsTabCollection.NumericUpDownCounterValue;
+            settings.fileNameBody = settingsTabCollection.FileNameBodyText;
             for (int i = 0; i < vidTab.Count; i++)
             {
                 settings.x264Args[i] = vidTab[i].TextBox_x264_Args_Text;
                 settings.encoder[i] = vidTab[i].ComboBox_Encoder_SelectedIndex;
                 settings.fileNamePrefix[i] = vidTab[i].FileNamePrefixText;
-                settings.fileNameBody[i] = vidTab[i].FileNameBodyText;
                 settings.fileNameSuffix[i] = vidTab[i].FileNameSuffixText;
             }
             settings.videoTrackName = settingsTabCollection.TextBox_VideoTrackName_Text;

@@ -77,6 +77,11 @@ namespace Bench
             get { return checkBoxNoAudio.Checked; }
             set { checkBoxNoAudio.Checked = value; }
         }
+        public string FileNameBodyText
+        {
+            get { return textBoxBody.Text; }
+            set { textBoxBody.Text = value; }
+        }
         public bool UnsavedChanges
         {
             get
@@ -137,9 +142,9 @@ namespace Bench
                 vidTab[i].TextBox_x264_Args_Text = settings.x264Args[i];
                 vidTab[i].ComboBox_Encoder_SelectedIndex = settings.encoder[i];
                 vidTab[i].FileNamePrefixText = settings.fileNamePrefix[i];
-                vidTab[i].FileNameBodyText = settings.fileNameBody[i];
                 vidTab[i].FileNameSuffixText = settings.fileNameSuffix[i];
             }
+            textBoxBody.Text = settings.fileNameBody;
             TextBox_VideoTrackName.Text = settings.videoTrackName;
             TextBox_VideoLanguageCode.Text = settings.videoLanguageCode;
             textBox_AvisynthTemplate.Text = settings.avisynthTemplate;
@@ -269,6 +274,11 @@ namespace Bench
             {
                 TabControl_AudioArgSettings.Enabled = true;
             }
+        }
+
+        private void textBoxBody_TextChanged(object sender, EventArgs e)
+        {
+            unsavedChanges = true;
         }
     }
 

@@ -29,7 +29,7 @@ namespace Bench
         public string[] x264Args { get; set; }
         public int[] encoder { get; set; }
         public string[] fileNamePrefix { get; set; }
-        public string[] fileNameBody { get; set; }
+        public string fileNameBody { get; set; }
         public string[] fileNameSuffix { get; set; }
         public string videoTrackName { get; set; }
         public string videoLanguageCode { get; set; }
@@ -48,7 +48,7 @@ namespace Bench
             x264Args = (string[])settings.x264Args.Clone();
             encoder = (int[])settings.encoder.Clone();
             fileNamePrefix = (string[])settings.fileNamePrefix.Clone();
-            fileNameBody = (string[])settings.fileNameBody.Clone();
+            fileNameBody = settings.fileNameBody;
             fileNameSuffix = (string[])settings.fileNameSuffix.Clone();
             videoTrackName = settings.videoTrackName;
             videoLanguageCode = settings.videoLanguageCode;
@@ -66,7 +66,6 @@ namespace Bench
             x264Args = new string[1];
             encoder = new int[1];
             fileNamePrefix = new string[1];
-            fileNameBody = new string[1];
             fileNameSuffix = new string[1];
             quality = new decimal[1];
             audioTrackName = new string[1];

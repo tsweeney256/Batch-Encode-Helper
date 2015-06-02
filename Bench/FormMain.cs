@@ -244,16 +244,15 @@ namespace Bench
                     outputSettings[index].x264Args = new string[vidTabCount];
                     outputSettings[index].encoder = new int[vidTabCount];
                     outputSettings[index].fileNamePrefix = new string[vidTabCount];
-                    outputSettings[index].fileNameBody = new string[vidTabCount];
                     outputSettings[index].fileNameSuffix = new string[vidTabCount];
                     for (int i = 0; i < vidTabCount; i++)
                     {
                         outputSettings[index].x264Args[i] = settingsTabCollection.VideoTabList[i].TextBox_x264_Args_Text;
                         outputSettings[index].encoder[i] = settingsTabCollection.VideoTabList[i].ComboBox_Encoder_SelectedIndex;
                         outputSettings[index].fileNamePrefix[i] = settingsTabCollection.VideoTabList[i].FileNamePrefixText;
-                        outputSettings[index].fileNameBody[i] = settingsTabCollection.VideoTabList[i].FileNameBodyText;
                         outputSettings[index].fileNameSuffix[i] = settingsTabCollection.VideoTabList[i].FileNameSuffixText;
                     }
+                    outputSettings[index].fileNameBody = settingsTabCollection.FileNameBodyText;
                     outputSettings[index].videoTrackName = settingsTabCollection.TextBox_VideoTrackName_Text;
                     outputSettings[index].videoLanguageCode = settingsTabCollection.TextBox_VideoLanguageCode_Text;
                     outputSettings[index].avisynthTemplate = settingsTabCollection.TextBox_AvisynthTemplate_Text;
@@ -494,7 +493,7 @@ namespace Bench
                 sb.Append("mkdir Audio" + Environment.NewLine + "mkdir Videos" + Environment.NewLine + "mkdir Muxed" + Environment.NewLine + Environment.NewLine);
                 for (int i = 0; i < outputSettings.Count; i++)
                 {
-                    string filename = String.Format(outputSettings[i].fileNamePrefix[0] + outputSettings[i].fileNameBody[0] + outputSettings[i].fileNameSuffix[0], fileCount[i]);
+                    string filename = String.Format(outputSettings[i].fileNamePrefix[0] + outputSettings[i].fileNameBody + outputSettings[i].fileNameSuffix[0], fileCount[i]);
                     for (int j = 0; j < outputSettings[i].audioLanguageCode.Length; j++) //audiolanguagecode.length is equal to the number of tabs/audio tracks
                     {
                         if (!outputSettings[i].noAudio)
@@ -517,7 +516,7 @@ namespace Bench
                     {
                         if (k < outputSettings[i].x264Args.Length) //x264args.length is equal to the number of video tabs
                         {
-                            string filename = String.Format(outputSettings[i].fileNamePrefix[k] + outputSettings[i].fileNameBody[k] + outputSettings[i].fileNameSuffix[k], fileCount[i]);
+                            string filename = String.Format(outputSettings[i].fileNamePrefix[k] + outputSettings[i].fileNameBody + outputSettings[i].fileNameSuffix[k], fileCount[i]);
                             string x264;
                             switch (outputSettings[i].encoder[k])
                             {
@@ -545,7 +544,7 @@ namespace Bench
                             {
                                 vidLang = outputSettings[i].videoLanguageCode;
                             }
-                            string audioFilename = String.Format(outputSettings[i].fileNamePrefix[0] + outputSettings[i].fileNameBody[0] + outputSettings[i].fileNameSuffix[0], fileCount[i]);
+                            string audioFilename = String.Format(outputSettings[i].fileNamePrefix[0] + outputSettings[i].fileNameBody + outputSettings[i].fileNameSuffix[0], fileCount[i]);
                             sb.Append("REM Video " + filename + Environment.NewLine);
                             sb.Append("\"" + x264 + "\" --output \"Videos\\" + filename + ".264\" " + outputSettings[i].x264Args[k] + " \"" 
                                 + inputFile[i] + "\"" + Environment.NewLine + Environment.NewLine);

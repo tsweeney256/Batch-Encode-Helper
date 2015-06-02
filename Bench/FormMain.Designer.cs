@@ -229,13 +229,15 @@ namespace Bench
             // 
             this.settingsTabCollection.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.settingsTabCollection.CheckBoxNoAudio = false;
             this.settingsTabCollection.ComboBoxCounterSelectedIndex = -1;
+            this.settingsTabCollection.FileNameBodyText = "";
             this.settingsTabCollection.ListBox = null;
             this.settingsTabCollection.Location = new System.Drawing.Point(12, 189);
             this.settingsTabCollection.Name = "settingsTabCollection";
             this.settingsTabCollection.NumericUpDownCounterValue = 0;
             this.settingsTabCollection.OutputSettings = null;
-            this.settingsTabCollection.Size = new System.Drawing.Size(599, 392);
+            this.settingsTabCollection.Size = new System.Drawing.Size(599, 431);
             this.settingsTabCollection.TabIndex = 0;
             this.settingsTabCollection.TextBox_AvisynthTemplate_Text = "";
             this.settingsTabCollection.TextBox_VideoLanguageCode_Text = "";
@@ -246,7 +248,7 @@ namespace Bench
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(623, 589);
+            this.ClientSize = new System.Drawing.Size(623, 630);
             this.Controls.Add(this.settingsTabCollection);
             this.Controls.Add(this.Button_MoveDown_ListBox_Files);
             this.Controls.Add(this.Button_MoveUp_ListBox_Files);

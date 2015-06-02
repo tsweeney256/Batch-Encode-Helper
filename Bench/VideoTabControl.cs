@@ -43,11 +43,6 @@ namespace Bench
             get { return textBoxPrefix.Text; }
             set { textBoxPrefix.Text = value; }
         }
-        public string FileNameBodyText
-        {
-            get { return textBoxBody.Text; }
-            set { textBoxBody.Text = value; }
-        }
         public string FileNameSuffixText
         {
             get { return textBoxSuffix.Text; }

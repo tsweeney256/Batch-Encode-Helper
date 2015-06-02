@@ -55,8 +55,6 @@ namespace Bench
             this.ComboBox_Encoder = new System.Windows.Forms.ComboBox();
             this.Label_x264_Args = new System.Windows.Forms.Label();
             this.TextBox_x264_Args = new System.Windows.Forms.TextBox();
-            this.textBoxBody = new System.Windows.Forms.TextBox();
-            this.labelBody = new System.Windows.Forms.Label();
             this.panelVideoTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerPrefixSuffix)).BeginInit();
             this.splitContainerPrefixSuffix.Panel1.SuspendLayout();
@@ -74,8 +72,6 @@ namespace Bench
             this.panelVideoTab.Controls.Add(this.ComboBox_Encoder);
             this.panelVideoTab.Controls.Add(this.Label_x264_Args);
             this.panelVideoTab.Controls.Add(this.TextBox_x264_Args);
-            this.panelVideoTab.Controls.Add(this.textBoxBody);
-            this.panelVideoTab.Controls.Add(this.labelBody);
             this.panelVideoTab.Location = new System.Drawing.Point(0, 0);
             this.panelVideoTab.Name = "panelVideoTab";
             this.panelVideoTab.Size = new System.Drawing.Size(408, 190);
@@ -184,25 +180,6 @@ namespace Bench
             this.TextBox_x264_Args.TabIndex = 14;
             this.TextBox_x264_Args.TextChanged += new System.EventHandler(this.TextBox_x264_Args_TextChanged);
             // 
-            // textBoxBody
-            // 
-            this.textBoxBody.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxBody.Location = new System.Drawing.Point(173, 118);
-            this.textBoxBody.Name = "textBoxBody";
-            this.textBoxBody.Size = new System.Drawing.Size(231, 20);
-            this.textBoxBody.TabIndex = 11;
-            this.textBoxBody.TextChanged += new System.EventHandler(this.textBoxBody_TextChanged);
-            // 
-            // labelBody
-            // 
-            this.labelBody.AutoSize = true;
-            this.labelBody.Location = new System.Drawing.Point(174, 102);
-            this.labelBody.Name = "labelBody";
-            this.labelBody.Size = new System.Drawing.Size(76, 13);
-            this.labelBody.TabIndex = 10;
-            this.labelBody.Text = "Filename Body";
-            // 
             // VideoTabControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -229,8 +206,6 @@ namespace Bench
         private System.Windows.Forms.ComboBox ComboBox_Encoder;
         private System.Windows.Forms.Label Label_x264_Args;
         private System.Windows.Forms.TextBox TextBox_x264_Args;
-        private System.Windows.Forms.TextBox textBoxBody;
-        private System.Windows.Forms.Label labelBody;
         private System.Windows.Forms.SplitContainer splitContainerPrefixSuffix;
         private System.Windows.Forms.TextBox textBoxPrefix;
         private System.Windows.Forms.Label labelPrefix;
