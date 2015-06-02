@@ -101,7 +101,7 @@ namespace Bench
             this.tabPage_Audio.Controls.Add(this.TabControl_AudioArgSettings);
             this.tabPage_Audio.Location = new System.Drawing.Point(4, 22);
             this.tabPage_Audio.Name = "tabPage_Audio";
-            this.tabPage_Audio.Size = new System.Drawing.Size(440, 356);
+            this.tabPage_Audio.Size = new System.Drawing.Size(440, 407);
             this.tabPage_Audio.TabIndex = 2;
             this.tabPage_Audio.Text = "Audio";
             this.tabPage_Audio.UseVisualStyleBackColor = true;
@@ -249,7 +249,7 @@ namespace Bench
             // 
             // TextBox_VideoLanguageCode
             // 
-            this.TextBox_VideoLanguageCode.Location = new System.Drawing.Point(205, 331);
+            this.TextBox_VideoLanguageCode.Location = new System.Drawing.Point(181, 331);
             this.TextBox_VideoLanguageCode.Name = "TextBox_VideoLanguageCode";
             this.TextBox_VideoLanguageCode.Size = new System.Drawing.Size(180, 20);
             this.TextBox_VideoLanguageCode.TabIndex = 6;
@@ -266,7 +266,7 @@ namespace Bench
             // label_videoLanguageCode
             // 
             this.label_videoLanguageCode.AutoSize = true;
-            this.label_videoLanguageCode.Location = new System.Drawing.Point(202, 315);
+            this.label_videoLanguageCode.Location = new System.Drawing.Point(178, 315);
             this.label_videoLanguageCode.Name = "label_videoLanguageCode";
             this.label_videoLanguageCode.Size = new System.Drawing.Size(144, 13);
             this.label_videoLanguageCode.TabIndex = 5;
