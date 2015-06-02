@@ -33,9 +33,9 @@ namespace Bench
         private AppSettings appSettings;
         private List<OutputSettings> outputSettings;
         private int[] selectedIndicesToSave;
-        private int lastSelectedIndex;
         private string saveFileName;
-        bool unsavedChanges;
+        private bool unsavedChanges;
+        private bool deletingItems;
 
         public FormMain()
         {
@@ -50,7 +50,7 @@ namespace Bench
             settingsTabCollection.Enabled = false;
             settingsTabCollection.UnsavedChanges = false;
             createBatchToolStripMenuItem.Enabled = false;
-            lastSelectedIndex = -2;
+            deletingItems = false;
         }
 
         private bool ListBoxCheckForDuplicates(ListBox lb, string str)
@@ -87,6 +87,7 @@ namespace Bench
             settingsTabCollection.UnsavedChanges = true;
             createBatchToolStripMenuItem.Enabled = false;
             unsavedChanges = true;
+            deletingItems = true;
             for (int i = ListBox_Files.SelectedIndices.Count-1; i >= 0; i--)
             {
                 outputSettings.RemoveAt(ListBox_Files.SelectedIndices[i]);
@@ -105,6 +106,7 @@ namespace Bench
             {
                 ListBox_Files.SelectedIndex = selectedIdx - 1;
             }
+            deletingItems = false;
         }
 
         private void Button_ListBox_Files_Remove_Click(object sender, EventArgs e)
@@ -222,23 +224,19 @@ namespace Bench
 
         private void ListBox_Files_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ListBox_Files.SelectedIndices.Count == 1)
+            if (!deletingItems)
             {
-                if (lastSelectedIndex != ListBox_Files.SelectedIndex)
+                if (settingsTabCollection.UnsavedChanges)
                 {
-                    if (settingsTabCollection.UnsavedChanges)
-                    {
-                        SaveSelectedIndices();
-                        settingsTabCollection.UnsavedChanges = false;
-                        unsavedChanges = true;
-                    }
-                    settingsTabCollection.Enabled = true;
-                    createBatchToolStripMenuItem.Enabled = true;
-                    settingsTabCollection.LoadSettings(outputSettings[ListBox_Files.SelectedIndex]);
-                    selectedIndicesToSave = new int[ListBox_Files.SelectedIndices.Count];
-                    ListBox_Files.SelectedIndices.CopyTo(selectedIndicesToSave, 0);
+                    SaveSelectedIndices();
+                    settingsTabCollection.UnsavedChanges = false;
+                    unsavedChanges = true;
                 }
-                lastSelectedIndex = ListBox_Files.SelectedIndex;
+                settingsTabCollection.Enabled = true;
+                createBatchToolStripMenuItem.Enabled = true;
+                settingsTabCollection.LoadSettings(outputSettings[ListBox_Files.SelectedIndex]);
+                selectedIndicesToSave = new int[ListBox_Files.SelectedIndices.Count];
+                ListBox_Files.SelectedIndices.CopyTo(selectedIndicesToSave, 0);
                 ListBox_Files.Focus(); //or else focus will change to settingsTabCollection
             }
         }
@@ -386,7 +384,6 @@ namespace Bench
                         }
                         if (ListBox_Files.Items.Count > 0)
                         {
-                            lastSelectedIndex = -2; //to force the tab collection to update
                             ListBox_Files.SelectedIndex = 0;
                         }
                         else
