@@ -70,10 +70,10 @@
             this.labelGpl.AutoSize = true;
             this.labelGpl.Location = new System.Drawing.Point(15, 70);
             this.labelGpl.Name = "labelGpl";
-            this.labelGpl.Size = new System.Drawing.Size(270, 26);
+            this.labelGpl.Size = new System.Drawing.Size(230, 26);
             this.labelGpl.TabIndex = 4;
-            this.labelGpl.Text = "This is free software covered under the GPLv3 License.\r\nSee LICENSE.txt for more " +
-    "details\r\n";
+            this.labelGpl.Text = "This is free software covered under the GPLv3.\r\nSee LICENSE.txt for more details\r" +
+    "\n";
             // 
             // buttonOK
             // 
