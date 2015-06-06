@@ -266,6 +266,7 @@ namespace Bench
 
         private void checkBoxNoAudio_CheckedChanged(object sender, EventArgs e)
         {
+            unsavedChanges = true;
             if (checkBoxNoAudio.Checked)
             {
                 TabControl_AudioArgSettings.Enabled = false;
