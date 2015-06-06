@@ -85,17 +85,20 @@ namespace Bench
             settingsTabCollection.UnsavedChanges = true;
             unsavedChanges = true;
             deletingItems = true;
+            selectedIndicesToSave = null; //all the selected indices will be deleted, so it makes no sense to save them
             for (int i = ListBox_Files.SelectedIndices.Count-1; i >= 0; i--)
             {
                 outputSettings.RemoveAt(ListBox_Files.SelectedIndices[i]);
                 ListBox_Files.Items.RemoveAt(ListBox_Files.SelectedIndices[i]);
             }
+            deletingItems = false;
             if (ListBox_Files.Items.Count == 0)
             {
                 settingsTabCollection.Enabled = false;
                 createBatchToolStripMenuItem.Enabled = false;
                 Button_TextBox_Files_Remove.Enabled = false;
                 settingsTabCollection.LoadSettings(appSettings);
+                selectedIndicesToSave = null;
             }
             else if (selectedIdx < ListBox_Files.Items.Count)
             {
@@ -105,7 +108,6 @@ namespace Bench
             {
                 ListBox_Files.SelectedIndex = selectedIdx - 1;
             }
-            deletingItems = false;
         }
 
         private void Button_ListBox_Files_Remove_Click(object sender, EventArgs e)
