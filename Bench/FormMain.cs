@@ -551,7 +551,7 @@ namespace Bench
                         inputFile[i][j] = generatedAvsFileShort;
                         try
                         {
-                            File.WriteAllText(generatedAvsFileFull, avisynthFileString, new UTF8Encoding(false));
+                            File.WriteAllText(generatedAvsFileFull, avisynthFileString, System.Text.Encoding.Default);
                         }
                         catch (Exception e)
                         {
@@ -708,7 +708,7 @@ namespace Bench
                 }
 
                 sb.Append("pause" + Environment.NewLine);
-                File.WriteAllText(saveBatFileDialog.FileName, sb.ToString(), new UTF8Encoding(false));
+                File.WriteAllText(saveBatFileDialog.FileName, sb.ToString(), System.Text.Encoding.Default);
             }
         }
 
