@@ -376,10 +376,7 @@ namespace Bench
                         settingsTabCollection.OutputSettings = outputSettings;
                         saveFileName = openEhFileDialog.FileName;
                         this.Text = Path.GetFileName(saveFileName) + " - " + this.Text;
-                        for (int i = ListBox_Files.Items.Count - 1; i >= 0; i--)
-                        {
-                            ListBox_Files.Items.RemoveAt(i);
-                        }
+                        ListBox_Files.Items.Clear();
                         for (int i = 0; i < outputSettings.Count; i++)
                         {
                             ListBox_Files.Items.Add(outputSettings[i].FileName);
