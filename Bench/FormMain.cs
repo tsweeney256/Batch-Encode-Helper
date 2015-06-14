@@ -169,7 +169,9 @@ namespace Bench
             outputSettings[newIndex] = outputSettings[lb.SelectedIndices[i]];
             outputSettings[lb.SelectedIndices[i]] = temp;
 
+            deletingItems = true;
             lb.Items.RemoveAt(lb.SelectedIndices[i]);
+            deletingItems = false;
             lb.Items.Insert(newIndex, selected);
             lb.SetSelected(newIndex, true);
         }
