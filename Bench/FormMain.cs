@@ -573,12 +573,12 @@ namespace Bench
                 int[] fileCount = new int[ListBox_Files.Items.Count];
                 int[] counter = new int[26]; //using an int literal here isn't a big deal since I don't see a-z changing anytime soon
                 string[][] inputFile = new string[outputSettings.Count][];
+
+                SaveSelectedIndices();
                 for (int i = 0; i < outputSettings.Count; i++)
                 {
                     inputFile[i] = new string[outputSettings[i].x264Args.Length];
                 }
-
-                    SaveSelectedIndices();
                 for(int i=0; i<outputSettings.Count; i++)
                 {
                     for (int j = 0; j < outputSettings[i].x264Args.Length; j++)
