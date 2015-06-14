@@ -66,8 +66,16 @@ namespace Bench
 
         private void ListBox_Files_DragDrop(object sender, DragEventArgs e)
         {
-            string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
-            AddToListBoxCommon(files);
+            string[] paths = (string[])e.Data.GetData(DataFormats.FileDrop);
+            foreach (string path in paths)
+            {
+                if (Directory.Exists(path))
+                {
+                    MessageBox.Show("Adding directories to the listbox is not supported.", "Error");
+                    return;
+                }
+            }
+            AddToListBoxCommon(paths);
         }
 
         private void ListBox_Files_DragEnter(object sender, DragEventArgs e)
