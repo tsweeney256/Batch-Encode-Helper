@@ -117,6 +117,7 @@ namespace Bench
             // 
             // Button_MoveUp_ListBox_Files
             // 
+            this.Button_MoveUp_ListBox_Files.Enabled = false;
             this.Button_MoveUp_ListBox_Files.Location = new System.Drawing.Point(175, 27);
             this.Button_MoveUp_ListBox_Files.Name = "Button_MoveUp_ListBox_Files";
             this.Button_MoveUp_ListBox_Files.Size = new System.Drawing.Size(75, 23);
@@ -127,6 +128,7 @@ namespace Bench
             // 
             // Button_MoveDown_ListBox_Files
             // 
+            this.Button_MoveDown_ListBox_Files.Enabled = false;
             this.Button_MoveDown_ListBox_Files.Location = new System.Drawing.Point(257, 27);
             this.Button_MoveDown_ListBox_Files.Name = "Button_MoveDown_ListBox_Files";
             this.Button_MoveDown_ListBox_Files.Size = new System.Drawing.Size(75, 23);

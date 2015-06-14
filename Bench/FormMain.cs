@@ -100,6 +100,11 @@ namespace Bench
                 ListBox_Files.Items.RemoveAt(ListBox_Files.SelectedIndices[i]);
             }
             deletingItems = false;
+            if (ListBox_Files.Items.Count < 2)
+            {
+                Button_MoveDown_ListBox_Files.Enabled = false;
+                Button_MoveUp_ListBox_Files.Enabled = false;
+            }
             if (ListBox_Files.Items.Count == 0)
             {
                 settingsTabCollection.Enabled = false;
@@ -151,6 +156,15 @@ namespace Bench
                     ListBox_Files.Items.Add(str);
                     CreateNewSettings(str);
                 }
+            }
+            if (ListBox_Files.Items.Count > 1)
+            {
+                if(ListBox_Files.SelectedIndex !=0)
+                {
+                    //only need to check for move up since the bottom will never be selected after adding ot the list box
+                    Button_MoveUp_ListBox_Files.Enabled = true;
+                }
+                Button_MoveDown_ListBox_Files.Enabled = true;
             }
             if (ListBox_Files.SelectedIndex < 0)
             {
@@ -245,6 +259,25 @@ namespace Bench
                 }
                 settingsTabCollection.Enabled = true;
                 createBatchToolStripMenuItem.Enabled = true;
+                if (ListBox_Files.Items.Count > 1)
+                {
+                    if (ListBox_Files.SelectedIndices.Contains(ListBox_Files.Items.Count-1))
+                    {
+                        Button_MoveDown_ListBox_Files.Enabled = false;
+                    }
+                    else
+                    {
+                        Button_MoveDown_ListBox_Files.Enabled = true;
+                    }
+                    if (ListBox_Files.SelectedIndices.Contains(0))
+                    {
+                        Button_MoveUp_ListBox_Files.Enabled = false;
+                    }
+                    else
+                    {
+                        Button_MoveUp_ListBox_Files.Enabled = true;
+                    }
+                }
                 Button_TextBox_Files_Remove.Enabled = true;
                 settingsTabCollection.LoadSettings(outputSettings[ListBox_Files.SelectedIndex]);
                 selectedIndicesToSave = new int[ListBox_Files.SelectedIndices.Count];
@@ -393,6 +426,11 @@ namespace Bench
                         }
                         if (ListBox_Files.Items.Count > 0)
                         {
+                            if (ListBox_Files.Items.Count < 2)
+                            {
+                                Button_MoveDown_ListBox_Files.Enabled = false;
+                                Button_MoveUp_ListBox_Files.Enabled = false;
+                            }
                             ListBox_Files.SelectedIndex = 0;
                         }
                         else
