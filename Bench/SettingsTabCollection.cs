@@ -218,7 +218,8 @@ namespace Bench
             {
                 lastTc.TabPages[i].Text = i.ToString();
             }
-            lastTc.TabPages.RemoveAt(RightClickedArgSettingsTab);
+            //using Remove() as a workaround for RemoveAt() being bugged 
+            lastTc.TabPages.Remove(lastTc.TabPages[RightClickedArgSettingsTab]);
             if (TabControl_Settings.SelectedIndex == 0) //Video settings tab
             {
                 vidTab.RemoveAt(RightClickedArgSettingsTab);
