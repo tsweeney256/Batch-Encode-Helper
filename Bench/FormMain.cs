@@ -486,10 +486,7 @@ namespace Bench
 
             unsavedChanges = false;
             settingsTabCollection.UnsavedChanges = false;
-            for (int i = ListBox_Files.Items.Count - 1; i >= 0; i--)
-            {
-                ListBox_Files.Items.RemoveAt(i);
-            }
+            ListBox_Files.Items.Clear();
             outputSettings = new List<OutputSettings>();
         }
 
