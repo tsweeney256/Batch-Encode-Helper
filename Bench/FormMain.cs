@@ -599,8 +599,11 @@ namespace Bench
                                 "Entry: " + outputSettings[i].FileName + Environment.NewLine + "Specified Avisynth file: " + outputSettings[i].avisynthTemplate);
                             return false;
                         }
-                        string generatedAvsFileShort = "Generated Avisynth Files\\" + avisynthCounter + ".avs";
-                        string generatedAvsFileFull = Path.GetDirectoryName(saveBatFileDialog.FileName) + "\\Generated Avisynth Files\\" + avisynthCounter++ + ".avs";
+                        string now = DateTime.Now.Year.ToString() + "-" + DateTime.Now.Month.ToString() + "-" + DateTime.Now.Day.ToString() + " "
+                            + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString() + "-" + DateTime.Now.Second.ToString();
+                        string file = Path.GetFileName(outputSettings[i].FileName);
+                        string generatedAvsFileShort = "Generated Avisynth Files\\" + avisynthCounter + ". " + file + " " + now + ".avs";
+                        string generatedAvsFileFull = Path.GetDirectoryName(saveBatFileDialog.FileName) + "\\Generated Avisynth Files\\" + avisynthCounter++ + ". " + file + " " + now + ".avs";
                         if (!alreadyCreatedDirectory)
                         {
                             Directory.CreateDirectory(Path.GetDirectoryName(saveBatFileDialog.FileName) + "\\Generated Avisynth Files\\");
