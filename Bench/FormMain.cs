@@ -414,43 +414,48 @@ namespace Bench
 
             if (openResult == DialogResult.OK)
             {
-                using (Stream stream = File.Open(openEhFileDialog.FileName, FileMode.Open))
+                openBenFile(openEhFileDialog.FileName);
+            }
+        }
+
+        private void openBenFile(string path)
+        {
+            using (Stream stream = File.Open(path, FileMode.Open))
+            {
+                var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
+                try
                 {
-                    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                    try
+                    string version = (string)bformatter.Deserialize(stream);
+                    outputSettings = (List<OutputSettings>)bformatter.Deserialize(stream);
+                    settingsTabCollection.OutputSettings = outputSettings;
+                    saveFileName = path;
+                    this.Text = Path.GetFileName(saveFileName) + " - " + this.Text;
+                    ListBox_Files.Items.Clear();
+                    for (int i = 0; i < outputSettings.Count; i++)
                     {
-                        string version = (string)bformatter.Deserialize(stream);
-                        outputSettings = (List<OutputSettings>)bformatter.Deserialize(stream);
-                        settingsTabCollection.OutputSettings = outputSettings;
-                        saveFileName = openEhFileDialog.FileName;
-                        this.Text = Path.GetFileName(saveFileName) + " - " + this.Text;
-                        ListBox_Files.Items.Clear();
-                        for (int i = 0; i < outputSettings.Count; i++)
-                        {
-                            ListBox_Files.Items.Add(outputSettings[i].FileName);
-                        }
-                        if (ListBox_Files.Items.Count > 0)
-                        {
-                            if (ListBox_Files.Items.Count < 2)
-                            {
-                                Button_MoveDown_ListBox_Files.Enabled = false;
-                                Button_MoveUp_ListBox_Files.Enabled = false;
-                            }
-                            ListBox_Files.SelectedIndex = 0;
-                        }
-                        else
-                        {
-                            settingsTabCollection.Enabled = false;
-                            createBatchToolStripMenuItem.Enabled = false;
-                            Button_TextBox_Files_Remove.Enabled = false;
-                        }
-                        unsavedChanges = false;
-                        settingsTabCollection.UnsavedChanges = false;
+                        ListBox_Files.Items.Add(outputSettings[i].FileName);
                     }
-                    catch
+                    if (ListBox_Files.Items.Count > 0)
                     {
-                        MessageBox.Show("Not a valid BEH file.", "Error", MessageBoxButtons.OK);
+                        if (ListBox_Files.Items.Count < 2)
+                        {
+                            Button_MoveDown_ListBox_Files.Enabled = false;
+                            Button_MoveUp_ListBox_Files.Enabled = false;
+                        }
+                        ListBox_Files.SelectedIndex = 0;
                     }
+                    else
+                    {
+                        settingsTabCollection.Enabled = false;
+                        createBatchToolStripMenuItem.Enabled = false;
+                        Button_TextBox_Files_Remove.Enabled = false;
+                    }
+                    unsavedChanges = false;
+                    settingsTabCollection.UnsavedChanges = false;
+                }
+                catch
+                {
+                    MessageBox.Show("Not a valid BEH file.", "Error", MessageBoxButtons.OK);
                 }
             }
         }
@@ -768,6 +773,25 @@ namespace Bench
         {
             var aboutBox = new FormAbout();
             aboutBox.ShowDialog();
+        }
+
+        private void FormMain_DragDrop(object sender, DragEventArgs e)
+        {
+            openBenFile(((string[])e.Data.GetData(DataFormats.FileDrop))[0]);
+        }
+
+        private void FormMain_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] paths = (string[])e.Data.GetData(DataFormats.FileDrop);
+                if(paths.Length == 1 && Path.GetExtension(paths[0]) == ".ben")
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
         }
     }
 }
