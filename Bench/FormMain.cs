@@ -665,15 +665,16 @@ namespace Bench
                 sb.Append("mkdir Audio" + Environment.NewLine + "mkdir Videos" + Environment.NewLine + "mkdir Muxed" + Environment.NewLine + Environment.NewLine);
                 for (int i = 0; i < outputSettings.Count; i++)
                 {
+                    bool avs = Path.GetExtension(outputSettings[i].FileName) == ".avs";
                     string filename = String.Format(outputSettings[i].fileNamePrefix[0] + outputSettings[i].fileNameBody + outputSettings[i].fileNameSuffix[0], fileCount[i]);
                     for (int j = 0; j < outputSettings[i].audioLanguageCode.Length; j++) //audiolanguagecode.length is equal to the number of tabs/audio tracks
                     {
                         if (!outputSettings[i].noAudio)
                         {
                             sb.Append("REM Audio " + filename + " Track " + (j + 1) + Environment.NewLine);
-                            sb.Append("\"" + appSettings.BePipeLocation + "\" --script \"LWLibavAudioSource(^" + outputSettings[i].FileName + "^, stream_index=" + 
-                                outputSettings[i].audioTrackNumber[j] + ")\" | \"" + appSettings.NeroAACLocation + "\" -q " + outputSettings[i].quality[j] + 
-                                " -if - -of \"" + "Audio\\" + filename + " Track " + (j + 1) + ".m4a\"" + Environment.NewLine + Environment.NewLine);
+                            sb.Append("\"" + appSettings.BePipeLocation + "\" --script \"" + (avs ? "Import" : "LWLibavAudioSource") + "(^" + outputSettings[i].FileName + 
+                                "^" + (avs ? "" : ", stream_index=" + outputSettings[i].audioTrackNumber[j]) + ")\" | \"" + appSettings.NeroAACLocation + "\" -q " + 
+                                outputSettings[i].quality[j] + " -if - -of \"" + "Audio\\" + filename + " Track " + (j + 1) + ".m4a\"" + Environment.NewLine + Environment.NewLine);
                         }
                     }
                         
