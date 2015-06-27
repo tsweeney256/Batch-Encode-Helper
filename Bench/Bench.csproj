@@ -100,6 +100,7 @@
     <Compile Include="SettingsTabCollection.Designer.cs">
       <DependentUpon>SettingsTabCollection.cs</DependentUpon>
     </Compile>
+    <Compile Include="SharedEvents.cs" />
     <Compile Include="VideoTabControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
