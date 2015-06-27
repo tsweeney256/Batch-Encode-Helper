@@ -132,5 +132,15 @@ namespace Bench
                 TextBox_BePipe.Text = openFileDialog.FileName;
             }
         }
+
+        private void ExeTextBoxDragEnter(object sender, DragEventArgs e)
+        {
+            SharedEvents.DragEnterSingleFile(sender, e, ".exe");
+        }
+
+        private void ExeTextBoxDragDrop(object sender, DragEventArgs e)
+        {
+            SharedEvents.DragDropTextBox(sender, e);
+        }
     }
 }

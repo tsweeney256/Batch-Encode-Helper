@@ -126,5 +126,15 @@ namespace Bench
                 e.Handled = true;
             }
         }
+
+        private void textBox_AvisynthTemplate_DragEnter(object sender, DragEventArgs e)
+        {
+            SharedEvents.DragEnterSingleFile(sender, e, ".avs");
+        }
+
+        private void textBox_AvisynthTemplate_DragDrop(object sender, DragEventArgs e)
+        {
+            SharedEvents.DragDropTextBox(sender, e);
+        }
     }
 }

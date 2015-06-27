@@ -82,12 +82,15 @@ namespace Bench
             // 
             // TextBox_BePipe
             // 
+            this.TextBox_BePipe.AllowDrop = true;
             this.TextBox_BePipe.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_BePipe.Location = new System.Drawing.Point(6, 263);
             this.TextBox_BePipe.Name = "TextBox_BePipe";
             this.TextBox_BePipe.Size = new System.Drawing.Size(336, 20);
             this.TextBox_BePipe.TabIndex = 40;
+            this.TextBox_BePipe.DragDrop += new System.Windows.Forms.DragEventHandler(this.ExeTextBoxDragDrop);
+            this.TextBox_BePipe.DragEnter += new System.Windows.Forms.DragEventHandler(this.ExeTextBoxDragEnter);
             // 
             // Label_BePipe
             // 
@@ -111,12 +114,15 @@ namespace Bench
             // 
             // TextBox_NeroAAC
             // 
+            this.TextBox_NeroAAC.AllowDrop = true;
             this.TextBox_NeroAAC.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_NeroAAC.Location = new System.Drawing.Point(6, 223);
             this.TextBox_NeroAAC.Name = "TextBox_NeroAAC";
             this.TextBox_NeroAAC.Size = new System.Drawing.Size(336, 20);
             this.TextBox_NeroAAC.TabIndex = 37;
+            this.TextBox_NeroAAC.DragDrop += new System.Windows.Forms.DragEventHandler(this.ExeTextBoxDragDrop);
+            this.TextBox_NeroAAC.DragEnter += new System.Windows.Forms.DragEventHandler(this.ExeTextBoxDragEnter);
             // 
             // Label_NeroAAC
             // 
@@ -140,12 +146,15 @@ namespace Bench
             // 
             // TextBox_MKVMerge
             // 
+            this.TextBox_MKVMerge.AllowDrop = true;
             this.TextBox_MKVMerge.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_MKVMerge.Location = new System.Drawing.Point(6, 183);
             this.TextBox_MKVMerge.Name = "TextBox_MKVMerge";
             this.TextBox_MKVMerge.Size = new System.Drawing.Size(336, 20);
             this.TextBox_MKVMerge.TabIndex = 34;
+            this.TextBox_MKVMerge.DragDrop += new System.Windows.Forms.DragEventHandler(this.ExeTextBoxDragDrop);
+            this.TextBox_MKVMerge.DragEnter += new System.Windows.Forms.DragEventHandler(this.ExeTextBoxDragEnter);
             // 
             // Label_MKVMergeLocation
             // 
@@ -169,12 +178,15 @@ namespace Bench
             // 
             // TextBox_x264_x64_10bit
             // 
+            this.TextBox_x264_x64_10bit.AllowDrop = true;
             this.TextBox_x264_x64_10bit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_x264_x64_10bit.Location = new System.Drawing.Point(6, 143);
             this.TextBox_x264_x64_10bit.Name = "TextBox_x264_x64_10bit";
             this.TextBox_x264_x64_10bit.Size = new System.Drawing.Size(336, 20);
             this.TextBox_x264_x64_10bit.TabIndex = 31;
+            this.TextBox_x264_x64_10bit.DragDrop += new System.Windows.Forms.DragEventHandler(this.ExeTextBoxDragDrop);
+            this.TextBox_x264_x64_10bit.DragEnter += new System.Windows.Forms.DragEventHandler(this.ExeTextBoxDragEnter);
             // 
             // Label_x264_x64_10bit_Location
             // 
@@ -198,12 +210,15 @@ namespace Bench
             // 
             // TextBox_x264_x64_8bit
             // 
+            this.TextBox_x264_x64_8bit.AllowDrop = true;
             this.TextBox_x264_x64_8bit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_x264_x64_8bit.Location = new System.Drawing.Point(6, 104);
             this.TextBox_x264_x64_8bit.Name = "TextBox_x264_x64_8bit";
             this.TextBox_x264_x64_8bit.Size = new System.Drawing.Size(336, 20);
             this.TextBox_x264_x64_8bit.TabIndex = 28;
+            this.TextBox_x264_x64_8bit.DragDrop += new System.Windows.Forms.DragEventHandler(this.ExeTextBoxDragDrop);
+            this.TextBox_x264_x64_8bit.DragEnter += new System.Windows.Forms.DragEventHandler(this.ExeTextBoxDragEnter);
             // 
             // Label_x264_x64_8bit_Location
             // 
@@ -227,12 +242,15 @@ namespace Bench
             // 
             // TextBox_x264_x86_10bit
             // 
+            this.TextBox_x264_x86_10bit.AllowDrop = true;
             this.TextBox_x264_x86_10bit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_x264_x86_10bit.Location = new System.Drawing.Point(6, 65);
             this.TextBox_x264_x86_10bit.Name = "TextBox_x264_x86_10bit";
             this.TextBox_x264_x86_10bit.Size = new System.Drawing.Size(336, 20);
             this.TextBox_x264_x86_10bit.TabIndex = 25;
+            this.TextBox_x264_x86_10bit.DragDrop += new System.Windows.Forms.DragEventHandler(this.ExeTextBoxDragDrop);
+            this.TextBox_x264_x86_10bit.DragEnter += new System.Windows.Forms.DragEventHandler(this.ExeTextBoxDragEnter);
             // 
             // Label_x264_x86_10bit_Location
             // 
@@ -256,12 +274,15 @@ namespace Bench
             // 
             // TextBox_x264_x86_8bit
             // 
+            this.TextBox_x264_x86_8bit.AllowDrop = true;
             this.TextBox_x264_x86_8bit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TextBox_x264_x86_8bit.Location = new System.Drawing.Point(6, 26);
             this.TextBox_x264_x86_8bit.Name = "TextBox_x264_x86_8bit";
             this.TextBox_x264_x86_8bit.Size = new System.Drawing.Size(336, 20);
             this.TextBox_x264_x86_8bit.TabIndex = 22;
+            this.TextBox_x264_x86_8bit.DragDrop += new System.Windows.Forms.DragEventHandler(this.ExeTextBoxDragDrop);
+            this.TextBox_x264_x86_8bit.DragEnter += new System.Windows.Forms.DragEventHandler(this.ExeTextBoxDragEnter);
             // 
             // Label_x264_x86_8bit_Location
             // 

@@ -100,6 +100,7 @@ namespace Bench
             // 
             // textBox_AvisynthTemplate
             // 
+            this.textBox_AvisynthTemplate.AllowDrop = true;
             this.textBox_AvisynthTemplate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBox_AvisynthTemplate.Location = new System.Drawing.Point(7, 209);
@@ -108,6 +109,8 @@ namespace Bench
             this.textBox_AvisynthTemplate.TabIndex = 23;
             this.toolTip.SetToolTip(this.textBox_AvisynthTemplate, resources.GetString("textBox_AvisynthTemplate.ToolTip"));
             this.textBox_AvisynthTemplate.TextChanged += new System.EventHandler(this.textBoxSuffix_TextChanged);
+            this.textBox_AvisynthTemplate.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBox_AvisynthTemplate_DragDrop);
+            this.textBox_AvisynthTemplate.DragEnter += new System.Windows.Forms.DragEventHandler(this.textBox_AvisynthTemplate_DragEnter);
             // 
             // label_AvisynthTemplate
             // 
