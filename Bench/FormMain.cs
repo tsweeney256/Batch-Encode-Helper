@@ -539,8 +539,8 @@ namespace Bench
                             x264Version = "x64 10bit";
                             break;
                         default:
-                            //this should never be reached
-                            MessageBox.Show("Critical Error: x264 Location Error");
+                            MessageBox.Show("You did not set which encoder to use." + Environment.NewLine + Environment.NewLine + "Entry: " + settings.FileName + 
+                                Environment.NewLine + Environment.NewLine + "Tab#" + (i+1), "Error");
                             return true;
                     }
                     if (x264Exists)
