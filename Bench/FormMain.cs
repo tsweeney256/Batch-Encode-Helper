@@ -42,6 +42,11 @@ namespace Bench
             InitializeComponent();
 
             appSettings = new AppSettings();
+            initInterface();
+        }
+
+        private void initInterface()
+        {
             outputSettings = new List<OutputSettings>();
             saveFileName = null;
             settingsTabCollection.OutputSettings = outputSettings;
@@ -487,7 +492,12 @@ namespace Bench
             unsavedChanges = false;
             settingsTabCollection.UnsavedChanges = false;
             ListBox_Files.Items.Clear();
-            outputSettings = new List<OutputSettings>();
+            initInterface();
+            settingsTabCollection.Enabled = false;
+            Button_MoveDown_ListBox_Files.Enabled = false;
+            Button_MoveUp_ListBox_Files.Enabled = false;
+            Button_TextBox_Files_Remove.Enabled = false;
+
         }
 
         private bool InputErrorsExist()
