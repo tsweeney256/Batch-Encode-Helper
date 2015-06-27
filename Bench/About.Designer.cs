@@ -53,7 +53,7 @@
             this.labelVersion.Padding = new System.Windows.Forms.Padding(3);
             this.labelVersion.Size = new System.Drawing.Size(75, 19);
             this.labelVersion.TabIndex = 2;
-            this.labelVersion.Text = "Version 1.0.2";
+            this.labelVersion.Text = "Version 1.0.3";
             // 
             // labelCopyright
             // 
