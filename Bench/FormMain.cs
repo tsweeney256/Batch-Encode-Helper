@@ -786,8 +786,14 @@ namespace Bench
             if (e.Data.GetDataPresent(DataFormats.FileDrop))
             {
                 string[] paths = (string[])e.Data.GetData(DataFormats.FileDrop);
-                if(paths.Length == 1 && Path.GetExtension(paths[0]) == ".ben")
-                e.Effect = DragDropEffects.Copy;
+                if (paths.Length == 1 && Path.GetExtension(paths[0]) == ".ben" && !Directory.Exists(paths[0]))
+                {
+                    e.Effect = DragDropEffects.Copy;
+                }
+                else
+                {
+                    e.Effect = DragDropEffects.None;
+                }
             }
             else
             {
