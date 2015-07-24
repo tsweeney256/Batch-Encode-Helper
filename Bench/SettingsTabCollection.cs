@@ -143,15 +143,39 @@ namespace Bench
             TextBox_VideoTrackName.Text = settings.videoTrackName;
             TextBox_VideoLanguageCode.Text = settings.videoLanguageCode;
             comboBoxCounter.SelectedIndex = settings.counterIndex;
-            numericUpDownCounter.Value = settings.counterValue;
+            if (settings.counterValue < 0) //for when we select multiple entries without intersecting counter values
+            {
+                numericUpDownCounter.Value = 0;
+                numericUpDownCounter.Text = "";
+            }
+            else
+            {
+                numericUpDownCounter.Value = settings.counterValue;
+            }
             for (int i = 0; i < settings.audioTrackName.Length; i++)
             {
                 audioTab.Add(new AudioTabControl());
                 audioTab[i].AttachToLastTab(TabControl_AudioArgSettings);
-                audioTab[i].NumericUpDown_Quality_Value = settings.quality[i];
+                if (settings.quality[i] < 0) //again, for multiple entries
+                {
+                    audioTab[i].NumericUpDown_Quality_Value = 0;
+                    audioTab[i].NumericUpDown_Quality_Text = "";
+                }
+                else
+                {
+                    audioTab[i].NumericUpDown_Quality_Value = settings.quality[i];
+                }
                 audioTab[i].TextBox_AudioTrackName_Text = settings.audioTrackName[i];
                 audioTab[i].TextBox_LanguageCode_Text = settings.audioLanguageCode[i];
-                audioTab[i].NumericUpDownTrackNumber_Value = settings.audioTrackNumber[i];
+                if (settings.audioTrackNumber[i] < 0) //again, for multiple entries
+                {
+                    audioTab[i].NumericUpDownTrackNumber_Value = 1;
+                    audioTab[i].NumericUpDownTrackNumber_Text = "";
+                }
+                else
+                {
+                    audioTab[i].NumericUpDownTrackNumber_Value = settings.audioTrackNumber[i];
+                }
             }
             checkBoxNoAudio.Checked = settings.noAudio;
             TabControl_VideoArgSettings.TabPages.Add("    +");

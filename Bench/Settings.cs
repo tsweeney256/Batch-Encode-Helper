@@ -65,17 +65,118 @@ namespace Bench
 
         public virtual void Initialize()
         {
-            x264Args = new string[1];
-            encoder = new int[1];
-            fileNamePrefix = new string[1];
-            fileNameSuffix = new string[1];
-            avisynthTemplate = new string[1];
-            quality = new decimal[1];
-            audioTrackName = new string[1];
-            audioLanguageCode = new string[1];
-            audioTrackNumber = new int[1];
+            AllocateVidTabs(1);
+            AllocateAudioTabs(1);
             audioTrackNumber[0] = 1; //because the updown box can't be less than 1
             counterValue = 1;
+        }
+
+        public virtual void AllocateVidTabs(int numTabs)
+        {
+            x264Args = new string[numTabs];
+            encoder = new int[numTabs];
+            fileNamePrefix = new string[numTabs];
+            fileNameSuffix = new string[numTabs];
+            avisynthTemplate = new string[numTabs];
+        }
+
+        public virtual void AllocateAudioTabs(int numTabs)
+        {
+            quality = new decimal[numTabs];
+            audioTrackName = new string[numTabs];
+            audioLanguageCode = new string[numTabs];
+            audioTrackNumber = new int[numTabs];
+        }
+
+        public static Settings getIntersection(Settings[] settingsArray)
+        {
+            Settings intersection = new Settings(settingsArray[0]);
+            int minVidTab = int.MaxValue;
+            int minAudioTab = int.MaxValue;
+
+            for (int i = 0; i < settingsArray.Length; i++)
+            {
+                if(settingsArray[i].x264Args.Length < minVidTab){
+                    minVidTab = settingsArray[i].x264Args.Length;
+                }
+                if(settingsArray[i].audioTrackName.Length < minAudioTab){
+                    minAudioTab = settingsArray[i].audioTrackName.Length;
+                }
+            }
+            intersection.AllocateVidTabs(minVidTab);
+            intersection.AllocateAudioTabs(minAudioTab);
+
+            for (int i = 1; i < settingsArray.Length; i++)
+            {
+                if (settingsArray[i].fileNameBody != intersection.fileNameBody)
+                {
+                    intersection.fileNameBody = "";
+                }
+                if (settingsArray[i].videoTrackName != intersection.videoTrackName)
+                {
+                    intersection.videoTrackName = "";
+                }
+                if (settingsArray[i].videoLanguageCode != intersection.videoLanguageCode)
+                {
+                    intersection.videoLanguageCode = "";
+                }
+                if (settingsArray[i].counterIndex != intersection.counterIndex)
+                {
+                    intersection.counterIndex = -1;
+                }
+                if (settingsArray[i].counterValue != intersection.counterValue)
+                {
+                    intersection.counterValue = -1;
+                }
+                if (settingsArray[i].noAudio != intersection.noAudio)
+                {
+                    intersection.noAudio = false; //this needs to be changed to support the intermediate state
+                }
+                for (int j = 1; j < minVidTab; j++)
+                {
+                    if (settingsArray[i].x264Args[j] != intersection.x264Args[0])
+                    {
+                        intersection.x264Args[0] = "";
+                    }
+                    if (settingsArray[i].encoder[j] != intersection.encoder[0])
+                    {
+                        intersection.encoder[0] = -1;
+                    }
+                    if (settingsArray[i].fileNamePrefix[j] != intersection.fileNamePrefix[0])
+                    {
+                        intersection.fileNamePrefix[0] = "";
+                    }
+                    if (settingsArray[i].fileNameSuffix[j] != intersection.fileNameSuffix[0])
+                    {
+                        intersection.fileNameSuffix[0] = "";
+                    }
+                    if (settingsArray[i].avisynthTemplate[j] != intersection.avisynthTemplate[0])
+                    {
+                        intersection.avisynthTemplate[0] = "";
+                    }
+                }
+                for (int j = 1; j < minAudioTab; j++)
+                {
+                    if (settingsArray[i].quality[j] != intersection.quality[0])
+                    {
+                        intersection.quality[0] = -1;
+                    }
+                    if (settingsArray[i].audioTrackName[j] != intersection.audioTrackName[0])
+                    {
+                        intersection.audioTrackName[0] = "";
+                    }
+                    if (settingsArray[i].audioLanguageCode[j] != intersection.audioLanguageCode[0])
+                    {
+                        intersection.audioLanguageCode[0] = "";
+                    }
+                    if (settingsArray[i].audioTrackNumber[j] != intersection.audioTrackNumber[0])
+                    {
+                        intersection.audioTrackNumber[0] = -1;
+                    }
+                }
+            }
+
+            return intersection;
         }
     }
 }

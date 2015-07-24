@@ -34,6 +34,11 @@ namespace Bench
             get { return NumericUpDown_Quality.Value; }
             set { NumericUpDown_Quality.Value = value;  }
         }
+        public string NumericUpDown_Quality_Text
+        {
+            get { return NumericUpDown_Quality.Text; }
+            set { NumericUpDown_Quality.Text = value; }
+        }
         public string TextBox_AudioTrackName_Text
         {
             get { return TextBox_AudioTrackName.Text; }
@@ -48,6 +53,11 @@ namespace Bench
         {
             get { return (int)numericUpDownTrackNumber.Value; }
             set { numericUpDownTrackNumber.Value = value; }
+        }
+        public string NumericUpDownTrackNumber_Text
+        {
+            get { return numericUpDownTrackNumber.Text; }
+            set { numericUpDownTrackNumber.Text = value; }
         }
         public bool UnsavedChanges { get; set; }
 
