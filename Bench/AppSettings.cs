@@ -25,7 +25,6 @@ using System.IO;
 
 namespace Bench
 {
-    [Serializable]
     public class AppSettings : Settings
     {
         public string x264_x86_8bit_location { get; set; }

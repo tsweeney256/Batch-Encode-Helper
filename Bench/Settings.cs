@@ -23,7 +23,6 @@ using System.Threading.Tasks;
 
 namespace Bench
 {
-    [Serializable]
     public class Settings
     {
         public string[] x264Args { get; set; }

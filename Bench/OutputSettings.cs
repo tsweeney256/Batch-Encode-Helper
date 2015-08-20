@@ -23,7 +23,6 @@ using System.Threading.Tasks;
 
 namespace Bench
 {
-    [Serializable]
     public class OutputSettings : Settings
     {
         public string FileName { get; set; }
