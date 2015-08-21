@@ -190,7 +190,7 @@ namespace Bench
 
             var counterValNode = doc.CreateElement("counterVal");
             counterValNode.InnerText = counterValue.ToString();
-            counterNode.AppendChild(counterValNode);
+            root.AppendChild(counterValNode);
 
             var vidNode = doc.CreateElement("vid");
             root.AppendChild(vidNode);
@@ -211,6 +211,10 @@ namespace Bench
             {
                 var vidTab = doc.CreateElement("vidTab");
                 vidNode.AppendChild(vidTab);
+
+                var x264ArgsNode = doc.CreateElement("x264Args");
+                x264ArgsNode.InnerText = x264Args[i];
+                vidTab.AppendChild(x264ArgsNode);
 
                 var encoderNode = doc.CreateElement("encoder");
                 encoderNode.InnerText = encoder[i].ToString();
