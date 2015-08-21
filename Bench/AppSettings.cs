@@ -57,6 +57,10 @@ namespace Bench
             var root = doc.CreateElement("root");
             doc.AppendChild(root);
 
+            var versionNode = doc.CreateElement("version");
+            versionNode.InnerText = "1";
+            root.AppendChild(versionNode);
+
             var settingsNode = CreateXmlNode(doc);
             root.AppendChild(settingsNode);
 
