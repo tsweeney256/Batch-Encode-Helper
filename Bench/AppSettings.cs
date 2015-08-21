@@ -37,7 +37,6 @@ namespace Bench
         public string BePipeLocation { get; set; }
 
         private const string settingsFile = "settings.xml";
-        private string version;
 
         public AppSettings()
         {
