@@ -179,87 +179,86 @@ namespace Bench
             return intersection;
         }
 
-        protected XmlDocument CreateXmlNode()
+        protected XmlElement CreateXmlNode(XmlDocument doc)
         {
-            var root = new XmlDocument();
 
-            var counterNode = new XmlDocument();
+            var root = doc.CreateElement("settings");
+
+            var counterNode = doc.CreateElement("counterIndex");
             counterNode.InnerText = counterIndex.ToString();
             root.AppendChild(counterNode);
 
-            var counterValNode = new XmlDocument();
+            var counterValNode = doc.CreateElement("counterVal");
             counterValNode.InnerText = counterValue.ToString();
             counterNode.AppendChild(counterValNode);
 
-            var vidNode = new XmlDocument();
+            var vidNode = doc.CreateElement("vid");
             root.AppendChild(vidNode);
 
-            var fileNameBodyXml = new XmlDocument();
-            fileNameBodyXml.InnerText = fileNameBody;
-            vidNode.AppendChild(fileNameBodyXml);
+            var fileNameBodyNode = doc.CreateElement("fileNameBody");
+            fileNameBodyNode.InnerText = fileNameBody;
+            vidNode.AppendChild(fileNameBodyNode);
 
-            var videoTrackNameXml = new XmlDocument();
-            videoTrackNameXml.InnerText = videoTrackName;
-            vidNode.AppendChild(videoTrackNameXml);
+            var videoTrackNameNode = doc.CreateElement("videoTrackName");
+            videoTrackNameNode.InnerText = videoTrackName;
+            vidNode.AppendChild(videoTrackNameNode);
 
-            var videoLanguageCodeXml = new XmlDocument();
-            videoLanguageCodeXml.InnerText = videoLanguageCode;
-            vidNode.AppendChild(videoLanguageCodeXml);
+            var videoLanguageCodeNode = doc.CreateElement("videoLanguageCode");
+            videoLanguageCodeNode.InnerText = videoLanguageCode;
+            vidNode.AppendChild(videoLanguageCodeNode);
 
-            var vidTabs = new XmlDocument[x264Args.Length];
             for (int i = 0; i < x264Args.Length; i++)
             {
-                vidTabs[i].InnerText = "Page " + i.ToString();
-                vidNode.AppendChild(vidTabs[i]);
+                var vidTab = doc.CreateElement("vidTab");
+                vidNode.AppendChild(vidTab);
 
-                var encoderXml = new XmlDocument();
-                encoderXml.InnerText = encoder[i].ToString();
-                vidTabs[i].AppendChild(encoderXml);
+                var encoderNode = doc.CreateElement("encoder");
+                encoderNode.InnerText = encoder[i].ToString();
+                vidTab.AppendChild(encoderNode);
 
-                var fileNamePrefixXml = new XmlDocument();
-                fileNamePrefixXml.InnerText = fileNamePrefix[i];
-                vidTabs[i].AppendChild(fileNamePrefixXml);
+                var fileNamePrefixNode = doc.CreateElement("fileNamePrefix");
+                fileNamePrefixNode.InnerText = fileNamePrefix[i];
+                vidTab.AppendChild(fileNamePrefixNode);
 
-                var fileNameSuffixXml = new XmlDocument();
-                fileNameSuffixXml.InnerText = fileNameSuffix[i];
-                vidTabs[i].AppendChild(fileNameSuffixXml);
+                var fileNameSuffixNode = doc.CreateElement("fileNameSuffix");
+                fileNameSuffixNode.InnerText = fileNameSuffix[i];
+                vidTab.AppendChild(fileNameSuffixNode);
 
-                var avisynthTemplateXml = new XmlDocument();
-                avisynthTemplateXml.InnerText = avisynthTemplate[i];
-                vidTabs[i].AppendChild(avisynthTemplateXml);
+                var avisynthTemplateNode = doc.CreateElement("avisynthTemplate");
+                avisynthTemplateNode.InnerText = avisynthTemplate[i];
+                vidTab.AppendChild(avisynthTemplateNode);
             }
 
-            var audioNode = new XmlDocument();
+            var audioNode = doc.CreateElement("audio");
             root.AppendChild(audioNode);
 
-            var noAudioXml = new XmlDocument();
-            noAudioXml.InnerText = noAudio.ToString();
-            audioNode.AppendChild(noAudioXml);
+            var noAudioNode = doc.CreateElement("noAudio");
+            noAudioNode.InnerText = noAudio.ToString();
+            audioNode.AppendChild(noAudioNode);
 
-            var audioTabs = new XmlDocument[audioTrackName.Length];
             for (int i = 0; i < audioTrackName.Length; i++)
             {
-                audioTabs[i].InnerText = "Page " + i.ToString();
-                audioNode.AppendChild(audioTabs[i]);
+                var audioTab = doc.CreateElement("audioTab");
+                audioNode.AppendChild(audioTab);
 
-                var qualityXml = new XmlDocument();
-                qualityXml.InnerText = quality[i].ToString();
-                audioTabs[i].AppendChild(qualityXml);
+                var qualityNode = doc.CreateElement("quality");
+                qualityNode.InnerText = quality[i].ToString();
+                audioTab.AppendChild(qualityNode);
 
-                var audioTrackNameXml = new XmlDocument();
-                audioTrackNameXml.InnerText = audioTrackName[i];
-                audioTabs[i].AppendChild(audioTrackNameXml);
+                var audioTrackNameNode = doc.CreateElement("audioTrackName");
+                audioTrackNameNode.InnerText = audioTrackName[i];
+                audioTab.AppendChild(audioTrackNameNode);
 
-                var audioLanguageCodeXml = new XmlDocument();
-                audioLanguageCodeXml.InnerText = audioLanguageCode[i];
-                audioTabs[i].AppendChild(audioLanguageCodeXml);
+                var audioLanguageCodeNode = doc.CreateElement("audioLanguageCode");
+                audioLanguageCodeNode.InnerText = audioLanguageCode[i];
+                audioTab.AppendChild(audioLanguageCodeNode);
 
-                var audioTrackNumberXml = new XmlDocument();
-                audioTrackNumberXml.InnerText = audioTrackNumber[i].ToString();
-                audioTabs[i].AppendChild(audioTrackNumberXml);
+                var audioTrackNumberNode = doc.CreateElement("audioTrackNumber");
+                audioTrackNumberNode.InnerText = audioTrackNumber[i].ToString();
+                audioTab.AppendChild(audioTrackNumberNode);
             }
 
-                return root;
+            return root;
         }
     }
 }
