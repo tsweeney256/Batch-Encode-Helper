@@ -22,6 +22,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Xml;
 
 namespace Bench
 {
@@ -35,24 +36,19 @@ namespace Bench
         public string NeroAACLocation { get; set; }
         public string BePipeLocation { get; set; }
 
-        private const string settingsFile = "settings.bin";
+        private const string settingsFile = "settings.xml";
         private string version;
 
         public AppSettings()
         {
-            AppSettings settings;
+            var doc = new XmlDocument();
             if (!File.Exists(settingsFile))
             {
                 Initialize();
             }
             try
             {
-                using (Stream stream = File.Open(settingsFile, FileMode.Open))
-                {
-                    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                    version = (string)bformatter.Deserialize(stream);
-                    settings = (AppSettings)bformatter.Deserialize(stream);
-                }
+                doc.Load(settingsFile);
             }
             catch
             {
@@ -61,14 +57,65 @@ namespace Bench
                 File.Move(settingsFile, settingsFile + "." + DateTime.Now.Year.ToString() + "-" + DateTime.Now.Month.ToString() + "-" + DateTime.Now.Day.ToString() + " "
                      + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString() + "-" + DateTime.Now.Second.ToString() + ".bak");
                 Initialize();
-                using (Stream stream = File.Open(settingsFile, FileMode.Open))
-                {
-                    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                    version = (string)bformatter.Deserialize(stream);
-                    settings = (AppSettings)bformatter.Deserialize(stream);
-                }
+                doc.Load(settingsFile);
             }
-            x264Args = settings.x264Args;
+
+            counterIndex = Convert.ToInt32(doc.GetElementsByTagName("counterIndex").Item(0).InnerText);
+            counterValue = Convert.ToInt32(doc.GetElementsByTagName("counterVal").Item(0).InnerText);
+            fileNameBody = doc.GetElementsByTagName("fileNameBody").Item(0).InnerText;
+            videoTrackName = doc.GetElementsByTagName("videoTrackName").Item(0).InnerText;
+            videoLanguageCode = doc.GetElementsByTagName("videoLanguageCode").Item(0).InnerText;
+
+            int vidTabCount = doc.GetElementsByTagName("x264Args").Count;
+            x264Args = new string[vidTabCount];
+            var x264ArgsList = doc.GetElementsByTagName("x264Args");
+            encoder = new int[vidTabCount];
+            var encoderList = doc.GetElementsByTagName("encoder");
+            fileNamePrefix = new string[vidTabCount];
+            var fileNamePrefixList = doc.GetElementsByTagName("fileNamePrefix");
+            fileNameSuffix = new string[vidTabCount];
+            var fileNameSuffixList = doc.GetElementsByTagName("fileNameSuffix");
+            avisynthTemplate = new string[vidTabCount];
+            var avisynthTemplateList = doc.GetElementsByTagName("avisynthTemplate");
+            for (int i = 0; i < vidTabCount; i++)
+            {
+                x264Args[i] = x264ArgsList.Item(i).InnerText;
+                encoder[i] = Convert.ToInt32(encoderList.Item(i).InnerText);
+                fileNamePrefix[i] = fileNamePrefixList.Item(i).InnerText;
+                fileNameSuffix[i] = fileNameSuffixList.Item(i).InnerText;
+                avisynthTemplate[i] = avisynthTemplateList.Item(i).InnerText;
+            }
+
+            noAudio = Convert.ToBoolean(doc.GetElementsByTagName("noAudio").Item(0).InnerText);
+
+            int audioTabCount = doc.GetElementsByTagName("audioTrackName").Count;
+            quality = new decimal[audioTabCount];
+            var qualityList = doc.GetElementsByTagName("quality");
+            audioTrackName = new string[audioTabCount];
+            var audioTrackNameList = doc.GetElementsByTagName("audioTrackName");
+            audioLanguageCode = new string[audioTabCount];
+            var audioLanguageCodeList = doc.GetElementsByTagName("audioLanguageCode");
+            audioTrackNumber = new int[audioTabCount];
+            var audioTrackNumberList = doc.GetElementsByTagName("audioTrackNumber");
+
+            for (int i = 0; i < audioTabCount; i++)
+            {
+                quality[i] = Convert.ToDecimal(qualityList.Item(i).InnerText);
+                audioTrackName[i] = audioTrackNameList.Item(i).InnerText;
+                audioLanguageCode[i] = audioLanguageCodeList.Item(i).InnerText;
+                audioTrackNumber[i] = Convert.ToInt32(audioTrackNumberList.Item(i).InnerText);
+            }
+
+            x264_x86_8bit_location = doc.GetElementsByTagName("x264_x86_8bit_location").Item(0).InnerText;
+            x264_x86_10bit_location = doc.GetElementsByTagName("x264_x86_10bit_location").Item(0).InnerText;
+            x264_x64_8bit_location = doc.GetElementsByTagName("x264_x64_8bit_location").Item(0).InnerText;
+            x264_x64_10bit_location = doc.GetElementsByTagName("x264_x64_10bit_location").Item(0).InnerText;
+            MKVMergeLocation = doc.GetElementsByTagName("MKVMergeLocation").Item(0).InnerText;
+            NeroAACLocation = doc.GetElementsByTagName("NeroAACLocation").Item(0).InnerText;
+            BePipeLocation = doc.GetElementsByTagName("BePipeLocation").Item(0).InnerText;
+
+
+            /*x264Args = settings.x264Args;
             encoder = settings.encoder;
             fileNamePrefix = settings.fileNamePrefix;
             fileNameBody = settings.fileNameBody;
@@ -89,17 +136,49 @@ namespace Bench
             x264_x64_10bit_location = settings.x264_x64_10bit_location;
             MKVMergeLocation = settings.MKVMergeLocation;
             NeroAACLocation = settings.NeroAACLocation;
-            BePipeLocation = settings.BePipeLocation;
+            BePipeLocation = settings.BePipeLocation;*/
         }
 
         public void Save()
         {
-            using(Stream stream = File.Open(settingsFile, FileMode.Create))
-            {
-                var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                bformatter.Serialize(stream, "1.0.0");
-                bformatter.Serialize(stream, this);
-            }
+            var doc = new XmlDocument();
+            doc.AppendChild(doc.CreateXmlDeclaration("1.0", "UTF-8", null));
+
+            var root = doc.CreateElement("root");
+            doc.AppendChild(root);
+
+            var settingsNode = CreateXmlNode(doc);
+            root.AppendChild(settingsNode);
+
+            var x264_x86_8bit_locationNode = doc.CreateElement("x264_x86_8bit_location");
+            x264_x86_8bit_locationNode.InnerText = x264_x86_8bit_location;
+            root.AppendChild(x264_x86_8bit_locationNode);
+
+            var x264_x86_10bit_locationNode = doc.CreateElement("x264_x86_10bit_location");
+            x264_x86_10bit_locationNode.InnerText = x264_x86_10bit_location;
+            root.AppendChild(x264_x86_10bit_locationNode);
+
+            var x264_x64_8bit_locationNode = doc.CreateElement("x264_x64_8bit_location");
+            x264_x64_8bit_locationNode.InnerText = x264_x64_8bit_location;
+            root.AppendChild(x264_x64_8bit_locationNode);
+
+            var x264_x64_10bit_locationNode = doc.CreateElement("x264_x64_10bit_location");
+            x264_x64_10bit_locationNode.InnerText = x264_x64_10bit_location;
+            root.AppendChild(x264_x64_10bit_locationNode);
+
+            var MKVMergeLocationNode = doc.CreateElement("MKVMergeLocation");
+            MKVMergeLocationNode.InnerText = MKVMergeLocation;
+            root.AppendChild(MKVMergeLocationNode);
+
+            var NeroAACLocationNode = doc.CreateElement("NeroAACLocation");
+            NeroAACLocationNode.InnerText = NeroAACLocation;
+            root.AppendChild(NeroAACLocationNode);
+
+            var BePipeLocationNode = doc.CreateElement("BePipeLocation");
+            BePipeLocationNode.InnerText = BePipeLocation;
+            root.AppendChild(BePipeLocationNode);
+
+            doc.Save(settingsFile);
         }
 
         public override void Initialize()
