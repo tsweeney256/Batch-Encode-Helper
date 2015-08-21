@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Bench
 {
@@ -176,6 +177,89 @@ namespace Bench
             }
 
             return intersection;
+        }
+
+        protected XmlDocument CreateXmlNode()
+        {
+            var root = new XmlDocument();
+
+            var counterNode = new XmlDocument();
+            counterNode.InnerText = counterIndex.ToString();
+            root.AppendChild(counterNode);
+
+            var counterValNode = new XmlDocument();
+            counterValNode.InnerText = counterValue.ToString();
+            counterNode.AppendChild(counterValNode);
+
+            var vidNode = new XmlDocument();
+            root.AppendChild(vidNode);
+
+            var fileNameBodyXml = new XmlDocument();
+            fileNameBodyXml.InnerText = fileNameBody;
+            vidNode.AppendChild(fileNameBodyXml);
+
+            var videoTrackNameXml = new XmlDocument();
+            videoTrackNameXml.InnerText = videoTrackName;
+            vidNode.AppendChild(videoTrackNameXml);
+
+            var videoLanguageCodeXml = new XmlDocument();
+            videoLanguageCodeXml.InnerText = videoLanguageCode;
+            vidNode.AppendChild(videoLanguageCodeXml);
+
+            var vidTabs = new XmlDocument[x264Args.Length];
+            for (int i = 0; i < x264Args.Length; i++)
+            {
+                vidTabs[i].InnerText = "Page " + i.ToString();
+                vidNode.AppendChild(vidTabs[i]);
+
+                var encoderXml = new XmlDocument();
+                encoderXml.InnerText = encoder[i].ToString();
+                vidTabs[i].AppendChild(encoderXml);
+
+                var fileNamePrefixXml = new XmlDocument();
+                fileNamePrefixXml.InnerText = fileNamePrefix[i];
+                vidTabs[i].AppendChild(fileNamePrefixXml);
+
+                var fileNameSuffixXml = new XmlDocument();
+                fileNameSuffixXml.InnerText = fileNameSuffix[i];
+                vidTabs[i].AppendChild(fileNameSuffixXml);
+
+                var avisynthTemplateXml = new XmlDocument();
+                avisynthTemplateXml.InnerText = avisynthTemplate[i];
+                vidTabs[i].AppendChild(avisynthTemplateXml);
+            }
+
+            var audioNode = new XmlDocument();
+            root.AppendChild(audioNode);
+
+            var noAudioXml = new XmlDocument();
+            noAudioXml.InnerText = noAudio.ToString();
+            audioNode.AppendChild(noAudioXml);
+
+            var audioTabs = new XmlDocument[audioTrackName.Length];
+            for (int i = 0; i < audioTrackName.Length; i++)
+            {
+                audioTabs[i].InnerText = "Page " + i.ToString();
+                audioNode.AppendChild(audioTabs[i]);
+
+                var qualityXml = new XmlDocument();
+                qualityXml.InnerText = quality[i].ToString();
+                audioTabs[i].AppendChild(qualityXml);
+
+                var audioTrackNameXml = new XmlDocument();
+                audioTrackNameXml.InnerText = audioTrackName[i];
+                audioTabs[i].AppendChild(audioTrackNameXml);
+
+                var audioLanguageCodeXml = new XmlDocument();
+                audioLanguageCodeXml.InnerText = audioLanguageCode[i];
+                audioTabs[i].AppendChild(audioLanguageCodeXml);
+
+                var audioTrackNumberXml = new XmlDocument();
+                audioTrackNumberXml.InnerText = audioTrackNumber[i].ToString();
+                audioTabs[i].AppendChild(audioTrackNumberXml);
+            }
+
+                return root;
         }
     }
 }
