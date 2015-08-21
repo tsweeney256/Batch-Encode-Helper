@@ -45,20 +45,60 @@ namespace Bench
             {
                 Initialize();
             }
-            try
-            {
-                doc.Load(settingsFile);
-            }
-            catch
-            {
-                var result = MessageBox.Show("Settings file contains errors. A new settings file will be created and the old one will be backed up.",
-                    "Error", MessageBoxButtons.OK);
-                File.Move(settingsFile, settingsFile + "." + DateTime.Now.Year.ToString() + "-" + DateTime.Now.Month.ToString() + "-" + DateTime.Now.Day.ToString() + " "
-                     + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString() + "-" + DateTime.Now.Second.ToString() + ".bak");
-                Initialize();
-                doc.Load(settingsFile);
-            }
+            doc.Load(settingsFile);
+            loadXml(doc);
+        }
 
+        public void Save()
+        {
+            var doc = new XmlDocument();
+            doc.AppendChild(doc.CreateXmlDeclaration("1.0", "UTF-8", null));
+
+            var root = doc.CreateElement("root");
+            doc.AppendChild(root);
+
+            var settingsNode = CreateXmlNode(doc);
+            root.AppendChild(settingsNode);
+
+            var x264_x86_8bit_locationNode = doc.CreateElement("x264_x86_8bit_location");
+            x264_x86_8bit_locationNode.InnerText = x264_x86_8bit_location;
+            root.AppendChild(x264_x86_8bit_locationNode);
+
+            var x264_x86_10bit_locationNode = doc.CreateElement("x264_x86_10bit_location");
+            x264_x86_10bit_locationNode.InnerText = x264_x86_10bit_location;
+            root.AppendChild(x264_x86_10bit_locationNode);
+
+            var x264_x64_8bit_locationNode = doc.CreateElement("x264_x64_8bit_location");
+            x264_x64_8bit_locationNode.InnerText = x264_x64_8bit_location;
+            root.AppendChild(x264_x64_8bit_locationNode);
+
+            var x264_x64_10bit_locationNode = doc.CreateElement("x264_x64_10bit_location");
+            x264_x64_10bit_locationNode.InnerText = x264_x64_10bit_location;
+            root.AppendChild(x264_x64_10bit_locationNode);
+
+            var MKVMergeLocationNode = doc.CreateElement("MKVMergeLocation");
+            MKVMergeLocationNode.InnerText = MKVMergeLocation;
+            root.AppendChild(MKVMergeLocationNode);
+
+            var NeroAACLocationNode = doc.CreateElement("NeroAACLocation");
+            NeroAACLocationNode.InnerText = NeroAACLocation;
+            root.AppendChild(NeroAACLocationNode);
+
+            var BePipeLocationNode = doc.CreateElement("BePipeLocation");
+            BePipeLocationNode.InnerText = BePipeLocation;
+            root.AppendChild(BePipeLocationNode);
+
+            doc.Save(settingsFile);
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            Save();
+        }
+
+        private void loadXml(XmlDocument doc)
+        {
             counterIndex = Convert.ToInt32(doc.GetElementsByTagName("counterIndex").Item(0).InnerText);
             counterValue = Convert.ToInt32(doc.GetElementsByTagName("counterVal").Item(0).InnerText);
             fileNameBody = doc.GetElementsByTagName("fileNameBody").Item(0).InnerText;
@@ -112,78 +152,16 @@ namespace Bench
             MKVMergeLocation = doc.GetElementsByTagName("MKVMergeLocation").Item(0).InnerText;
             NeroAACLocation = doc.GetElementsByTagName("NeroAACLocation").Item(0).InnerText;
             BePipeLocation = doc.GetElementsByTagName("BePipeLocation").Item(0).InnerText;
-
-
-            /*x264Args = settings.x264Args;
-            encoder = settings.encoder;
-            fileNamePrefix = settings.fileNamePrefix;
-            fileNameBody = settings.fileNameBody;
-            fileNameSuffix = settings.fileNameSuffix;
-            videoTrackName = settings.videoTrackName;
-            videoLanguageCode = settings.videoLanguageCode;
-            avisynthTemplate = settings.avisynthTemplate;
-            counterIndex = settings.counterIndex;
-            counterValue = settings.counterValue;
-            quality = settings.quality;
-            audioTrackName = settings.audioTrackName;
-            audioLanguageCode = settings.audioLanguageCode;
-            noAudio = settings.noAudio;
-            audioTrackNumber = settings.audioTrackNumber;
-            x264_x86_8bit_location = settings.x264_x86_8bit_location;
-            x264_x86_10bit_location = settings.x264_x86_10bit_location;
-            x264_x64_8bit_location = settings.x264_x64_8bit_location;
-            x264_x64_10bit_location = settings.x264_x64_10bit_location;
-            MKVMergeLocation = settings.MKVMergeLocation;
-            NeroAACLocation = settings.NeroAACLocation;
-            BePipeLocation = settings.BePipeLocation;*/
         }
 
-        public void Save()
+        /*private void loadError(XmlDocument doc)
         {
-            var doc = new XmlDocument();
-            doc.AppendChild(doc.CreateXmlDeclaration("1.0", "UTF-8", null));
-
-            var root = doc.CreateElement("root");
-            doc.AppendChild(root);
-
-            var settingsNode = CreateXmlNode(doc);
-            root.AppendChild(settingsNode);
-
-            var x264_x86_8bit_locationNode = doc.CreateElement("x264_x86_8bit_location");
-            x264_x86_8bit_locationNode.InnerText = x264_x86_8bit_location;
-            root.AppendChild(x264_x86_8bit_locationNode);
-
-            var x264_x86_10bit_locationNode = doc.CreateElement("x264_x86_10bit_location");
-            x264_x86_10bit_locationNode.InnerText = x264_x86_10bit_location;
-            root.AppendChild(x264_x86_10bit_locationNode);
-
-            var x264_x64_8bit_locationNode = doc.CreateElement("x264_x64_8bit_location");
-            x264_x64_8bit_locationNode.InnerText = x264_x64_8bit_location;
-            root.AppendChild(x264_x64_8bit_locationNode);
-
-            var x264_x64_10bit_locationNode = doc.CreateElement("x264_x64_10bit_location");
-            x264_x64_10bit_locationNode.InnerText = x264_x64_10bit_location;
-            root.AppendChild(x264_x64_10bit_locationNode);
-
-            var MKVMergeLocationNode = doc.CreateElement("MKVMergeLocation");
-            MKVMergeLocationNode.InnerText = MKVMergeLocation;
-            root.AppendChild(MKVMergeLocationNode);
-
-            var NeroAACLocationNode = doc.CreateElement("NeroAACLocation");
-            NeroAACLocationNode.InnerText = NeroAACLocation;
-            root.AppendChild(NeroAACLocationNode);
-
-            var BePipeLocationNode = doc.CreateElement("BePipeLocation");
-            BePipeLocationNode.InnerText = BePipeLocation;
-            root.AppendChild(BePipeLocationNode);
-
-            doc.Save(settingsFile);
-        }
-
-        public override void Initialize()
-        {
-            base.Initialize();
-            Save();
-        }
+            var result = MessageBox.Show("Settings file contains errors. A new settings file will be created and the old one will be backed up.",
+                "Error", MessageBoxButtons.OK);
+            File.Move(settingsFile, settingsFile + "." + DateTime.Now.Year.ToString() + "-" + DateTime.Now.Month.ToString() + "-" + DateTime.Now.Day.ToString() + " "
+                 + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString() + "-" + DateTime.Now.Second.ToString() + ".bak");
+            Initialize();
+            doc.Load(settingsFile);
+        }*/
     }
 }
