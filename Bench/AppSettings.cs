@@ -46,7 +46,25 @@ namespace Bench
                 Initialize();
             }
             doc.Load(settingsFile);
-            loadXml(doc);
+            int errorCode = loadXml(doc);
+            if (errorCode != 0)
+            {
+                string errorMsg;
+
+                if (errorCode == 1)
+                    errorMsg = "Settings file contains errors.";
+                else if (errorCode == 2)
+                    errorMsg = "Setting file is of the wrong version. Only setting files made with version 1.1.x of Bench are supported.";
+                else
+                    errorMsg = "Encountered a general error"; //should not be possible
+
+                MessageBox.Show(errorMsg + " A new settings file will be created and the old one will be backed up.",
+                    "Error", MessageBoxButtons.OK);
+                File.Move(settingsFile, settingsFile + "." + DateTime.Now.Year.ToString() + "-" + DateTime.Now.Month.ToString() + "-" + DateTime.Now.Day.ToString() + " "
+                    + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString() + "-" + DateTime.Now.Second.ToString() + ".bak");
+                Initialize();
+                doc.Load(settingsFile);
+            }
         }
 
         public void Save()
@@ -101,8 +119,13 @@ namespace Bench
             Save();
         }
 
-        private void loadXml(XmlDocument doc)
+        private int loadXml(XmlDocument doc)
         {
+            if (doc.GetElementsByTagName("version").Count == 0)
+                return 1; //invalid file
+            else if (doc.GetElementsByTagName("version").Item(0).InnerText != "1")
+                return 2; //invalid version
+
             counterIndex = Convert.ToInt32(doc.GetElementsByTagName("counterIndex").Item(0).InnerText);
             counterValue = Convert.ToInt32(doc.GetElementsByTagName("counterVal").Item(0).InnerText);
             fileNameBody = doc.GetElementsByTagName("fileNameBody").Item(0).InnerText;
@@ -156,6 +179,8 @@ namespace Bench
             MKVMergeLocation = doc.GetElementsByTagName("MKVMergeLocation").Item(0).InnerText;
             NeroAACLocation = doc.GetElementsByTagName("NeroAACLocation").Item(0).InnerText;
             BePipeLocation = doc.GetElementsByTagName("BePipeLocation").Item(0).InnerText;
+
+            return 0;
         }
 
         /*private void loadError(XmlDocument doc)
