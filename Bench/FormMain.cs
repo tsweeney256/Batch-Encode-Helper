@@ -31,7 +31,7 @@ namespace Bench
     public partial class FormMain : Form
     {
         private AppSettings appSettings;
-        private List<OutputSettings> outputSettings;
+        private OutputSettingsList outputSettings;
         private int[] selectedIndicesToSave;
         private string saveFileName;
         private bool unsavedChanges;
@@ -47,7 +47,7 @@ namespace Bench
 
         private void initInterface()
         {
-            outputSettings = new List<OutputSettings>();
+            outputSettings = new OutputSettingsList();
             saveFileName = null;
             settingsTabCollection.OutputSettings = outputSettings;
             settingsTabCollection.ListBox = ListBox_Files;
@@ -367,12 +367,7 @@ namespace Bench
                 SaveSelectedIndices();
                 settingsTabCollection.UnsavedChanges = false;
                 unsavedChanges = false;
-                using (Stream stream = File.Open(saveFileName, FileMode.Create))
-                {
-                    var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                    bformatter.Serialize(stream, "1.0.0");
-                    bformatter.Serialize(stream, outputSettings);
-                }
+                outputSettings.Save(saveFileName);
             }
         }
 
@@ -426,7 +421,7 @@ namespace Bench
                 try
                 {
                     string version = (string)bformatter.Deserialize(stream);
-                    outputSettings = (List<OutputSettings>)bformatter.Deserialize(stream);
+                    outputSettings = (OutputSettingsList)bformatter.Deserialize(stream);
                     settingsTabCollection.OutputSettings = outputSettings;
                     saveFileName = path;
                     this.Text = Path.GetFileName(saveFileName) + " - " + this.Text;

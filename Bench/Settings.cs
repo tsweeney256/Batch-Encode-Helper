@@ -179,7 +179,7 @@ namespace Bench
             return intersection;
         }
 
-        protected XmlElement CreateXmlNode(XmlDocument doc)
+        public XmlElement CreateXmlNode(XmlDocument doc)
         {
 
             var root = doc.CreateElement("settings");

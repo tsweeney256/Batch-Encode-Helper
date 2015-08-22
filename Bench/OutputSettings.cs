@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 
 namespace Bench
 {
@@ -29,5 +30,37 @@ namespace Bench
 
         public OutputSettings() { }
         public OutputSettings(Settings settings) : base(settings) { }
+    }
+
+    public class OutputSettingsList : List<OutputSettings>
+    {
+        public OutputSettingsList() { }
+
+        public void Save(string path)
+        {
+            var doc = new XmlDocument();
+            doc.AppendChild(doc.CreateXmlDeclaration("1.0", "UTF-8", null));
+
+            var root = doc.CreateElement("root");
+            doc.AppendChild(root);
+
+            var versionNode = doc.CreateElement("version");
+            versionNode.InnerText = "1";
+            root.AppendChild(versionNode);
+
+            foreach (var setting in this)
+            {
+                var inputNode = doc.CreateElement("input");
+                root.AppendChild(inputNode);
+
+                var fileNode = doc.CreateElement("file");
+                fileNode.InnerText = setting.FileName;
+                inputNode.AppendChild(fileNode);
+
+                var settingsNode = setting.CreateXmlNode(doc);
+                inputNode.AppendChild(settingsNode);
+            }
+            doc.Save(path);
+        }
     }
 }
