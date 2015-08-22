@@ -415,43 +415,32 @@ namespace Bench
 
         private void openBenFile(string path)
         {
-            /*using (Stream stream = File.Open(path, FileMode.Open))
-            {*/
-                var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                /*try
-                {*/
-                    outputSettings.Load(path);
-                    settingsTabCollection.OutputSettings = outputSettings;
-                    saveFileName = path;
-                    this.Text = Path.GetFileName(saveFileName) + " - " + this.Text;
-                    ListBox_Files.Items.Clear();
-                    for (int i = 0; i < outputSettings.Count; i++)
-                    {
-                        ListBox_Files.Items.Add(outputSettings[i].FileName);
-                    }
-                    if (ListBox_Files.Items.Count > 0)
-                    {
-                        if (ListBox_Files.Items.Count < 2)
-                        {
-                            Button_MoveDown_ListBox_Files.Enabled = false;
-                            Button_MoveUp_ListBox_Files.Enabled = false;
-                        }
-                        ListBox_Files.SelectedIndex = 0;
-                    }
-                    else
-                    {
-                        settingsTabCollection.Enabled = false;
-                        createBatchToolStripMenuItem.Enabled = false;
-                        Button_TextBox_Files_Remove.Enabled = false;
-                    }
-                    unsavedChanges = false;
-                    settingsTabCollection.UnsavedChanges = false;
-                //}
-                /*catch
+            outputSettings.Load(path);
+            settingsTabCollection.OutputSettings = outputSettings;
+            saveFileName = path;
+            this.Text = Path.GetFileName(saveFileName) + " - " + this.Text;
+            ListBox_Files.Items.Clear();
+            for (int i = 0; i < outputSettings.Count; i++)
+            {
+                ListBox_Files.Items.Add(outputSettings[i].FileName);
+            }
+            if (ListBox_Files.Items.Count > 0)
+            {
+                if (ListBox_Files.Items.Count < 2)
                 {
-                    MessageBox.Show("Not a valid BEH file.", "Error", MessageBoxButtons.OK);
-                }*/
-            //}
+                    Button_MoveDown_ListBox_Files.Enabled = false;
+                    Button_MoveUp_ListBox_Files.Enabled = false;
+                }
+                ListBox_Files.SelectedIndex = 0;
+            }
+            else
+            {
+                settingsTabCollection.Enabled = false;
+                createBatchToolStripMenuItem.Enabled = false;
+                Button_TextBox_Files_Remove.Enabled = false;
+            }
+            unsavedChanges = false;
+            settingsTabCollection.UnsavedChanges = false;
         }
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
