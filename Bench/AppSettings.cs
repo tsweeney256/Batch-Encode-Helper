@@ -182,15 +182,5 @@ namespace Bench
 
             return 0;
         }
-
-        /*private void loadError(XmlDocument doc)
-        {
-            var result = MessageBox.Show("Settings file contains errors. A new settings file will be created and the old one will be backed up.",
-                "Error", MessageBoxButtons.OK);
-            File.Move(settingsFile, settingsFile + "." + DateTime.Now.Year.ToString() + "-" + DateTime.Now.Month.ToString() + "-" + DateTime.Now.Day.ToString() + " "
-                 + DateTime.Now.Hour.ToString() + "-" + DateTime.Now.Minute.ToString() + "-" + DateTime.Now.Second.ToString() + ".bak");
-            Initialize();
-            doc.Load(settingsFile);
-        }*/
     }
 }
