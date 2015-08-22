@@ -264,5 +264,56 @@ namespace Bench
 
             return root;
         }
+
+        public virtual int LoadXmlNode(XmlNode SettingNode)
+        {
+            counterIndex = Convert.ToInt32(SettingNode.SelectNodes(".//counterIndex").Item(0).InnerText);
+            counterValue = Convert.ToInt32(SettingNode.SelectNodes(".//counterVal").Item(0).InnerText);
+            fileNameBody = SettingNode.SelectNodes(".//fileNameBody").Item(0).InnerText;
+            videoTrackName = SettingNode.SelectNodes(".//videoTrackName").Item(0).InnerText;
+            videoLanguageCode = SettingNode.SelectNodes(".//videoLanguageCode").Item(0).InnerText;
+
+            int vidTabCount = SettingNode.SelectNodes(".//x264Args").Count;
+            x264Args = new string[vidTabCount];
+            var x264ArgsList = SettingNode.SelectNodes(".//x264Args");
+            encoder = new int[vidTabCount];
+            var encoderList = SettingNode.SelectNodes(".//encoder");
+            fileNamePrefix = new string[vidTabCount];
+            var fileNamePrefixList = SettingNode.SelectNodes(".//fileNamePrefix");
+            fileNameSuffix = new string[vidTabCount];
+            var fileNameSuffixList = SettingNode.SelectNodes(".//fileNameSuffix");
+            avisynthTemplate = new string[vidTabCount];
+            var avisynthTemplateList = SettingNode.SelectNodes(".//avisynthTemplate");
+            for (int i = 0; i < vidTabCount; i++)
+            {
+                x264Args[i] = x264ArgsList.Item(i).InnerText;
+                encoder[i] = Convert.ToInt32(encoderList.Item(i).InnerText);
+                fileNamePrefix[i] = fileNamePrefixList.Item(i).InnerText;
+                fileNameSuffix[i] = fileNameSuffixList.Item(i).InnerText;
+                avisynthTemplate[i] = avisynthTemplateList.Item(i).InnerText;
+            }
+
+            noAudio = Convert.ToBoolean(SettingNode.SelectNodes(".//noAudio").Item(0).InnerText);
+
+            int audioTabCount = SettingNode.SelectNodes(".//audioTrackName").Count;
+            quality = new decimal[audioTabCount];
+            var qualityList = SettingNode.SelectNodes(".//quality");
+            audioTrackName = new string[audioTabCount];
+            var audioTrackNameList = SettingNode.SelectNodes(".//audioTrackName");
+            audioLanguageCode = new string[audioTabCount];
+            var audioLanguageCodeList = SettingNode.SelectNodes(".//audioLanguageCode");
+            audioTrackNumber = new int[audioTabCount];
+            var audioTrackNumberList = SettingNode.SelectNodes(".//audioTrackNumber");
+
+            for (int i = 0; i < audioTabCount; i++)
+            {
+                quality[i] = Convert.ToDecimal(qualityList.Item(i).InnerText);
+                audioTrackName[i] = audioTrackNameList.Item(i).InnerText;
+                audioLanguageCode[i] = audioLanguageCodeList.Item(i).InnerText;
+                audioTrackNumber[i] = Convert.ToInt32(audioTrackNumberList.Item(i).InnerText);
+            }
+
+            return 0;
+        }
     }
 }
