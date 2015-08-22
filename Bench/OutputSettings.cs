@@ -21,6 +21,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.IO;
 
 namespace Bench
 {
@@ -30,6 +31,15 @@ namespace Bench
 
         public OutputSettings() { }
         public OutputSettings(Settings settings) : base(settings) { }
+
+        public override int LoadXmlNode(XmlNode SettingNode)
+        {
+            int result = base.LoadXmlNode(SettingNode);
+            if (result != 0)
+                return result;
+            FileName = SettingNode.SelectSingleNode(".//file").InnerText;
+            return 0;
+        }
     }
 
     public class OutputSettingsList : List<OutputSettings>
@@ -61,6 +71,31 @@ namespace Bench
                 inputNode.AppendChild(settingsNode);
             }
             doc.Save(path);
+        }
+
+        public int Load(string path)
+        {
+            this.Clear();
+            var doc = new XmlDocument();
+            if (!File.Exists(path))
+                return 3; //file does not exist
+            doc.Load(path);
+
+            if (doc.GetElementsByTagName("version").Count == 0)
+                return 1; //invalid file
+            else if (doc.GetElementsByTagName("version").Item(0).InnerText != "1")
+                return 2; //invalid version
+
+            var settingNodes = doc.SelectNodes("//input");
+            int size = settingNodes.Count;
+            for (int i = 0; i < size; i++)
+            {
+                var outputSettings = new OutputSettings();
+                outputSettings.LoadXmlNode(settingNodes.Item(i));
+                this.Add(outputSettings);
+            }
+
+            return 0;
         }
     }
 }

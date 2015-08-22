@@ -415,13 +415,12 @@ namespace Bench
 
         private void openBenFile(string path)
         {
-            using (Stream stream = File.Open(path, FileMode.Open))
-            {
+            /*using (Stream stream = File.Open(path, FileMode.Open))
+            {*/
                 var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-                try
-                {
-                    string version = (string)bformatter.Deserialize(stream);
-                    outputSettings = (OutputSettingsList)bformatter.Deserialize(stream);
+                /*try
+                {*/
+                    outputSettings.Load(path);
                     settingsTabCollection.OutputSettings = outputSettings;
                     saveFileName = path;
                     this.Text = Path.GetFileName(saveFileName) + " - " + this.Text;
@@ -447,12 +446,12 @@ namespace Bench
                     }
                     unsavedChanges = false;
                     settingsTabCollection.UnsavedChanges = false;
-                }
-                catch
+                //}
+                /*catch
                 {
                     MessageBox.Show("Not a valid BEH file.", "Error", MessageBoxButtons.OK);
-                }
-            }
+                }*/
+            //}
         }
 
         private void FormMain_FormClosing(object sender, FormClosingEventArgs e)
